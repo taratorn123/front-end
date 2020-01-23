@@ -1,0 +1,16 @@
+.click {
+    color: grey;
+}
+
+.click:hover {
+    color: lightgrey;
+}
+
+#logo {
+    width: 25px;
+    height: 30px;
+    margin-top: 5px;
+    margin-right: 16px;
+    /* margin-bottom: 12px; */
+    /* margin-left: 5px; */
+}

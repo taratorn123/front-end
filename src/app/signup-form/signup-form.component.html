@@ -1,0 +1,30 @@
+
+<form (ngSubmit)="onSubmit()" #userForm="ngForm" class="form-signin text-center">
+    <div class="container">
+
+        <img class="mb-4" src="../../assets/img/Logo.png" alt="" width="72" height="72">
+        <h1 class="h3 mb-3 font-weight-normal">Sign up</h1>
+        <label for="inputUsername" class="sr-only">Username</label>
+        <input  [(ngModel)]="user.username" 
+        class="form-control"
+        id="username"
+        name="username"
+        placeholder="Enter your username"
+        required #name="ngModel" required autofocus>
+        <!-- <div [hidden]="!name.pristine" class="alert alert-danger">Name is required</div> -->
+        
+        
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" [(ngModel)]="user.password" 
+        class="form-control"
+        id="password"
+        name="password"
+        placeholder="Enter your password"
+        required autofocus #email="ngModel">
+        <!-- <div [hidden]="!email.pristine" class="alert alert-danger">Email is required</div> -->
+        <!-- <label for="inputPassword" class="sr-only">Password</label> -->
+        <!-- <input type="password" id="inputPassword" class="form-control" placeholder="Password" required> -->
+        <button type="submit" [disabled]="!userForm.form.valid" class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+    </div>
+</form>
+

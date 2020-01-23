@@ -1,0 +1,22 @@
+<p>donate works!</p>
+<form [formGroup]="profileForm">
+    <div class="container">
+        <div class="row">
+            <div class="col-6 align-self-center">
+                <label for="donate-baht">Your donation</label>
+                <input id="donate-baht" type="number" formControlName="donate-baht">
+            </div>
+            <div class="col-6 align-self-center">
+                <label for="donate-comment">Comment</label>
+                <input id="donate-comment" type="text" formControlName="donate-comment">
+            </div>
+        </div>
+
+        <div class="row">
+            <label for="donate-privatekey">Stellar private key</label>
+            <input id="donate-privatekey" type="text" formControlName="donate-privatekey">
+        </div>
+
+        <button (click)="donate()" [disabled]="profileForm.invalid">Donate</button>
+    </div>
+</form>
