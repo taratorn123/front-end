@@ -7,11 +7,9 @@ import { Observable } from 'rxjs/Observable';
 export class UserService {
  
   private usersUrl: string;
-  private findByUsernameUrl: string;
 
   constructor(private http: HttpClient) {
-    this.usersUrl = 'http://localhost:8080/users';
-    this.findByUsernameUrl = 'http://localhost:8080/findByUsername';
+    this.usersUrl = 'http://25.22.233.154:8080/users';
 
   }
  
@@ -25,8 +23,4 @@ export class UserService {
     return this.http.post<User>(this.usersUrl, user);
   }
 
-  public authenticate(user:User) {
-    
-    return this.http.post<boolean>(this.findByUsernameUrl, user);
-  }
 }

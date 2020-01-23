@@ -15,9 +15,6 @@ import { BsNavbarComponent } from './bs-navbar/bs-navbar.component';
 import { CampaignsComponent } from './campaigns/campaigns.component';
 import { DonateComponent } from './donate/donate.component';
 import { HomeComponent } from './home/home.component';
-import { CheckOutComponent } from './check-out/check-out.component';
-import { DonateSuccessComponent } from './donate-success/donate-success.component';
-import { MyHistoryComponent } from './my-history/my-history.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { AboutUsComponent } from './about-us/about-us.component';
@@ -27,6 +24,8 @@ import { UserListComponent } from './user-list/user-list.component';
 import { UserService } from './user-service.service';
 import { SignOutComponent } from './sign-out/sign-out.component';
 import { CreateCampaignOneComponent } from './create-campaign-one/create-campaign-one.component';
+import { CreateCampaignTwoComponent } from './create-campaign-two/create-campaign-two.component';
+import { CreateCampaignThreeComponent } from './create-campaign-three/create-campaign-three.component';
 
 @NgModule({
   declarations: [
@@ -35,15 +34,14 @@ import { CreateCampaignOneComponent } from './create-campaign-one/create-campaig
     CampaignsComponent,
     DonateComponent,
     HomeComponent,
-    CheckOutComponent,
-    DonateSuccessComponent,
-    MyHistoryComponent,
     AboutUsComponent,
     SignInComponent,
     SignupFormComponent,
     UserListComponent,
     SignOutComponent,
-    CreateCampaignOneComponent
+    CreateCampaignOneComponent,
+    CreateCampaignTwoComponent,
+    CreateCampaignThreeComponent
   ],
   imports: [
     BrowserModule,
