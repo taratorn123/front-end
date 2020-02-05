@@ -1,96 +1,118 @@
 
-<!-- <form (ngSubmit)="onSubmit()" #campaignModelForm="ngForm" class="form-signin text-center">
-    <div class="container">
-
-        <h1 class="h3 mb-3 font-weight-normal">Create Campaign</h1>
-        <label for="inputGoal" class="sr-only">Goal</label>
-        <input  type="number" [(ngModel)]="campaignModel.goal" 
-        class="form-control"
-        id="goal"
-        name="goal"
-        placeholder="Enter your goal ฿"
-        required #name="ngModel" required autofocus>
-        
-        
-        <label for="inputPassword" class="sr-only">Campaign Title</label>
-        <input type="text" [(ngModel)]="campaignModel.campaignTitle" 
-        class="form-control"
-        id="title"
-        name="title"
-        placeholder="Enter campaign title"
-        required autofocus #email="ngModel">
-        <button type="submit" [disabled]="!campaignModel.form.valid" class="btn btn-lg btn-primary btn-block" type="submit">Next</button>
-    </div>
-</form> -->
-<div class="col-md-8 order-md-1" style="margin-top: 100px;">
-    <h4 class="mb-3">Billing address</h4>
-    <form class="needs-validation" novalidate>
+<div class="col-md-12 order-md-1 container">
+    <h4 class="mb-3">Create Campaign</h4>
+    <form (ngSubmit)="ngOnSubmit()" #stepOneForm="ngForm" class="editForm"  novalidate>
       
 
-      <div class="mb-3">
-        <label for="username">Enter Your Goal</label>
+      <div class="mb-3 form-group">
+        
+        <label class="control-label" for="targetDonation">Goal</label>  
         <div class="input-group">
           <div class="input-group-prepend">
-            <span class="input-group-text">@</span>
+            <span class="input-group-text">฿</span>
           </div>
-          <input type="text" class="form-control" id="username" placeholder="Username" required>
-          <div class="invalid-feedback" style="width: 100%;">
-            Your username is required.
+          <input type="number" 
+          class="form-control" 
+          #targetDonation="ngModel"
+          required name="targetDonation" 
+          placeholder="Baht" 
+          [(ngModel)]="campaignModel.targetDonation" 
+          required>
+          <div class="alert alert-danger" style="width: 100%;" [hidden]="targetDonation.valid">
+            Your goal is required.
           </div>
         </div>
       </div>
 
-      <div class="mb-3">
-        <label for="email">Email <span class="text-muted">(Optional)</span></label>
-        <input type="email" class="form-control" id="email" placeholder="you@example.com">
-        <div class="invalid-feedback">
-          Please enter a valid email address for shipping updates.
+      <div class="mb-3 form-group">
+        <label class="control-label" for="campaignName">Title</label>  
+        <input class="form-control" 
+        #campaignName="ngModel" 
+        required 
+        name="campaignName" 
+        type="text" 
+        placeholder="Title" 
+        [(ngModel)]="campaignModel.campaignName">
+        <div class="alert alert-danger" style="width: 100%;" [hidden]="campaignName.valid">
+          Please enter a campaign title.
         </div>
-      </div>
-
-      <div class="mb-3">
-        <label for="address">Address</label>
-        <input type="text" class="form-control" id="address" placeholder="1234 Main St" required>
-        <div class="invalid-feedback">
-          Please enter your shipping address.
-        </div>
-      </div>
-
-      <div class="mb-3">
-        <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>
-        <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
       </div>
 
       <div class="row">
-        <div class="col-md-5 mb-3">
-          <label for="country">Country</label>
-          <select class="custom-select d-block w-100" id="country" required>
+        <div class="col-md-6 mb-3 form-group">
+          <label for="category">Campaign Category</label>
+          <select class="custom-select form-control d-block w-100" 
+          id="category" 
+          #category="ngModel" 
+          required 
+          name="category" 
+          type="text" 
+          [(ngModel)]="campaignModel.category" 
+          required>
             <option value="">Choose...</option>
             <option>United States</option>
           </select>
-          <div class="invalid-feedback">
-            Please select a valid country.
+          <div class="alert alert-danger" style="width: 100%;" [hidden]="category.valid">
+            Please choose category.
           </div>
         </div>
-        <div class="col-md-4 mb-3">
-          <label for="state">State</label>
-          <select class="custom-select d-block w-100" id="state" required>
+        <div class="col-md-6 mb-3 form-group">
+          <label for="fundRaisingAs">Fundraising as who</label>
+          <select class="custom-select d-block w-100" 
+          id="fundRaisingAs" 
+          #fundRaisingAs="ngModel" 
+          required name="fundRaisingAs" 
+          type="text" 
+          [(ngModel)]="campaignModel.fundRaisingAs" 
+          required>
             <option value="">Choose...</option>
             <option>California</option>
           </select>
-          <div class="invalid-feedback">
-            Please provide a valid state.
-          </div>
-        </div>
-        <div class="col-md-3 mb-3">
-          <label for="zip">Zip</label>
-          <input type="text" class="form-control" id="zip" placeholder="" required>
-          <div class="invalid-feedback">
-            Zip code required.
+          <div class="alert alert-danger" style="width: 100%;" [hidden]="fundRaisingAs.valid">
+            Please choose who you are fundraising as.
           </div>
         </div>
       </div>
+      
+      <div class="form-group text-center">
+        <button type="submit" class="btn btn-primary btn-lg btn-block" [disabled]="!stepOneForm.valid"  >Next</button>
+      </div>
     </form>
+    
 </div>
-
+<!-- <form #personalForm="ngForm" class="editForm" novalidate>
+  <div class="tab-pane fade in active">
+      <h4 class="head text-center">{{title}}</h4>
+      <br/>
+      <div class='row'>
+          <div class='col-xs-offset-1 col-xs-10 col-sm-offset-2 col-sm-8'>
+              <div class="row">
+                  <div class='col-xs-12 col-sm-6'>
+                      <div class="form-group">
+                          <label class="control-label" for="firstname">First Name</label>  
+                          <input class="form-control input-md" #firstname="ngModel" required name="firstname" type="text" placeholder="First Name" [(ngModel)]="personal.firstName">   
+                          <div class="alert alert-danger" [hidden]="firstname.valid">First Name is required</div>
+                      </div>
+                  </div>
+                  <div class='col-xs-12 col-sm-6'>
+                      <div class="form-group">
+                          <label class="control-label" for="lastname">Last Name</label>  
+                          <input class="form-control input-md" #lastname="ngModel" required name="lastname" type="text" placeholder="Last Name" [(ngModel)]="personal.lastName">
+                          <div class="alert alert-danger" [hidden]="lastname.valid">Last Name is required</div>
+                      </div>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label class="control-label" for="email">Email</label>
+                  <input class="form-control input-md" #email="ngModel" required pattern="^[^\s@]+@[^\s@]+\.[^\s@]{2,}$" name="email" type="text" placeholder="Email" [(ngModel)]="personal.email">
+                  <div class="alert alert-danger" [hidden]="email.valid">Email is required and must be valid</div>
+              </div>
+                  
+              <div class="form-group text-center">
+                  <button class="btn btn-success btn-outline-rounded btn-info" [disabled]="!personalForm.valid" (click)="goToNext(personalForm)"> Next <span style="margin-left:10px;" class="glyphicon glyphicon-arrow-right"></span></button>
+              </div>
+          </div>
+      </div>
+  </div>
+</form> -->
 

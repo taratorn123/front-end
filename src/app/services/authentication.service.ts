@@ -13,7 +13,7 @@ export class AuthenticationService  {
   isMatch: boolean;
   
   constructor(private userService: UserService, private http: HttpClient) {
-    this.findByUsernameUrl = 'http://25.22.233.154:8080/findByUsername';
+    this.findByUsernameUrl = 'http://localhost:8080/findByUsername';
 
   }
 

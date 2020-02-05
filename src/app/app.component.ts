@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { CampaignFormService } from './services/campaign-form.service';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'donationblock';
+  @Input() formData;
+  constructor(private campaignFormService: CampaignFormService) {
+  }
+
+  ngOnInit() {
+      this.formData = this.campaignFormService.getFormData();
+      console.log(this.title + ' loaded!');
+  }
 }

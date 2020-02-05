@@ -1,3 +1,4 @@
+import { CreateCampaignTwoComponent } from './create-campaign-two/create-campaign-two.component';
 import { CreateCampaignOneComponent } from './create-campaign-one/create-campaign-one.component';
 import { AuthGaurdService } from './services/auth-gaurd.service';
 import { SignOutComponent } from './sign-out/sign-out.component';
@@ -36,7 +37,9 @@ const routes: Routes = [
   { path: 'sign-out', 
     component: SignOutComponent ,canActivate:[AuthGaurdService]},
   { path: 'create-campaign-one', 
-    component: CreateCampaignOneComponent }  
+    component: CreateCampaignOneComponent },  
+    { path: 'create-campaign-two', 
+    component: CreateCampaignTwoComponent }
 ];
 
 @NgModule({

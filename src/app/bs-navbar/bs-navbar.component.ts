@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BsNavbarComponent implements OnInit {
 
-  constructor(private loginService:AuthenticationService) { }
+  constructor(public loginService:AuthenticationService) { }
 
   ngOnInit() {
   }
