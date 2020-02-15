@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CampaignModel, StepOne } from './../../models/campaign-model';
+import { CampaignModel, StepOne, StepTwo } from './../../models/campaign-model';
 
 @Injectable({
   providedIn: 'root'
@@ -28,67 +28,75 @@ export class CampaignFormService {
     return personal;
   }
   
-  public saveCampaign(campaignModel: CampaignModel) {
-    return this.http.post<CampaignModel>(this.campaignUrl, campaignModel);
+  // public saveCampaign(campaignModel: CampaignModel) {
+  //   return this.http.post<CampaignModel>(this.campaignUrl, campaignModel);
+  // }
+  setPersonal(data: StepOne) {
+      // Update the StepOne data only when the StepOne Form had been validated successfully
+      this.isPersonalFormValid = true;
+      this.campaignModel.targetDonation = data.targetDonation;
+      this.campaignModel.campaignName = data.campaignName;
+      this.campaignModel.category = data.category;
+      this.campaignModel.fundRaisingAs = data.fundRaisingAs;
+
+      // this.campaignModel.email = data.email;
   }
-setPersonal(data: StepOne) {
-    // Update the StepOne data only when the StepOne Form had been validated successfully
-    this.isPersonalFormValid = true;
-    this.campaignModel.targetDonation = data.targetDonation;
-    this.campaignModel.campaignName = data.campaignName;
-    this.campaignModel.category = data.category;
-    this.campaignModel.fundRaisingAs = data.fundRaisingAs;
 
-    // this.campaignModel.email = data.email;
-}
+  // getWork() : StepTwo {
+  //     // Return the work type
+  //     var stepTwo: StepTwo = {
+  //       selectedFile: this.campaignModel.selectedFile,
+  //       coverImageName: this.campaignModel.coverImageName,
+  //   }; 
+  //     return stepTwo;
+  // }
 
-// getWork() : string {
-//     // Return the work type
-//     return this.campaignModel.work;
-// }
+  // setWork(data: StepTwo) {
+  //     // Update the work type only when the Work Form had been validated successfully
+  //     this.isWorkFormValid = true;
+  //     this.campaignModel.selectedFile = data.selectedFile;
+  //     this.campaignModel.coverImageName = data.coverImageName;
+  //   }
 
-// setWork(data: string) {
-//     // Update the work type only when the Work Form had been validated successfully
-//     this.isWorkFormValid = true;
-//     this.campaignModel.work = data;
-// }
+  // getAddress() : Address {
+  //     // Return the Address data
+  //     var address: Address = {
+  //         street: this.campaignModel.street,
+  //         city: this.campaignModel.city,
+  //         state: this.campaignModel.state,
+  //         zip: this.campaignModel.zip
+  //     };
+  //     return address;
+  // }
 
-// getAddress() : Address {
-//     // Return the Address data
-//     var address: Address = {
-//         street: this.campaignModel.street,
-//         city: this.campaignModel.city,
-//         state: this.campaignModel.state,
-//         zip: this.campaignModel.zip
-//     };
-//     return address;
-// }
+  // setAddress(data: Address) {
+  //     // Update the Address data only when the Address Form had been validated successfully
+  //     this.isAddressFormValid = true;
+  //     this.campaignModel.street = data.street;
+  //     this.campaignModel.city = data.city;
+  //     this.campaignModel.state = data.state;
+  //     this.campaignModel.zip = data.zip;
+  // }
 
-// setAddress(data: Address) {
-//     // Update the Address data only when the Address Form had been validated successfully
-//     this.isAddressFormValid = true;
-//     this.campaignModel.street = data.street;
-//     this.campaignModel.city = data.city;
-//     this.campaignModel.state = data.state;
-//     this.campaignModel.zip = data.zip;
-// }
+  getFormData(): CampaignModel {
+      // Return the entire Form Data
+      return this.campaignModel;
+  }
 
-getFormData(): CampaignModel {
-    // Return the entire Form Data
-    return this.campaignModel;
-}
+  resetFormData(): CampaignModel {
+      // Return the form data after all this.* members had been reset
+      this.campaignModel.clear();
+      this.isPersonalFormValid = this.isWorkFormValid = this.isAddressFormValid = false;
+      return this.campaignModel;
+  }
 
-resetFormData(): CampaignModel {
-    // Return the form data after all this.* members had been reset
-    this.campaignModel.clear();
-    this.isPersonalFormValid = this.isWorkFormValid = this.isAddressFormValid = false;
-    return this.campaignModel;
-}
-
-isFormValid() {
-    // Return true if all forms had been validated successfully; otherwise, return false
-    return this.isPersonalFormValid &&
-            this.isWorkFormValid && 
-            this.isAddressFormValid;
-}
+  isFormValid() {
+      // Return true if all forms had been validated successfully; otherwise, return false
+      return this.isPersonalFormValid &&
+              this.isWorkFormValid && 
+              this.isAddressFormValid;
+  }
+  public saveCampaign(uploadData: FormData) {
+    return this.http.post<FormData>(this.campaignUrl, uploadData);
+  }
 }

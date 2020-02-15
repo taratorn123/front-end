@@ -7,7 +7,7 @@ import { AngularFireAuthModule } from "@angular/fire/auth";
 import { AngularFireDatabaseModule } from "@angular/fire/database";
 import { environment } from '../environments/environment';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-
+import { QuillModule } from 'ngx-quill';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -53,7 +53,8 @@ import { CreateCampaignThreeComponent } from './create-campaign-three/create-cam
     AngularFireModule.initializeApp(environment.firebase),
     FormsModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    QuillModule.forRoot()
     
   ],
   providers: [UserService,

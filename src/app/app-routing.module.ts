@@ -10,6 +10,7 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SignupFormComponent } from './signup-form/signup-form.component';
 import { UserListComponent } from './user-list/user-list.component';
+import { CreateCampaignThreeComponent } from './create-campaign-three/create-campaign-three.component';
 
 const routes: Routes = [
   // { path: '',
@@ -39,7 +40,9 @@ const routes: Routes = [
   { path: 'create-campaign-one', 
     component: CreateCampaignOneComponent },  
     { path: 'create-campaign-two', 
-    component: CreateCampaignTwoComponent }
+    component: CreateCampaignTwoComponent },
+    { path: 'create-campaign-three', 
+    component: CreateCampaignThreeComponent }
 ];
 
 @NgModule({

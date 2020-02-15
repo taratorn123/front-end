@@ -1,7 +1,7 @@
 
 <div class="col-md-12 order-md-1 container">
     <h4 class="mb-3">Create Campaign</h4>
-    <form (ngSubmit)="ngOnSubmit()" #stepOneForm="ngForm" class="editForm"  novalidate>
+    <form [formGroup]="editorForm" (ngSubmit)="ngOnSubmit()" #stepOneForm="ngForm" class="editForm"  novalidate>
       
 
       <div class="mb-3 form-group">
@@ -16,7 +16,8 @@
           #targetDonation="ngModel"
           required name="targetDonation" 
           placeholder="Baht" 
-          [(ngModel)]="campaignModel.targetDonation" 
+          [(ngModel)]="campaignModel.targetDonation"
+          [ngModelOptions]="{standalone: true}" 
           required>
           <div class="alert alert-danger" style="width: 100%;" [hidden]="targetDonation.valid">
             Your goal is required.
@@ -32,7 +33,10 @@
         name="campaignName" 
         type="text" 
         placeholder="Title" 
-        [(ngModel)]="campaignModel.campaignName">
+        [(ngModel)]="campaignModel.campaignName"
+        [ngModelOptions]="{standalone: true}" 
+        >
+        
         <div class="alert alert-danger" style="width: 100%;" [hidden]="campaignName.valid">
           Please enter a campaign title.
         </div>
@@ -47,7 +51,9 @@
           required 
           name="category" 
           type="text" 
-          [(ngModel)]="campaignModel.category" 
+          [(ngModel)]="campaignModel.category"
+          [ngModelOptions]="{standalone: true}" 
+ 
           required>
             <option value="">Choose...</option>
             <option>United States</option>
@@ -56,6 +62,7 @@
             Please choose category.
           </div>
         </div>
+
         <div class="col-md-6 mb-3 form-group">
           <label for="fundRaisingAs">Fundraising as who</label>
           <select class="custom-select d-block w-100" 
@@ -64,6 +71,8 @@
           required name="fundRaisingAs" 
           type="text" 
           [(ngModel)]="campaignModel.fundRaisingAs" 
+          [ngModelOptions]="{standalone: true}" 
+
           required>
             <option value="">Choose...</option>
             <option>California</option>
@@ -74,8 +83,39 @@
         </div>
       </div>
       
+      <div class="mb-3 form-group">
+        <h3>Image Uploading Module</h3>
+        <div>
+            <input type="file" (change)="onFileChanged($event)">
+
+            <img [src]="imgURL" height="200" *ngIf="imgURL">
+        </div>
+        <hr />
+      </div>
+
+      <div class="mb-3 form-group">
+        <div class="row pt-5">
+          <div class="col-md-8 bg-light">
+            <label for="editor"><h3>Story</h3></label>
+            <quill-editor id="discipline-qe" 
+            (onContentChanged)="textChanged($event)" 
+            [style]="editorStyle" 
+            [modules]="config" 
+            formControlName="editor"></quill-editor>
+          </div>
+          <div class="col-md-4 bg-light p-4">
+            <h3>Output</h3>
+            <p class="my-5" [innerHTML]="editorContent"></p>
+          </div>
+        </div>
+      </div>
+      <!-- <button class="btn btn-primary mt-5" (click)="submitEditor()">Submit</button> -->
+      <pre>{{ campaignModel | json }}</pre>
+
+
+
       <div class="form-group text-center">
-        <button type="submit" class="btn btn-primary btn-lg btn-block" [disabled]="!stepOneForm.valid"  >Next</button>
+        <button type="submit" class="btn btn-primary btn-lg btn-block" [disabled]="!stepOneForm.valid" (click)="submitEditor()" >Submit</button>
       </div>
     </form>
     

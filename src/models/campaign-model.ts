@@ -6,11 +6,11 @@ export class CampaignModel {
     fundRaisingAs : string = '';
     coverImagePath : string = '';
     coverImageName : string = '';
+    campaignDetail : string = '';
     startDate : Date = new Date();
     endDate : Date = new Date();
     activeFlag : boolean = true;
     deleteFlag : boolean = false;
-    
  
     clear() {
         this.campaignID = '';
@@ -19,7 +19,8 @@ export class CampaignModel {
         this.category = '';
         this.fundRaisingAs = '';
         this.coverImagePath = '';
-        
+        this.campaignDetail = '';
+
     }
     
 }
@@ -32,6 +33,6 @@ export class StepOne {
 }
  
 export class StepTwo {
-    coverImagePath : string = '';
+    selectedFile : any = null;
     coverImageName : string = '';
 }
