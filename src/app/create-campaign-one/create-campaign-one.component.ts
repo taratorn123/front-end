@@ -41,7 +41,7 @@ export class CreateCampaignOneComponent implements OnInit {
   onFileChanged(event) {
     console.log(event);
     this.selectedFile = event.target.files[0];
-    this.campaignModel.coverImageName = "cover";
+    this.campaignModel.coverImageName = "cover.jpg";
     // Below part is used to display the selected image
     let reader = new FileReader();
     reader.readAsDataURL(event.target.files[0]);

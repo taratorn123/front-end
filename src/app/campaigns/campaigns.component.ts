@@ -1,4 +1,8 @@
+import { CampaignListService } from './../services/campaign-list.service';
+import { CampaignFormService } from './../services/campaign-form.service';
+import { CampaignModel } from './../../models/campaign-model';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-campaigns',
@@ -6,10 +10,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./campaigns.component.css']
 })
 export class CampaignsComponent implements OnInit {
+  campaignModels: CampaignModel[];
 
-  constructor() { }
+  constructor(private campaignListService: CampaignListService,
+              private router:Router
+              ) { }
 
   ngOnInit() {
+    this.campaignListService.findAll().subscribe(data => {
+      this.campaignModels = data;
+    });
   }
-
+  getNavigation(link, id){
+    if(id === ''){
+        this.router.navigate([link]);
+    } else {
+        this.router.navigate([link + '/' + id]);
+    }
+  }
 }

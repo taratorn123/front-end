@@ -26,6 +26,7 @@ import { SignOutComponent } from './sign-out/sign-out.component';
 import { CreateCampaignOneComponent } from './create-campaign-one/create-campaign-one.component';
 import { CreateCampaignTwoComponent } from './create-campaign-two/create-campaign-two.component';
 import { CreateCampaignThreeComponent } from './create-campaign-three/create-campaign-three.component';
+import { ViewCampaignComponent } from './view-campaign/view-campaign.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { CreateCampaignThreeComponent } from './create-campaign-three/create-cam
     SignOutComponent,
     CreateCampaignOneComponent,
     CreateCampaignTwoComponent,
-    CreateCampaignThreeComponent
+    CreateCampaignThreeComponent,
+    ViewCampaignComponent
   ],
   imports: [
     BrowserModule,

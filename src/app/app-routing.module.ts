@@ -11,6 +11,7 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { SignupFormComponent } from './signup-form/signup-form.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { CreateCampaignThreeComponent } from './create-campaign-three/create-campaign-three.component';
+import { ViewCampaignComponent } from './view-campaign/view-campaign.component';
 
 const routes: Routes = [
   // { path: '',
@@ -22,6 +23,9 @@ const routes: Routes = [
   },
   { path: 'campaigns',
     component: CampaignsComponent
+  },
+  { path: 'campaigns/:id',
+    component: ViewCampaignComponent
   },
   { path: 'about-us',
     component: AboutUsComponent
