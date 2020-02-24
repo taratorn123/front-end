@@ -1,5 +1,13 @@
-export class User {
-    userID: string;
-    username: string;
-    password: string;
+export class User 
+{
+    firstName: string = "";
+    lastName: string = "";
+    email: string = "";
+    username: string = "";
+    password: string = "";
+    passwordConfirmation: string = "";
+    verificationFlag: boolean = false;
+    routeSignatureImage:String  ="";
+    routeImageVerification:String = "";
+
 }

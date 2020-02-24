@@ -12,6 +12,8 @@ import { SignupFormComponent } from './signup-form/signup-form.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { CreateCampaignThreeComponent } from './create-campaign-three/create-campaign-three.component';
 import { ViewCampaignComponent } from './view-campaign/view-campaign.component';
+import { DonateComponent } from './donate/donate.component';
+
 
 const routes: Routes = [
   // { path: '',
@@ -46,7 +48,9 @@ const routes: Routes = [
     { path: 'create-campaign-two', 
     component: CreateCampaignTwoComponent },
     { path: 'create-campaign-three', 
-    component: CreateCampaignThreeComponent }
+    component: CreateCampaignThreeComponent },
+    { path: 'donate', 
+  component: DonateComponent},
 ];
 
 @NgModule({

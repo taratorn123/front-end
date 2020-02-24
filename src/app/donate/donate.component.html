@@ -1,22 +1,74 @@
 <p>donate works!</p>
-<form [formGroup]="profileForm">
+<!-- #dondateForm is use to reference this form -->
+<form (ngSumbit)="donate()" #donateForm="ngForm">
     <div class="container">
         <div class="row">
             <div class="col-6 align-self-center">
-                <label for="donate-baht">Your donation</label>
-                <input id="donate-baht" type="number" formControlName="donate-baht">
+                <!-- label for="amount" use with input id ="amount". Whenever use lick on the label the cursor will automatically selected the field -->
+                <label for="amount">Your donation</label>
+                <!-- In order to ngModel in form tag, user must provide name in order to keep tract of the ngModel value ;ex (amount : 200)-->
+                <input name="amount"
+                [(ngModel)]="donation.amount"
+                id = "amount"
+                class="form-control"
+                required
+                >
             </div>
             <div class="col-6 align-self-center">
-                <label for="donate-comment">Comment</label>
-                <input id="donate-comment" type="text" formControlName="donate-comment">
+                <label for="comment">Comment</label>
+                <input [(ngModel)]="donation.comment"
+                id = "comment"
+                name="comment"
+                class="form-control" 
+                type="text" 
+                >
             </div>
         </div>
 
         <div class="row">
-            <label for="donate-privatekey">Stellar private key</label>
-            <input id="donate-privatekey" type="text" formControlName="donate-privatekey">
+            <label for="privatekey">Stellar private key</label>
+            <input [(ngModel)]="donation.privateKey"
+            id = "privatekey"
+            name="privatekey"
+            class="form-control"
+            type="text" 
+            required
+            >
         </div>
-
-        <button (click)="donate()" [disabled]="profileForm.invalid">Donate</button>
+        <div class="row">
+            <label for="publicKey">Stellar public key</label>
+            <input [(ngModel)]="donation.publicKey"
+            id = "publicKey"
+            name="publicKey"
+            class="form-control"
+            type="text" 
+            required
+            >
+        </div>
+        <div class="row">
+            <label for="destination">Destination public key</label>
+            <input [(ngModel)]="donation.destination"
+            id = "destination"
+            name="destination"
+            class="form-control"
+            type="text" 
+            required
+            >
+        </div>
+        <div class="row">
+            <label for="flag">Anonymouse Flag</label>
+            <input [(ngModel)]="donation.anonymousFlag"
+            id="flag"
+            name="flag"
+            class="form-control"
+            type="text" 
+            required
+            >
+        </div>
+        <button class="btn btn-outline-primary" (click)="open('autofocus')">
+            <div>Donate</div>
+        </button>
+        <button (click)="donate()" >Donate</button>
     </div>
 </form>
+{{donateForm.value | json}}

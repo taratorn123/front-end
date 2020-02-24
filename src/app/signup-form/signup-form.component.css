@@ -1,13 +1,25 @@
-.container {
-    margin-top: 150px;
+.container
+{
+    margin-top: 50px;
 }
-.form-signin {
+.form-signin
+{
     width: 100%;
-    max-width: 330px;
+    max-width: 600px;
     padding: 15px;
     margin: auto;
   }
-  .form-signin .checkbox {
+.row
+{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.email
+{
+  content: "@gmail.com";
+}
+  /* .form-signin .checkbox {
     font-weight: 400;
   }
   .form-signin .form-control {
@@ -29,4 +41,4 @@
     margin-bottom: 10px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
-  }
+  } */
