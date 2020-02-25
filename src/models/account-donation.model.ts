@@ -1,11 +1,11 @@
 export class AccountDonation 
 {
+    campaignId : String;
+    userId : String;
     amount: String ;
     comment: String;
-    anonymousFlag: String;
-    destination: String;
-    publicKey: String;
     privateKey: String;
+    anonymousFlag: String;
     // contructor(amount : String,
     //     comment: String,
     //     anonymousFlag: string,

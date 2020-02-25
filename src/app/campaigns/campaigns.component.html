@@ -20,11 +20,12 @@
             <img src="{{campaignModel.coverImagePath}}" class="card-img-top" alt="Image" style="width:276.462px;height:200px;"  >
             <div class="card-body">
               <h5 class="card-title">{{campaignModel.campaignName}}</h5>
+              <p class="card-text">{{campaignModel.campaignID}}</p>
               <p class="card-text">Card Description(Separate text from img tag)</p>
             </div>
             <div class="card-footer">
-              <small class="text-muted">{{campaignModel.campaignID}}</small>
-              <button type="button" class="btn btn-success" style="float: right;" (click)="getNavigation('campaigns', campaignModel.campaignID)">View</button>
+              <small class="text-muted">{{campaignModel.id}}</small>
+              <button type="button" class="btn btn-success" style="float: right;" (click)="getNavigation('campaigns', campaignModel.id)">View</button>
             </div>
           </div>
         </ng-container>

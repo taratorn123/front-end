@@ -8,6 +8,7 @@
                 <label for="amount">Your donation</label>
                 <!-- In order to ngModel in form tag, user must provide name in order to keep tract of the ngModel value ;ex (amount : 200)-->
                 <input name="amount"
+                type="number"
                 [(ngModel)]="donation.amount"
                 id = "amount"
                 class="form-control"
@@ -35,26 +36,7 @@
             required
             >
         </div>
-        <div class="row">
-            <label for="publicKey">Stellar public key</label>
-            <input [(ngModel)]="donation.publicKey"
-            id = "publicKey"
-            name="publicKey"
-            class="form-control"
-            type="text" 
-            required
-            >
-        </div>
-        <div class="row">
-            <label for="destination">Destination public key</label>
-            <input [(ngModel)]="donation.destination"
-            id = "destination"
-            name="destination"
-            class="form-control"
-            type="text" 
-            required
-            >
-        </div>
+
         <div class="row">
             <label for="flag">Anonymouse Flag</label>
             <input [(ngModel)]="donation.anonymousFlag"

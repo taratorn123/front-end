@@ -49,7 +49,7 @@ const routes: Routes = [
     component: CreateCampaignTwoComponent },
     { path: 'create-campaign-three', 
     component: CreateCampaignThreeComponent },
-    { path: 'donate', 
+    { path: 'donate/:id', 
   component: DonateComponent},
 ];
 

@@ -17,12 +17,16 @@ export class AuthenticationService  {
 
   }
 
-  authenticate(user:User, username:string, password:string) {
-     this.http.post<boolean>(this.findByUsernameUrl, user).subscribe(result => {
-       if(result == true){
-        sessionStorage.setItem('username',  username)
-       }
-     });
+  authenticate(user:User, username:string, password:string) 
+  {
+    this.http.post<boolean>(this.findByUsernameUrl, user).subscribe(result => 
+    {
+      if(result == true)
+      {
+        sessionStorage.setItem('username',  user.username)
+        console.log(sessionStorage.getItem('username'));
+      }
+    });
   
     return this.http.post<boolean>(this.findByUsernameUrl, user);
   

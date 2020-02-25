@@ -6,8 +6,12 @@ import { AccountDonation } from 'src/models/account-donation.model';
 import { DonateFormService } from 'src/app/services/donate-form.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { User } from 'src/models/User';
+import { Session } from 'protractor';
 
 @Component({
+  /* selector is basically a custome html tag that can
+  be use to represent this component*/
   selector: 'app-donate',
   templateUrl: './donate.component.html',
   styleUrls: ['./donate.component.css']
@@ -18,6 +22,8 @@ export class DonateComponent implements OnInit
   donateForm: FormGroup;
   profileData: ProfileModel;
   donation: AccountDonation;
+  username : String;
+  campaignID : String;
 
   constructor(private fb: FormBuilder,
               public http: HttpClient, 
@@ -27,8 +33,11 @@ export class DonateComponent implements OnInit
               private router: Router) 
   { 
     this.donation = new AccountDonation();
+    this.username = sessionStorage.getItem('username');
   }
 
+  /* This method use to send donate form to spring boot backend
+  If transaction send successfully it will au*/
   donate()
   {
 
@@ -46,7 +55,13 @@ export class DonateComponent implements OnInit
 
   
 
-  ngOnInit() {
+  ngOnInit() 
+  {
+    this.campaignID = this.route.snapshot.params['id'];
+    console.log('This is campaign ID '+this.campaignID);
+    console.log('This is username '+this.username);
+    this.donation.userId = this.username;
+    this.donation.campaignId = this.campaignID;
     this.donateForm = this.fb.group(
     {
       'amount': [null, Validators.required],

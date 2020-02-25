@@ -15,17 +15,29 @@ export class ViewCampaignComponent implements OnInit {
     
    }
 
-  ngOnInit() {
+  ngOnInit() 
+  {
     this.campaignID = this.actRoute.snapshot.params['id'];
     console.log("campaignID: "+ this.campaignID);
     this.loadCampaignDetails(this.campaignID);
   }
-  loadCampaignDetails(campaignID){
+  loadCampaignDetails(campaignID)
+  {
     this.campaignListService.getCampaignDetails(campaignID).subscribe(data => {
     this.campaignData = data;
+    console.log(this.campaignData);
     });
   }
-
+  navigateDonate()
+  {
+    /* The reference is not to Angular itself but to an Angular Module called Angular UI.Router. 
+    This module allows you to turn your Angular application into a State Machine, 
+    and handle what appears on the view based on these states, rather than only on the URL parameters. 
+    Many people consider this an essential Angular Module, and far more functional 
+    than the default $routeProvider. */
+    console.log('From view-campaign'+this.campaignID);
+    this.router.navigate(['donate'+'/'+this.campaignID]);
+  }
   navigation(link){
     this.router.navigate([link]);
   }

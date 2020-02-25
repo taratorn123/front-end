@@ -1,5 +1,5 @@
 export class CampaignModel {
-    campaignID: any;
+    id: any;
     targetDonation: number = null;
     campaignName : string = '';
     category : string = '';
@@ -13,7 +13,7 @@ export class CampaignModel {
     deleteFlag : boolean = false;
  
     clear() {
-        this.campaignID;
+        this.id;
         this.targetDonation = null;
         this.campaignName = '';
         this.category = '';

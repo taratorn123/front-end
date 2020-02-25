@@ -14,14 +14,21 @@ export class CampaignsComponent implements OnInit {
 
   constructor(private campaignListService: CampaignListService,
               private router:Router
-              ) { }
+              )
+  { 
+
+  }
 
   ngOnInit() {
-    this.campaignListService.findAll().subscribe(data => {
+    this.campaignListService.findAll().subscribe(data => 
+    {
       this.campaignModels = data;
+      console.log(this.campaignModels);
     });
   }
-  getNavigation(link, id){
+  getNavigation(link, id)
+  {
+    console.log('Campaign ID'+id);
     if(id === ''){
         this.router.navigate([link]);
     } else {
