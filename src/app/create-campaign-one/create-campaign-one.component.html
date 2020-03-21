@@ -84,7 +84,7 @@
       </div>
       
       <div class="mb-3 form-group">
-        <h3>Image Uploading Module</h3>
+        <h3>Cover Image Uploading</h3>
         <div>
             <input type="file" (change)="onFileChanged($event)">
 
@@ -98,7 +98,6 @@
           <div class="col-md-8 bg-light">
             <label for="editor"><h3>Story</h3></label>
             <quill-editor id="discipline-qe" 
-            (onContentChanged)="textChanged($event)" 
             [style]="editorStyle" 
             [modules]="config" 
             formControlName="editor"></quill-editor>
@@ -110,7 +109,7 @@
         </div>
       </div>
       <!-- <button class="btn btn-primary mt-5" (click)="submitEditor()">Submit</button> -->
-      <pre>{{ campaignModel | json }}</pre>
+      <!-- <pre>{{ campaignModel | json }}</pre> -->
 
 
 
