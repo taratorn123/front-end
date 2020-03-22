@@ -1,6 +1,7 @@
 import { AuthenticationService } from './../services/authentication.service';
 import { Component, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'bs-navbar',
   templateUrl: './bs-navbar.component.html',
@@ -8,9 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BsNavbarComponent implements OnInit {
 
-  constructor(public loginService:AuthenticationService) { }
+  constructor(public loginService:AuthenticationService) {
+  }
 
   ngOnInit() {
   }
-
+  
 }

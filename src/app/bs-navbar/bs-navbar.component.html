@@ -47,7 +47,7 @@
         <a class="nav-link" routerLink="/">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/campaigns">Campaign</a>
+        <a class="nav-link" routerLink="/campaigns" (onClick)="filteredSearch.clear()">Campaign</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" routerLink="/create-campaign-one">Create Campaign</a>
@@ -67,11 +67,13 @@
         </div>
       </li> -->
     </ul>
-    <form class="form-inline my-2 my-lg-0" style="margin-left: 400px;">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+    <!-- <form (ngSubmit)="navigateToCampaigns()" class="form-inline my-2 my-lg-0" style="margin-left: 400px;">
+      <input #query class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" [(ngModel)]="filteredSearch.searchByCampaignName" [ngModelOptions]="{standalone: true}">
+      <button class="btn btn-outline-success my-2 my-sm-0"  type="submit">Search</button>
+    </form> -->
+
     <a *ngIf="!loginService.isUserLoggedIn()" class="nav-link click" routerLink="/sign-in">Sign in</a>
+
     <!-- <a *ngIf="!loginService.isUserLoggedIn()" class="nav-link click" routerLink="/sign-up">Sign up</a> -->
     <ul class="navbar-nav mr-auto">
     <li ngbDropdown class="nav-item dropdown">

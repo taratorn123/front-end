@@ -1,3 +1,16 @@
+  <p>
+    <input #query (keyup)="filter(query.value)" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+  </p>
+  <div class="table">
+    <ul id="horizontal-list">
+      <li><a href="/campaigns"><img src="../../assets/img/Education.png" alt="list item 1" /><p>Education</p></a></li>
+      <li><a href="#"><img src="../../assets/img/Animals.png" alt="list item 1" /><p>Animals</p></a></li>
+      <li><a href="#"><img src="../../assets/img/Human rights.png" alt="list item 1" /><p>Human rights</p></a></li>
+      <li><a href="#"><img src="../../assets/img/Medical.png" alt="list item 1" /><p>Medical</p></a></li>
+      <li><a href="#"><img src="../../assets/img/Charity.png" alt="list item 1" /><p>Charity</p></a></li>
+
+    </ul>
+  </div>
 <div class="cardList" >
     <!-- <ng-container > -->
         <!-- Card component -->
@@ -15,8 +28,8 @@
               </div>
             </div>
           </div> -->
-        <ng-container *ngFor="let campaignModel of campaignModels">
-          <div class="card mb-3 cardListItem" style="max-width: 540px;" fxFlex="0 1 calc(33.3% - 32px)" >
+        <ng-container *ngFor="let campaignModel of filteredCampaigns">
+          <div class="card mb-3 cardListItem" style="max-width: 278.5px;" fxFlex="0 1 calc(33.3% - 32px)" >
             <img src="{{campaignModel.coverImagePath}}" class="card-img-top" alt="Image" style="width:276.462px;height:200px;"  >
             <div class="card-body">
               <h5 class="card-title">{{campaignModel.campaignName}}</h5>

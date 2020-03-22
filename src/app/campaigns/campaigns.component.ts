@@ -1,8 +1,8 @@
 import { CampaignListService } from './../services/campaign-list.service';
-import { CampaignFormService } from './../services/campaign-form.service';
 import { CampaignModel } from './../../models/campaign-model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs/internal/Subscription';
 
 @Component({
   selector: 'app-campaigns',
@@ -11,12 +11,15 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class CampaignsComponent implements OnInit {
   campaignModels: CampaignModel[];
+  campaigns: {campaignName : string}[];
+  filteredCampaigns: any[];
+  subscription: Subscription;
 
   constructor(private campaignListService: CampaignListService,
               private router:Router
               )
   { 
-
+    this.subscription = this.campaignListService.findAll().subscribe(campaigns => this.filteredCampaigns = this.campaigns = campaigns);
   }
 
   ngOnInit() {
@@ -34,5 +37,14 @@ export class CampaignsComponent implements OnInit {
     } else {
         this.router.navigate([link + '/' + id]);
     }
+  }
+  ngOnDestroy(){
+    this.subscription.unsubscribe();
+  }
+  filter(query : string) 
+  {
+   this.filteredCampaigns = (query) ?
+    this.campaigns.filter(p => p.campaignName.toLowerCase().includes(query.toLowerCase())):
+    this.campaigns;
   }
 }
