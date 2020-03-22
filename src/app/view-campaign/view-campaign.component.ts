@@ -38,6 +38,10 @@ export class ViewCampaignComponent implements OnInit {
     console.log('From view-campaign'+this.campaignID);
     this.router.navigate(['donate'+'/'+this.campaignID]);
   }
+  navigateHistoryTransaction()
+  {
+    this.router.navigate(['campaign-transaction-history'+'/'+this.campaignID])
+  }
   navigation(link){
     this.router.navigate([link]);
   }

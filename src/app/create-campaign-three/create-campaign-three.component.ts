@@ -1,6 +1,6 @@
 import { QuillModule } from 'ngx-quill';
 import { CampaignModel } from './../../models/campaign-model';
-import { UserService } from './../user-service.service';
+import { UserService } from '../services/user-service.service';
 import { AuthenticationService } from './../services/authentication.service';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';

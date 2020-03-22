@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { AccountDonation } from 'src/models/account-donation.model';
-import { DonateFormService } from 'src/app/services/donate-form.service';
+import { TransactionService } from 'src/app/services/transaction.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { User } from 'src/models/User';
@@ -27,7 +27,7 @@ export class DonateComponent implements OnInit
 
   constructor(private fb: FormBuilder,
               public http: HttpClient, 
-              private donateService: DonateFormService,
+              private transaction: TransactionService,
               private _modalService: NgbModal,
               private route: ActivatedRoute, 
               private router: Router) 
@@ -41,8 +41,9 @@ export class DonateComponent implements OnInit
   donate()
   {
 
-    console.log("Hello Im here"+this.donation);
-    this.donateService.saveDonation(this.donation).subscribe(result => 
+
+    console.log("Hello Im here"+this.donation.anonymousFlag);
+    this.transaction.saveDonation(this.donation).subscribe(result => 
       {
         console.log(result);
         if(result == 2)

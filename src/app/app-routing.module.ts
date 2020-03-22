@@ -13,6 +13,7 @@ import { UserListComponent } from './user-list/user-list.component';
 import { CreateCampaignThreeComponent } from './create-campaign-three/create-campaign-three.component';
 import { ViewCampaignComponent } from './view-campaign/view-campaign.component';
 import { DonateComponent } from './donate/donate.component';
+import { CampaignTransactionHistoryComponent } from './campaign-transaction-history/campaign-transaction-history.component';
 
 
 const routes: Routes = [
@@ -51,6 +52,8 @@ const routes: Routes = [
     component: CreateCampaignThreeComponent },
     { path: 'donate/:id', 
   component: DonateComponent},
+  { path : 'campaign-transaction-history/:id',
+    component: CampaignTransactionHistoryComponent}
 ];
 
 @NgModule({

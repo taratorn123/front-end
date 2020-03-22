@@ -21,7 +21,7 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SignupFormComponent } from './signup-form/signup-form.component';
 import { UserListComponent } from './user-list/user-list.component';
-import { UserService } from './user-service.service';
+import { UserService } from './services/user-service.service';
 import { SignOutComponent } from './sign-out/sign-out.component';
 import { CreateCampaignOneComponent } from './create-campaign-one/create-campaign-one.component';
 import { CreateCampaignTwoComponent } from './create-campaign-two/create-campaign-two.component';

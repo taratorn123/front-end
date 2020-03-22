@@ -21,7 +21,7 @@
             <div class="card-body">
               <h5 class="card-title">{{campaignModel.campaignName}}</h5>
               <p class="card-text">{{campaignModel.campaignID}}</p>
-              <p class="card-text">Card Description(Separate text from img tag)</p>
+              <p class="card-text"[innerHTML]="campaignModel.campaignDetail"></p>
             </div>
             <div class="card-footer">
               <small class="text-muted">{{campaignModel.id}}</small>

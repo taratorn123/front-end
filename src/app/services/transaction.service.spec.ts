@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DonateFormService } from './donate-form.service';
+import { TransactionService } from './transaction.service';
 
-describe('DonateFormService', () => {
+describe('TransactionService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: DonateFormService = TestBed.get(DonateFormService);
+    const service: TransactionService = TestBed.get(TransactionService);
     expect(service).toBeTruthy();
   });
 });

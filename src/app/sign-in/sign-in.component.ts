@@ -1,5 +1,5 @@
 import { User } from './../../models/User';
-import { UserService } from './../user-service.service';
+import { UserService } from '../services/user-service.service';
 import { AuthenticationService } from './../services/authentication.service';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -22,13 +22,19 @@ export class SignInComponent implements OnInit {
   ngOnInit() {
   }
 
-  checkLogin() {
-    
-    this.loginservice.authenticate(this.user, this.username, this.password).subscribe(result => {
-      if(result == true){
+  checkLogin() 
+  {
+    console.log(1);
+    this.loginservice.authenticate(this.user, this.username, this.password).subscribe(result => 
+    {
+      console.log(result);
+      if(result == true)
+      {
         this.gotoHome()
         this.invalidLogin = false
-      }else {
+      }
+      else 
+      {
         this.invalidLogin = true
       }
     });

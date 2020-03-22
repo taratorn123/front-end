@@ -1,32 +1,29 @@
-<p>donate works!</p>
 <!-- #dondateForm is use to reference this form -->
 <form (ngSumbit)="donate()" #donateForm="ngForm">
     <div class="container">
-        <div class="row">
-            <div class="col-6 align-self-center">
-                <!-- label for="amount" use with input id ="amount". Whenever use lick on the label the cursor will automatically selected the field -->
-                <label for="amount">Your donation</label>
-                <!-- In order to ngModel in form tag, user must provide name in order to keep tract of the ngModel value ;ex (amount : 200)-->
-                <input name="amount"
-                type="number"
-                [(ngModel)]="donation.amount"
-                id = "amount"
-                class="form-control"
-                required
-                >
-            </div>
-            <div class="col-6 align-self-center">
-                <label for="comment">Comment</label>
-                <input [(ngModel)]="donation.comment"
-                id = "comment"
-                name="comment"
-                class="form-control" 
-                type="text" 
-                >
-            </div>
+        <div class="form-group amount">
+            <!-- label for="amount" use with input id ="amount". Whenever use lick on the label the cursor will automatically selected the field -->
+            <label for="amount">Your donation</label>
+            <!-- In order to ngModel in form tag, user must provide name in order to keep tract of the ngModel value ;ex (amount : 200)-->
+            <input name="amount"
+            type="number"
+            [(ngModel)]="donation.amount"
+            id = "amount"
+            class="form-control"
+            required
+            >
+        </div>
+        <div class="form-group">
+            <label for="comment">Comment</label>
+            <input [(ngModel)]="donation.comment"
+            id = "comment"
+            name="comment"
+            class="form-control" 
+            type="text" 
+            >
         </div>
 
-        <div class="row">
+        <div class="form-group">
             <label for="privatekey">Stellar private key</label>
             <input [(ngModel)]="donation.privateKey"
             id = "privatekey"
@@ -37,20 +34,11 @@
             >
         </div>
 
-        <div class="row">
-            <label for="flag">Anonymouse Flag</label>
-            <input [(ngModel)]="donation.anonymousFlag"
-            id="flag"
-            name="flag"
-            class="form-control"
-            type="text" 
-            required
-            >
+        <div class="form-check">
+            <input [(ngModel)]="donation.anonymousFlag" type="checkbox" name="flag" class="form-check-input" id="flag">
+            <label class="form-check-label" for="flag">Donate as anonymouse</label>
         </div>
-        <button class="btn btn-outline-primary" (click)="open('autofocus')">
-            <div>Donate</div>
-        </button>
-        <button (click)="donate()" >Donate</button>
+        <button class = "btn btn-primary" (click)="donate()" >Donate</button>
     </div>
 </form>
 {{donateForm.value | json}}

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { TransactionService } from 'src/app/services/transaction.service'
+import { ActivatedRoute, Router } from '@angular/router';
+import { Transaction } from 'src/models/transaction.model';
 
 @Component({
   selector: 'app-campaign-transaction-history',
@@ -7,9 +10,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CampaignTransactionHistoryComponent implements OnInit {
 
-  constructor() { }
+  campaignId : String;
+  transactions : Transaction[];
+  constructor(
+    private transactionService : TransactionService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) 
+  {
+    transactionService : TransactionService 
+  }
 
-  ngOnInit() {
+  ngOnInit() 
+  {
+    this.campaignId = this.route.snapshot.params['id'];
+    this.transactionService.getHistoryDonation(this.campaignId).subscribe(data=>
+      {
+        this.transactions = data;
+        console.log(this.transactions);
+      })
   }
 
 }

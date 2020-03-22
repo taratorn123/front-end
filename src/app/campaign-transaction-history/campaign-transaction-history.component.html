@@ -1,1 +1,23 @@
-<p>campaign-transaction-history works!</p>
+<div class="card my-5">
+    <div class="card-body">
+        Donation
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Date and Time</th>
+                    <th scope="col">Send from</th>
+                    <th scope="col">Amount(Lumen)</th>
+                    <th scope="col">Transaction ID</th>
+                 </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let transaction of transactions">
+                    <td>{{ transaction.publishTime}}</td>
+                    <td>{{ transaction.userName }}</td>
+                    <td>{{ transaction.amount }}</td>
+                    <td>{{ transaction.transactionHash }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

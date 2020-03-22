@@ -1,5 +1,5 @@
 import { User } from './../../models/User';
-import { UserService } from './../user-service.service';
+import { UserService } from './user-service.service';
 import { Injectable, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
@@ -19,8 +19,10 @@ export class AuthenticationService  {
 
   authenticate(user:User, username:string, password:string) 
   {
+    console.log(2);
     this.http.post<boolean>(this.findByUsernameUrl, user).subscribe(result => 
     {
+      console.log(result);
       if(result == true)
       {
         sessionStorage.setItem('username',  user.username)
