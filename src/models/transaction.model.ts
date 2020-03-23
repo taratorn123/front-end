@@ -5,5 +5,5 @@ export class Transaction
 	publishTime:String;
 	userName:String;
 	amount:String;
-	comment:String;
+	transactionHash:String;
 }
