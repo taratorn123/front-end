@@ -12,6 +12,7 @@ export class CampaignTransactionHistoryComponent implements OnInit {
 
   campaignId : String;
   transactions : Transaction[];
+  username : String;
   constructor(
     private transactionService : TransactionService,
     private route: ActivatedRoute,
@@ -24,7 +25,7 @@ export class CampaignTransactionHistoryComponent implements OnInit {
   ngOnInit() 
   {
     this.campaignId = this.route.snapshot.params['id'];
-    this.transactionService.getHistoryDonation(this.campaignId).subscribe(data=>
+    this.transactionService.getHistoryDonationCampaign(this.campaignId).subscribe(data=>
       {
         this.transactions = data;
         console.log(this.transactions);

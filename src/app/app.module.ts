@@ -28,6 +28,7 @@ import { CreateCampaignTwoComponent } from './create-campaign-two/create-campaig
 import { CreateCampaignThreeComponent } from './create-campaign-three/create-campaign-three.component';
 import { ViewCampaignComponent } from './view-campaign/view-campaign.component';
 import { CampaignTransactionHistoryComponent } from './campaign-transaction-history/campaign-transaction-history.component';
+import { UserTransactionHistoryComponent } from './user-transaction-history/user-transaction-history.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { CampaignTransactionHistoryComponent } from './campaign-transaction-hist
     CreateCampaignTwoComponent,
     CreateCampaignThreeComponent,
     ViewCampaignComponent,
-    CampaignTransactionHistoryComponent
+    CampaignTransactionHistoryComponent,
+    UserTransactionHistoryComponent
   ],
   imports: [
     BrowserModule,

@@ -9,12 +9,15 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class AuthenticationService  {
   private findByUsernameUrl: string;
   private isAuthenticated: boolean;
+  private getUserId: string;
+  private result: boolean = false;
  
   isMatch: boolean;
   
-  constructor(private userService: UserService, private http: HttpClient) {
+  constructor(private userService: UserService, private http: HttpClient) 
+  {
     this.findByUsernameUrl = 'http://localhost:8080/findByUsername';
-
+    this.getUserId = 'http://localhost:8080/getUserId';
   }
 
   authenticate(user:User, username:string, password:string) 
@@ -25,11 +28,16 @@ export class AuthenticationService  {
       console.log(result);
       if(result == true)
       {
-        sessionStorage.setItem('username',  user.username)
+        this.result = true;
+        sessionStorage.setItem('username',  user.username);
         console.log(sessionStorage.getItem('username'));
       }
     });
-  
+    this.http.post<string>(this.getUserId, user).subscribe(result =>
+      {
+        sessionStorage.setItem('userId',  result);
+        console.log('this is user ID '+sessionStorage.getItem('userId'));
+      })
     return this.http.post<boolean>(this.findByUsernameUrl, user);
   
   //  .subscribe(response => {

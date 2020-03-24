@@ -41,7 +41,6 @@ export class DonateComponent implements OnInit
   donate()
   {
 
-
     console.log("Hello Im here"+this.donation.anonymousFlag);
     this.transaction.saveDonation(this.donation).subscribe(result => 
       {
