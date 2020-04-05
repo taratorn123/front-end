@@ -1,11 +1,19 @@
+import { QuillModule } from 'ngx-quill';
+import Quill from 'quill';
 import { UserService } from '../services/user-service.service';
 import { AuthenticationService } from './../services/authentication.service';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, FormControl, Validators, FormArray } from '@angular/forms'; 
-
 import { StepOne, CampaignModel } from './../../models/campaign-model';
 import { CampaignFormService } from './../services/campaign-form.service';
+
+// override p with div tag
+// const Parchment = Quill.import('parchment');
+// let Block = Parchment.query('block');
+
+// Block.tagName = 'DIV';
+// Quill.register(Block, true);
 
 @Component({
   selector: 'app-create-campaign-one',
@@ -27,12 +35,17 @@ export class CreateCampaignOneComponent implements OnInit {
   editorForm: FormGroup;
   editorContent: string;
   
+  config = {
+    toolbar: [
+      'bold','italic','underline'
+    ]
+  }
+
   editorStyle ={
     height: '300px',
     backgroundColor: '#ffffff'
   }
-
-
+  
   constructor(private router: Router,
     private campaignFormService: CampaignFormService) { 
       this.campaignModel = new CampaignModel()

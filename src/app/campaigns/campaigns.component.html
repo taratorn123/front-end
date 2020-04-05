@@ -1,17 +1,22 @@
-  <p>
-    <input #query (keyup)="filter(query.value)" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-  </p>
-  <div class="table">
+<div class="container">
+<div class="row">
+  
+  <div class="table col-9">
     <ul id="horizontal-list">
-      <li><a href="/campaigns"><img src="../../assets/img/Education.png" alt="list item 1" /><p>Education</p></a></li>
-      <li><a href="#"><img src="../../assets/img/Animals.png" alt="list item 1" /><p>Animals</p></a></li>
-      <li><a href="#"><img src="../../assets/img/Human rights.png" alt="list item 1" /><p>Human rights</p></a></li>
-      <li><a href="#"><img src="../../assets/img/Medical.png" alt="list item 1" /><p>Medical</p></a></li>
-      <li><a href="#"><img src="../../assets/img/Charity.png" alt="list item 1" /><p>Charity</p></a></li>
-
+      <li><a href="/campaigns"><img class="categoryLogo" src="../../assets/img/Education.png" alt="educationCategory" /><p>Education</p></a></li>
+      <li><a href="#"><img class="categoryLogo" src="../../assets/img/Animals.png" alt="animalCategory" /><p>Animals</p></a></li>
+      <li><a href="#"><img class="categoryLogo" src="../../assets/img/Human rights.png" alt="humanRightsCategory" /><p>Human rights</p></a></li>
+      <li><a href="#"><img class="categoryLogo" src="../../assets/img/Medical.png" alt="medicalCategory" /><p>Medical</p></a></li>
+      <li><a href="#"><img class="categoryLogo" src="../../assets/img/Charity.png" alt="charityCategory" /><p>Charity</p></a></li>
     </ul>
   </div>
-<div class="cardList" >
+  <div class="col-3">
+    <p>
+      <input #query (keyup)="filter(query.value)" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+    </p>
+  </div>
+</div>
+<div class="cardList row" >
     <!-- <ng-container > -->
         <!-- Card component -->
         <!-- <div class="card mb-3 cardListItem" style="max-width: 540px;" fxFlex="0 1 calc(33.3% - 32px)">
@@ -30,11 +35,11 @@
           </div> -->
         <ng-container *ngFor="let campaignModel of filteredCampaigns">
           <div class="card mb-3 cardListItem" style="max-width: 278.5px;" fxFlex="0 1 calc(33.3% - 32px)" >
-            <img src="{{campaignModel.coverImagePath}}" class="card-img-top" alt="Image" style="width:276.462px;height:200px;"  >
+            <img src="{{campaignModel.coverImagePath}}" class="card-img-top" alt="coverImage"  >
             <div class="card-body">
               <h5 class="card-title">{{campaignModel.campaignName}}</h5>
               <p class="card-text">{{campaignModel.campaignID}}</p>
-              <p class="card-text"[innerHTML]="campaignModel.campaignDetail"></p>
+              <p class="card-text test" [innerHTML]="campaignModel.campaignDetail"></p>
             </div>
             <div class="card-footer">
               <small class="text-muted">{{campaignModel.id}}</small>
@@ -44,3 +49,4 @@
         </ng-container>
     <!-- </ng-container> -->
   </div>
+</div>

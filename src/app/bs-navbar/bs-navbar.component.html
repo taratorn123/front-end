@@ -1,48 +1,14 @@
-<!-- <div class="header">
-    <div class="row align-items-center">
-        <div class="col-4 align-self-center">
-            <h4 style="margin-left: 30px;">DONATION BLOCK</h4>
-            <img id="logo" src="../../assets/img/Logo.png">
-        </div>
-        <div class="col-3">
-            <ul>
-                <li><a href="">Home<span>|</span></a></li>                
-                <li><a href="">Campaign<span>|</span></a></li>
-                <li><a href="">About us</a></li>
-            </ul>
-        </div>
-        <div class="col-4 text-right">
-            <input type="text" placeholder="search">
-            <img src="../../assets/img/search.png">
-        </div>
-        <div class="col-1 text-right">
-            <a style="margin-right: 30px;" href="">Sign in</a>
-        </div>
-    </div>
-</div>
-
-<div>
-    <div>
-
-    </div>
-    <div>
-
-    </div>
-    <div>
-
-    </div>
-</div> -->
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-  <a class="navbar-brand" routerLink="/">DONATION BLOCK</a>
+  <div class="site-title">
+    <a class="navbar-brand" routerLink="/">DONATION BLOCK</a>
+    <img id="logo" src="../../assets/img/Logo.png">
+  </div>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-    <ul class="navbar-nav mr-auto">
-      <li>  
-        <img id="logo" src="../../assets/img/Logo.png">
-      </li>
+    <ul class="navbar-nav auto-adjust">
       <li class="nav-item active">
         <a class="nav-link" routerLink="/">Home <span class="sr-only">(current)</span></a>
       </li>
@@ -55,35 +21,18 @@
       <li class="nav-item">
         <a class="nav-link" routerLink="/about-us">About us</a>
       </li>
-      <!-- <li class="nav-item">
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-      </li> -->
-      <!-- <li ngbDropdown class="nav-item dropdown">
-        <a *ngIf="loginService.isUserLoggedIn()" ngbDropdownToggle class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-        <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown01">
-          <a *ngIf="loginService.isUserLoggedIn()" class="dropdown-item" href="#">Action</a>
-          <a *ngIf="loginService.isUserLoggedIn()" class="dropdown-item" href="#">Another action</a>
-          <a *ngIf="loginService.isUserLoggedIn()" class="dropdown-item" href="/sign-out">Log out</a>
-        </div>
-      </li> -->
-    </ul>
-    <!-- <form (ngSubmit)="navigateToCampaigns()" class="form-inline my-2 my-lg-0" style="margin-left: 400px;">
-      <input #query class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" [(ngModel)]="filteredSearch.searchByCampaignName" [ngModelOptions]="{standalone: true}">
-      <button class="btn btn-outline-success my-2 my-sm-0"  type="submit">Search</button>
-    </form> -->
-
-    <a *ngIf="!loginService.isUserLoggedIn()" class="nav-link click" routerLink="/sign-in">Sign in</a>
-
-    <!-- <a *ngIf="!loginService.isUserLoggedIn()" class="nav-link click" routerLink="/sign-up">Sign up</a> -->
-    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+      <a *ngIf="!loginService.isUserLoggedIn()" class="nav-link click" routerLink="/sign-in">Sign in</a>
+    </li>
     <li ngbDropdown class="nav-item dropdown">
-      <a *ngIf="loginService.isUserLoggedIn()" ngbDropdownToggle class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-      <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown01">
-        <a *ngIf="loginService.isUserLoggedIn()" class="dropdown-item" href="#">Action</a>
-        <a *ngIf="loginService.isUserLoggedIn()" class="dropdown-item" href="#">Another action</a>
-        <a *ngIf="loginService.isUserLoggedIn()" class="dropdown-item" href="/sign-out">Log out</a>
+      <a *ngIf="loginService.isUserLoggedIn()" ngbDropdownToggle class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
+      <div ngbDropdownMenu class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown01">
+        <a *ngIf="loginService.isUserLoggedIn()" class="dropdown-item" href="/edit-profile">Edit Profile</a>
+        <a *ngIf="loginService.isUserLoggedIn()" class="dropdown-item" href="#">Manage Campaigns</a>
+        <a *ngIf="loginService.isUserLoggedIn()" class="dropdown-item" href="#">Donation History</a>
+        <a *ngIf="loginService.isUserLoggedIn()" class="dropdown-item" href="/sign-out">Sign out</a>
       </div>
     </li>
-  </ul>
+    </ul>
   </div>
 </nav>

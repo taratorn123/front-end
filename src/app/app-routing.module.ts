@@ -15,6 +15,8 @@ import { ViewCampaignComponent } from './view-campaign/view-campaign.component';
 import { DonateComponent } from './donate/donate.component';
 import { CampaignTransactionHistoryComponent } from './campaign-transaction-history/campaign-transaction-history.component';
 import { UserTransactionHistoryComponent } from './user-transaction-history/user-transaction-history.component'
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
+
 
 const routes: Routes = [
   // { path: '',
@@ -34,7 +36,8 @@ const routes: Routes = [
   { path: 'create-campaign-three', component: CreateCampaignThreeComponent },
   { path: 'donate/:id', component: DonateComponent},
   { path: 'campaign-transaction-history/:id', component: CampaignTransactionHistoryComponent},
-  { path: 'user-transaction-history/:id', component: UserTransactionHistoryComponent}
+  { path: 'user-transaction-history/:id', component: UserTransactionHistoryComponent},
+  { path: 'edit-profile', component: EditProfileComponent}
 ];
 
 @NgModule({
