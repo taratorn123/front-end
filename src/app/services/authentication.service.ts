@@ -25,7 +25,7 @@ export class AuthenticationService  {
     console.log(2);
     this.http.post<boolean>(this.findByUsernameUrl, user).subscribe(result => 
     {
-      console.log(result);
+      console.log('Autheintication service : '+result);
       if(result == true)
       {
         this.result = true;
@@ -33,11 +33,6 @@ export class AuthenticationService  {
         console.log(sessionStorage.getItem('username'));
       }
     });
-    this.http.post<string>(this.getUserId, user).subscribe(result =>
-      {
-        sessionStorage.setItem('userId',  result);
-        console.log('this is user ID '+sessionStorage.getItem('userId'));
-      })
     return this.http.post<boolean>(this.findByUsernameUrl, user);
   
   //  .subscribe(response => {
@@ -61,13 +56,16 @@ export class AuthenticationService  {
     
     
 
-  isUserLoggedIn() {
+  isUserLoggedIn() 
+  {
     let user = sessionStorage.getItem('username')
     console.log(!(user === null))
     return !(user === null)
   }
 
-  logOut() {
-    sessionStorage.removeItem('username')
+  logOut() 
+  {
+    sessionStorage.removeItem('username');
+    sessionStorage.removeItem('userId');
   }
 }

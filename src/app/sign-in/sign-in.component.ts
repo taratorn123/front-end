@@ -17,7 +17,8 @@ export class SignInComponent implements OnInit {
   user: User = new User()
 
   constructor(private router: Router,
-    private loginservice: AuthenticationService) { }
+    private loginservice: AuthenticationService,
+    private userService: UserService) { }
 
   ngOnInit() {
   }
@@ -25,11 +26,26 @@ export class SignInComponent implements OnInit {
   checkLogin() 
   {
     console.log(1);
+    console.log('Check login'+this.username);
     this.loginservice.authenticate(this.user, this.username, this.password).subscribe(result => 
     {
       console.log(result);
       if(result == true)
       {
+        console.log(this.username);
+        this.userService.getUserId(this.user.username).subscribe(userId=>
+          {
+            sessionStorage.setItem('userId', userId);
+            console.log('this is user ID '+sessionStorage.getItem('userId'));
+            this.userService.checkUserVerification(userId).subscribe(verification=>
+              {
+                if(verification == 0)
+                {
+                  this.router.navigate(['/verification'])
+                  sessionStorage.setItem('emailVerfication', '1');
+                }
+              })
+          });
         this.gotoHome()
         this.invalidLogin = false
       }
@@ -49,7 +65,8 @@ export class SignInComponent implements OnInit {
 
   }
 
-  gotoHome() {
+  gotoHome() 
+  {
     this.router.navigate([''])
   }
   

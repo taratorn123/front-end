@@ -29,6 +29,7 @@ import { CreateCampaignThreeComponent } from './create-campaign-three/create-cam
 import { ViewCampaignComponent } from './view-campaign/view-campaign.component';
 import { CampaignTransactionHistoryComponent } from './campaign-transaction-history/campaign-transaction-history.component';
 import { UserTransactionHistoryComponent } from './user-transaction-history/user-transaction-history.component';
+import { VerificationComponent } from './verification/verification.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { UserTransactionHistoryComponent } from './user-transaction-history/user
     CreateCampaignThreeComponent,
     ViewCampaignComponent,
     CampaignTransactionHistoryComponent,
-    UserTransactionHistoryComponent
+    UserTransactionHistoryComponent,
+    VerificationComponent
   ],
   imports: [
     BrowserModule,
