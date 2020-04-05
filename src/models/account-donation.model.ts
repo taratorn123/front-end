@@ -3,7 +3,7 @@ export class AccountDonation
     campaignId : String;
     userId : String;
     amount: String ;
-    comment: String;
+    comment: String = null;
     privateKey: String;
     anonymousFlag: Boolean = false;
     // contructor(amount : String,

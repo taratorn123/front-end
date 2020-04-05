@@ -14,7 +14,8 @@ import { CreateCampaignThreeComponent } from './create-campaign-three/create-cam
 import { ViewCampaignComponent } from './view-campaign/view-campaign.component';
 import { DonateComponent } from './donate/donate.component';
 import { CampaignTransactionHistoryComponent } from './campaign-transaction-history/campaign-transaction-history.component';
-import { UserTransactionHistoryComponent } from './user-transaction-history/user-transaction-history.component'
+import { UserTransactionHistoryComponent } from './user-transaction-history/user-transaction-history.component';
+import { VerificationComponent } from './verification/verification.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 
@@ -31,13 +32,14 @@ const routes: Routes = [
   { path: 'sign-up', component: SignupFormComponent},
   { path: 'users', component: UserListComponent },
   { path: 'sign-out', component: SignOutComponent ,canActivate:[AuthGaurdService]},
-  { path: 'create-campaign-one', component: CreateCampaignOneComponent },  
+  { path: 'create-campaign-one', component: CreateCampaignOneComponent },
   { path: 'create-campaign-two', component: CreateCampaignTwoComponent },
   { path: 'create-campaign-three', component: CreateCampaignThreeComponent },
   { path: 'donate/:id', component: DonateComponent},
   { path: 'campaign-transaction-history/:id', component: CampaignTransactionHistoryComponent},
   { path: 'user-transaction-history/:id', component: UserTransactionHistoryComponent},
-  { path: 'edit-profile', component: EditProfileComponent}
+  { path: 'edit-profile', component: EditProfileComponent},
+  { path: 'verification', component: VerificationComponent}
 ];
 
 @NgModule({

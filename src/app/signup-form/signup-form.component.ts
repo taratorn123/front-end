@@ -25,9 +25,10 @@ export class SignupFormComponent
   {
     this.userService.save(this.user).subscribe(result => 
       {
-        if(result == 1)
+        if(result != 0)
         {
-          this.userService.emailVerify(this.user).subscribe(verificationResult =>
+          console.log(result.toString)
+          this.userService.emailVerify(result.toString()).subscribe(verificationResult =>
           {
             if(verificationResult == 1)
             console.log("Sending Email success");

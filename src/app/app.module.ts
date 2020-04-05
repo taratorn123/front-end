@@ -30,6 +30,7 @@ import { ViewCampaignComponent } from './view-campaign/view-campaign.component';
 import { CampaignTransactionHistoryComponent } from './campaign-transaction-history/campaign-transaction-history.component';
 import { UserTransactionHistoryComponent } from './user-transaction-history/user-transaction-history.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { VerificationComponent } from './verification/verification.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
     ViewCampaignComponent,
     CampaignTransactionHistoryComponent,
     UserTransactionHistoryComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    VerificationComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +65,7 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
     ReactiveFormsModule,
     NgbModule,
     QuillModule.forRoot()
-    
+
   ],
   providers: [UserService,
     AuthenticationService,
