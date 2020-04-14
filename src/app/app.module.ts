@@ -31,6 +31,7 @@ import { CampaignTransactionHistoryComponent } from './campaign-transaction-hist
 import { UserTransactionHistoryComponent } from './user-transaction-history/user-transaction-history.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { VerificationComponent } from './verification/verification.component';
+import { NgbdModalContentComponent } from './signup-form/ngbd-modal-content/ngbd-modal-content.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,9 @@ import { VerificationComponent } from './verification/verification.component';
     CampaignTransactionHistoryComponent,
     UserTransactionHistoryComponent,
     EditProfileComponent,
-    VerificationComponent
+    VerificationComponent,
+    NgbdModalContentComponent,
+
   ],
   imports: [
     BrowserModule,

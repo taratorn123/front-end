@@ -37,9 +37,9 @@ const routes: Routes = [
   { path: 'create-campaign-three', component: CreateCampaignThreeComponent },
   { path: 'donate/:id', component: DonateComponent},
   { path: 'campaign-transaction-history/:id', component: CampaignTransactionHistoryComponent},
-  { path: 'user-transaction-history/:id', component: UserTransactionHistoryComponent},
+  { path: 'user-transaction-history', component: UserTransactionHistoryComponent},
   { path: 'edit-profile', component: EditProfileComponent},
-  { path: 'verification', component: VerificationComponent}
+  { path: 'verification', component: VerificationComponent},
 ];
 
 @NgModule({

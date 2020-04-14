@@ -4,7 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Transaction } from 'src/models/transaction.model';
 import { AuthenticationService } from './../services/authentication.service';
 
-
 @Component({
   selector: 'app-user-transaction-history',
   templateUrl: './user-transaction-history.component.html',
@@ -14,7 +13,9 @@ export class UserTransactionHistoryComponent implements OnInit {
 
   userId : String;
   transactions : Transaction[];
-  username : String;
+  content: any;
+  backendEncoded : String;
+
   constructor(
     private transactionService : TransactionService,
     private route: ActivatedRoute,
@@ -27,18 +28,13 @@ export class UserTransactionHistoryComponent implements OnInit {
 
   ngOnInit() 
   {
-    this.username = sessionStorage.getItem('username')
-    if(this.username == null)
+    this.userId = sessionStorage.getItem('userId')
+    if(this.userId == null)
     {
       this.router.navigate(['sign-in']);
     }
     else
     {
-      this.userId = this.route.snapshot.params['id'];
-      if(sessionStorage.getItem('userId') != this.userId)
-      {
-        this.router.navigate(['']);
-      }
       this.transactionService.getHistoryDonationUser(this.userId).subscribe(data=>
       {
         this.transactions = data;
@@ -46,4 +42,14 @@ export class UserTransactionHistoryComponent implements OnInit {
       })
     }
   }
+  reportRequest(transactionId : String)
+  {
+    this.transactionService.requestTransactionReport(transactionId).subscribe(result=>
+      {
+        console.log(result);
+        window.open('http://localhost:8080/getTrasnactionReport/'+result);
+      }
+    )
+  }
+  
 }

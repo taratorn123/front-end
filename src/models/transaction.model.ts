@@ -1,5 +1,6 @@
 export class Transaction 
 {
+	transactionId:String;
     campaignName:String;
 	campaignPublicKey:String;
 	publishTime:String;
