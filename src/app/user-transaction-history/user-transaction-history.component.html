@@ -3,19 +3,21 @@
         Donation
         <table class="table table-bordered table-striped">
             <thead class="thead-dark">
-                <tr>
-                    <th scope="col">Date and Time</th>
+                <tr class="column">
+                    <th scope="col align-center">Date and Time</th>
                     <th scope="col">Send to</th>
                     <th scope="col">Amount(Lumen)</th>
-                    <th scope="col">Transaction ID</th>
+                    <th scope="col align-center">Transaction ID</th>
+                    <th scope="col">PDF</th>
                  </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let transaction of transactions">
-                    <td>{{ transaction.publishTime}}</td>
+                    <td>{{ transaction.publishTime | date:'medium'}}</td>
                     <td>{{ transaction.campaignName }}</td>
                     <td>{{ transaction.amount }}</td>
                     <td>{{ transaction.transactionHash }}</td>
+                    <td><a [routerLink]="" (click)="reportRequest(transaction.transactionId)">Request PDF</a></td>
                 </tr>
             </tbody>
         </table>

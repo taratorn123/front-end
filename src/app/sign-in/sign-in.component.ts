@@ -44,9 +44,12 @@ export class SignInComponent implements OnInit {
                   this.router.navigate(['/verification'])
                   sessionStorage.setItem('emailVerfication', '1');
                 }
+                else
+                {
+                  this.gotoHome()
+                }
               })
           });
-        this.gotoHome()
         this.invalidLogin = false
       }
       else 

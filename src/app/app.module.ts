@@ -30,6 +30,7 @@ import { UserTransactionHistoryComponent } from './user-transaction-history/user
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { VerificationComponent } from './verification/verification.component';
 import { ManageCampaignComponent } from './manage-campaign/manage-campaign.component';
+import { NgbdModalContentComponent } from './signup-form/ngbd-modal-content/ngbd-modal-content.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { ManageCampaignComponent } from './manage-campaign/manage-campaign.compo
     UserTransactionHistoryComponent,
     EditProfileComponent,
     VerificationComponent,
-    ManageCampaignComponent
+    ManageCampaignComponent,
+    NgbdModalContentComponent
   ],
   imports: [
     BrowserModule,

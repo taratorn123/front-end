@@ -29,7 +29,7 @@ const routes: Routes = [
   { path: 'create-campaign-one', component: CreateCampaignOneComponent },
   { path: 'donate/:id', component: DonateComponent},
   { path: 'campaign-transaction-history/:id', component: CampaignTransactionHistoryComponent},
-  { path: 'user-transaction-history/:id', component: UserTransactionHistoryComponent},
+  { path: 'user-transaction-history', component: UserTransactionHistoryComponent},
   { path: 'edit-profile', component: EditProfileComponent},
   { path: 'verification', component: VerificationComponent},
   { path: 'manage-campaign', component: ManageCampaignComponent}
