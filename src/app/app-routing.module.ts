@@ -1,4 +1,4 @@
-import { CreateCampaignTwoComponent } from './create-campaign-two/create-campaign-two.component';
+import { ManageCampaignComponent } from './manage-campaign/manage-campaign.component';
 import { CreateCampaignOneComponent } from './create-campaign-one/create-campaign-one.component';
 import { AuthGaurdService } from './services/auth-gaurd.service';
 import { SignOutComponent } from './sign-out/sign-out.component';
@@ -10,7 +10,6 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SignupFormComponent } from './signup-form/signup-form.component';
 import { UserListComponent } from './user-list/user-list.component';
-import { CreateCampaignThreeComponent } from './create-campaign-three/create-campaign-three.component';
 import { ViewCampaignComponent } from './view-campaign/view-campaign.component';
 import { DonateComponent } from './donate/donate.component';
 import { CampaignTransactionHistoryComponent } from './campaign-transaction-history/campaign-transaction-history.component';
@@ -18,12 +17,7 @@ import { UserTransactionHistoryComponent } from './user-transaction-history/user
 import { VerificationComponent } from './verification/verification.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
-
 const routes: Routes = [
-  // { path: '',
-  //   redirectTo: '/home',
-  //   pathMatch: 'full'
-  // },
   { path: '', component: HomeComponent},
   { path: 'campaigns', component: CampaignsComponent},
   { path: 'campaigns/:id', component: ViewCampaignComponent},
@@ -33,13 +27,12 @@ const routes: Routes = [
   { path: 'users', component: UserListComponent },
   { path: 'sign-out', component: SignOutComponent ,canActivate:[AuthGaurdService]},
   { path: 'create-campaign-one', component: CreateCampaignOneComponent },
-  { path: 'create-campaign-two', component: CreateCampaignTwoComponent },
-  { path: 'create-campaign-three', component: CreateCampaignThreeComponent },
   { path: 'donate/:id', component: DonateComponent},
   { path: 'campaign-transaction-history/:id', component: CampaignTransactionHistoryComponent},
   { path: 'user-transaction-history/:id', component: UserTransactionHistoryComponent},
   { path: 'edit-profile', component: EditProfileComponent},
-  { path: 'verification', component: VerificationComponent}
+  { path: 'verification', component: VerificationComponent},
+  { path: 'manage-campaign', component: ManageCampaignComponent}
 ];
 
 @NgModule({

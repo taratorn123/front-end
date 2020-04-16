@@ -1,31 +1,31 @@
+
+<form (ngSubmit)="onEdit()" #userForm="ngForm" class="editForm">
+
 <div class="col-md-12 order-md-1 container">
     <h4 class="mb-3">Edit Profile</h4>
-    <hr>
-
-    <form [formGroup]="editorForm" (ngSubmit)="ngOnSubmit()" #stepOneForm="ngForm" class="editForm"  novalidate>
-      
-
+    <hr>      
       <div class="mb-3 form-group">
         
-        <label class="control-label" for="targetDonation">First Name</label>  
-        <div class="input-group">
-            <input  [(ngModel)]="user.firstName" 
+        <label class="control-label" for="firstName">First Name</label>  
+            <input  [(ngModel)]="userData.firstName" 
             class="form-control"
             id="firstName"
             name="firstName"
             #name="ngModel"
             autofocus>
-        </div>
       </div>
 
       <div class="mb-3 form-group">
-        <label class="control-label" for="campaignName">Last Name</label>  
-        <input  [(ngModel)]="user.lastName" 
+        <label class="control-label" for="lastName">Last Name</label>  
+        <input  [(ngModel)]="userData.lastName" 
         class="form-control"
         id="lastName"
         name="lastName"
         #name="ngModel"
         autofocus>
       </div>
-    </form>
+
+      <button type="submit" class="btn btn-lg btn-primary btn-block" type="submit">Save</button>
+
 </div>
+</form>

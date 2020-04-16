@@ -24,13 +24,12 @@ import { UserListComponent } from './user-list/user-list.component';
 import { UserService } from './services/user-service.service';
 import { SignOutComponent } from './sign-out/sign-out.component';
 import { CreateCampaignOneComponent } from './create-campaign-one/create-campaign-one.component';
-import { CreateCampaignTwoComponent } from './create-campaign-two/create-campaign-two.component';
-import { CreateCampaignThreeComponent } from './create-campaign-three/create-campaign-three.component';
 import { ViewCampaignComponent } from './view-campaign/view-campaign.component';
 import { CampaignTransactionHistoryComponent } from './campaign-transaction-history/campaign-transaction-history.component';
 import { UserTransactionHistoryComponent } from './user-transaction-history/user-transaction-history.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { VerificationComponent } from './verification/verification.component';
+import { ManageCampaignComponent } from './manage-campaign/manage-campaign.component';
 
 @NgModule({
   declarations: [
@@ -45,13 +44,12 @@ import { VerificationComponent } from './verification/verification.component';
     UserListComponent,
     SignOutComponent,
     CreateCampaignOneComponent,
-    CreateCampaignTwoComponent,
-    CreateCampaignThreeComponent,
     ViewCampaignComponent,
     CampaignTransactionHistoryComponent,
     UserTransactionHistoryComponent,
     EditProfileComponent,
-    VerificationComponent
+    VerificationComponent,
+    ManageCampaignComponent
   ],
   imports: [
     BrowserModule,

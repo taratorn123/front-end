@@ -9,8 +9,8 @@ import { CampaignModel } from './../../models/campaign-model';
   styleUrls: ['./view-campaign.component.css']
 })
 export class ViewCampaignComponent implements OnInit {
-  campaignData : any;
-  campaignID: any;
+  campaignData : CampaignModel;
+  campaignID: number;
   constructor(private campaignListService: CampaignListService,private router: Router,private actRoute: ActivatedRoute) {
     
    }
@@ -21,6 +21,7 @@ export class ViewCampaignComponent implements OnInit {
     console.log("campaignID: "+ this.campaignID);
     this.loadCampaignDetails(this.campaignID);
   }
+  /*Get campaignDetail by using campaignId */
   loadCampaignDetails(campaignID)
   {
     this.campaignListService.getCampaignDetails(campaignID).subscribe(data => {

@@ -1,6 +1,7 @@
 export class CampaignModel {
-    id: any;
+    campaignId: number = null;
     targetDonation: number = null;
+    userId : number = null;
     campaignName : string = '';
     category : string = '';
     fundRaisingAs : string = '';
@@ -13,7 +14,7 @@ export class CampaignModel {
     deleteFlag : boolean = false;
  
     clear() {
-        this.id;
+        this.campaignId = null;
         this.targetDonation = null;
         this.campaignName = '';
         this.category = '';
@@ -23,16 +24,4 @@ export class CampaignModel {
 
     }
     
-}
-
-export class StepOne {
-    targetDonation: number = null;
-    campaignName : string = '';
-    category : string = '';
-    fundRaisingAs : string = '';
-}
- 
-export class StepTwo {
-    selectedFile : any = null;
-    coverImageName : string = '';
 }

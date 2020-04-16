@@ -35,14 +35,14 @@
           </div> -->
         <ng-container *ngFor="let campaignModel of filteredCampaigns">
           <div class="card mb-3 cardListItem" style="max-width: 278.5px;" fxFlex="0 1 calc(33.3% - 32px)" >
-            <img src="{{campaignModel.coverImagePath}}" class="card-img-top" alt="coverImage"  >
+            <img [src]="campaignModel.coverImagePath" class="card-img-top" alt="coverImage"  >
             <div class="card-body">
               <h5 class="card-title">{{campaignModel.campaignName}}</h5>
-              <p class="card-text">{{campaignModel.campaignID}}</p>
+              <p class="card-text">{{campaignModel.campaignId}}</p>
               <p class="card-text test" [innerHTML]="campaignModel.campaignDetail"></p>
             </div>
             <div class="card-footer">
-              <small class="text-muted">{{campaignModel.id}}</small>
+              <small class="text-muted">{{campaignModel.coverImagePath}}</small>
               <button type="button" class="btn btn-success" style="float: right;" (click)="getNavigation('campaigns', campaignModel.id)">View</button>
             </div>
           </div>

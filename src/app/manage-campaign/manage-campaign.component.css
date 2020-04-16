@@ -1,0 +1,101 @@
+.container {
+    max-width: 960px;
+  padding: 64px 32px;
+  }
+  
+  .border-top { border-top: 1px solid #e5e5e5; }
+  .border-bottom { border-bottom: 1px solid #e5e5e5; }
+  .border-top-gray { border-top-color: #adb5bd; }
+  
+  .box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
+  
+  .lh-condensed { line-height: 1.25; }
+  
+  #discipline-qe /deep/ .ql-container{
+    height: 300px;
+  }
+
+  body{
+    background-color: #F7F7F7;
+    font-size: 1.125rem;
+    margin: 0;
+  }
+  
+
+  #horizontal-list{
+    display: flex;
+    justify-content: space-evenly;
+    margin: 1em 0;
+    width: 100%;
+  }
+  .categoryLogo{
+    
+    min-width: 25%;
+  }
+  .cardList {
+    display: flex;
+   
+      flex-direction: row;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+      margin-left: -.625rem;
+      margin-right: -.625rem;
+      /* justify-content: space-evenly; */
+    }
+    /* Column Gap */
+    .cardList > * {
+      box-sizing: border-box;
+    }
+    .cardList > *:not(:last-child) {
+      justify-content: space-between;
+  
+    }
+    /* Item sizing */
+    .cardListItem {
+      display: inline-block;
+      float: none;
+      margin-bottom: 1rem;
+      vertical-align: top;
+      padding: 0;
+      min-height: initial;
+      width: calc(50% - 1.25rem);
+      margin-left: .625rem;
+      margin-right: .625rem;
+      flex: 0 0 auto;
+  
+    }
+    
+    /* .table {
+      display: table;  
+      margin: 0 auto;
+    }
+    ul#horizontal-list {
+      min-width: 696px;
+      list-style: none;
+      padding-top: 20px;
+      }
+      ul#horizontal-list li {
+        display: inline;
+      } */
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+      }
+      
+      li {
+        float: left;
+      }
+      
+      li a {
+        display: block;
+        color: black;
+        text-align: center;
+        padding: 16px;
+        text-decoration: none;
+      }
+      
+      /* li a:hover {
+        background-color: #111111;
+      } */

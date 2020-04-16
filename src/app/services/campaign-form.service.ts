@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CampaignModel, StepOne, StepTwo } from './../../models/campaign-model';
+import { CampaignModel} from './../../models/campaign-model';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable({
   providedIn: 'root'
@@ -12,70 +13,30 @@ export class CampaignFormService {
   private isAddressFormValid: boolean = false;
 
   private campaignUrl: string;
+  private campaignUserUrl: string;
   constructor(private http : HttpClient) {
     this.campaignUrl = 'http://localhost:8080/campaigns';
+    this.campaignUserUrl = 'http://localhost:8080/campaignUser';
    }
   
-  getPersonal(): StepOne {
-    // Return the StepOne data
-    var personal: StepOne = {
-        targetDonation: this.campaignModel.targetDonation,
-        campaignName: this.campaignModel.campaignName,
-        category: this.campaignModel.category,
-        fundRaisingAs: this.campaignModel.fundRaisingAs,
-        // email: this.campaignModel.email
-    };
-    return personal;
-  }
+  // Return the StepOne data
+  // getPersonal(): StepOne {
+  //   var personal: StepOne = {
+  //       targetDonation: this.campaignModel.targetDonation,
+  //       campaignName: this.campaignModel.campaignName,
+  //       category: this.campaignModel.category,
+  //       fundRaisingAs: this.campaignModel.fundRaisingAs,
+  //   };
+  //   return personal;
+  // }
   
-  // public saveCampaign(campaignModel: CampaignModel) {
-  //   return this.http.post<CampaignModel>(this.campaignUrl, campaignModel);
-  // }
-  setPersonal(data: StepOne) {
-      // Update the StepOne data only when the StepOne Form had been validated successfully
-      this.isPersonalFormValid = true;
-      this.campaignModel.targetDonation = data.targetDonation;
-      this.campaignModel.campaignName = data.campaignName;
-      this.campaignModel.category = data.category;
-      this.campaignModel.fundRaisingAs = data.fundRaisingAs;
-
-      // this.campaignModel.email = data.email;
-  }
-
-  // getWork() : StepTwo {
-  //     // Return the work type
-  //     var stepTwo: StepTwo = {
-  //       selectedFile: this.campaignModel.selectedFile,
-  //       coverImageName: this.campaignModel.coverImageName,
-  //   }; 
-  //     return stepTwo;
-  // }
-
-  // setWork(data: StepTwo) {
-  //     // Update the work type only when the Work Form had been validated successfully
-  //     this.isWorkFormValid = true;
-  //     this.campaignModel.selectedFile = data.selectedFile;
-  //     this.campaignModel.coverImageName = data.coverImageName;
-  //   }
-
-  // getAddress() : Address {
-  //     // Return the Address data
-  //     var address: Address = {
-  //         street: this.campaignModel.street,
-  //         city: this.campaignModel.city,
-  //         state: this.campaignModel.state,
-  //         zip: this.campaignModel.zip
-  //     };
-  //     return address;
-  // }
-
-  // setAddress(data: Address) {
-  //     // Update the Address data only when the Address Form had been validated successfully
-  //     this.isAddressFormValid = true;
-  //     this.campaignModel.street = data.street;
-  //     this.campaignModel.city = data.city;
-  //     this.campaignModel.state = data.state;
-  //     this.campaignModel.zip = data.zip;
+ // Update the StepOne data only when the StepOne Form had been validated successfully
+  // setPersonal(data: StepOne) {
+  //     this.isPersonalFormValid = true;
+  //     this.campaignModel.targetDonation = data.targetDonation;
+  //     this.campaignModel.campaignName = data.campaignName;
+  //     this.campaignModel.category = data.category;
+  //     this.campaignModel.fundRaisingAs = data.fundRaisingAs;
   // }
 
   getFormData(): CampaignModel {
@@ -96,7 +57,15 @@ export class CampaignFormService {
               this.isWorkFormValid && 
               this.isAddressFormValid;
   }
+
+  //Save campaign then return campaignId
   public saveCampaign(uploadData: FormData) {
-    return this.http.post<FormData>(this.campaignUrl, uploadData);
+    return this.http.post<number>(this.campaignUrl, uploadData);
   }
+
+  //Save user(campaign's owner) and campaign together
+  public saveCampaignUser(CampaignModel:CampaignModel){
+    return this.http.post<number>(this.campaignUserUrl, CampaignModel)
+  }
+
 }

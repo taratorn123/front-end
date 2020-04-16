@@ -23,7 +23,7 @@
         <hr>
 
         <!-- Preview Image -->
-        <img class="img-fluid rounded" src="{{campaignData.coverImagePath}}" alt="">
+        <img class="img-fluid rounded" [src]="campaignData.coverImagePath" alt="">
         <br>
         <button type="button" class="btn btn-primary" (click) ="navigateDonate();">Donate</button>
         <button type="button" class="btn btn-primary" (click) ="navigateHistoryTransaction();">History</button>

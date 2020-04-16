@@ -30,6 +30,7 @@ export class AuthenticationService  {
       {
         this.result = true;
         sessionStorage.setItem('username',  user.username);
+
         console.log(sessionStorage.getItem('username'));
       }
     });
@@ -59,7 +60,6 @@ export class AuthenticationService  {
   isUserLoggedIn() 
   {
     let user = sessionStorage.getItem('username')
-    console.log(!(user === null))
     return !(user === null)
   }
 
