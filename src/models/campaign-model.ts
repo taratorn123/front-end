@@ -1,4 +1,5 @@
-export class CampaignModel {
+export class CampaignModel 
+{
     campaignId: number = null;
     targetDonation: number = null;
     userId : number = null;
@@ -12,7 +13,7 @@ export class CampaignModel {
     endDate : Date = new Date();
     activeFlag : boolean = true;
     deleteFlag : boolean = false;
- 
+
     clear() {
         this.campaignId = null;
         this.targetDonation = null;

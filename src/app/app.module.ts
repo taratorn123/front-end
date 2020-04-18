@@ -31,6 +31,7 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { VerificationComponent } from './verification/verification.component';
 import { ManageCampaignComponent } from './manage-campaign/manage-campaign.component';
 import { NgbdModalContentComponent } from './signup-form/ngbd-modal-content/ngbd-modal-content.component';
+import { NgbdModalContent } from './donate/donate.component'
 
 @NgModule({
   declarations: [
@@ -51,7 +52,12 @@ import { NgbdModalContentComponent } from './signup-form/ngbd-modal-content/ngbd
     EditProfileComponent,
     VerificationComponent,
     ManageCampaignComponent,
-    NgbdModalContentComponent
+    NgbdModalContentComponent,
+    NgbdModalContent
+  ],
+  entryComponents: 
+  [
+    NgbdModalContent
   ],
   imports: [
     BrowserModule,

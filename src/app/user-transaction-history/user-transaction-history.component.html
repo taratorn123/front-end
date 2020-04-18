@@ -1,7 +1,19 @@
 <div class="card my-5">
     <div class="card-body">
-        Donation
-        <table class="table table-bordered table-striped">
+        <table class="table table-bordered table-striped Header">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="row" style="width:25%">Name</th>
+                    <td>{{ userName}}</td>
+                </tr>
+                <tr>
+                    <th scope="row" style="width:25%">Public key</th>
+                    <td>{{ userPublicKey}}</td>
+                </tr>
+            </thead>
+        </table>
+        <hr>
+        <table class="table Detail" >
             <thead class="thead-dark">
                 <tr class="column">
                     <th scope="col align-center">Date and Time</th>

@@ -1,7 +1,19 @@
 <div class="card my-5">
     <div class="card-body">
-        Donation
-        <table class="table table-bordered table-striped">
+        <table class="table table-bordered table-striped Header">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="row" style="width:25%">Campaign Name</th>
+                    <td>{{ campaignName}}</td>
+                </tr>
+                <tr>
+                    <th scope="row" style="width:25%">Campaign Public key</th>
+                    <td>{{ campaignPublicKey}}</td>
+                </tr>
+            </thead>
+        </table>
+        <hr>
+        <table class="table Detail" >
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">Date and Time</th>
@@ -12,10 +24,10 @@
             </thead>
             <tbody>
                 <tr *ngFor="let transaction of transactions">
-                    <td>{{ transaction.publishTime}}</td>
+                    <td>{{ transaction.publishTime | date:'medium'}}</td>
                     <td>{{ transaction.userName }}</td>
                     <td>{{ transaction.amount }}</td>
-                    <td>{{ transaction.transactionHash }}</td>
+                    <td><a href="https://horizon-testnet.stellar.org/transactions/{{ transaction.transactionHash }}"  target="_blank">{{ transaction.transactionHash }}</a></td>
                 </tr>
             </tbody>
         </table>

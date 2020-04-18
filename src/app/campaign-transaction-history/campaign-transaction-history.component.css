@@ -1,0 +1,12 @@
+.Header
+{
+    width: 50%;
+    margin: auto;
+    border-width: 5px;
+}
+.Detail
+{
+    width : 80%;
+    margin: auto;
+    margin-bottom: 15px;
+}

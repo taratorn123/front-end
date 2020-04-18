@@ -15,6 +15,8 @@ export class UserTransactionHistoryComponent implements OnInit {
   transactions : Transaction[];
   content: any;
   backendEncoded : String;
+  userPublicKey : String;
+  userName : String;
 
   constructor(
     private transactionService : TransactionService,
@@ -37,8 +39,23 @@ export class UserTransactionHistoryComponent implements OnInit {
     {
       this.transactionService.getHistoryDonationUser(this.userId).subscribe(data=>
       {
-        this.transactions = data;
-        console.log(this.transactions);
+        console.log('Testing '+data[0].transactionHash)
+        if(data[0].transactionHash != null)
+        {
+          this.transactions = data;
+          this.userPublicKey = data[0].campaignPublicKey;
+          console.log(this.userPublicKey);
+          this.userName = data[0].userName;
+          console.log(this.userName);
+          console.log(this.transactions);
+        }
+        else
+        {
+          this.userPublicKey = data[0].campaignPublicKey;
+          console.log(this.userPublicKey);
+          this.userName = data[0].campaignName;
+          console.log(this.transactions);
+        }
       })
     }
   }

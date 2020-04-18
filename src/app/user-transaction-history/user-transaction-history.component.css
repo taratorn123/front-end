@@ -1,9 +1,12 @@
-
-.card-body
+.Header
 {
+    width: 50%;
     margin: auto;
+    border-width: 5px;
 }
-.column
+.Detail
 {
-    text-align: center;
+    width : 80%;
+    margin: auto;
+    margin-bottom: 15px;
 }

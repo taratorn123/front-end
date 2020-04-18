@@ -10,7 +10,7 @@
             [(ngModel)]="donation.amount"
             id = "amount"
             class="form-control"
-            required
+            required #name="ngModel"
             >
         </div>
         <div class="form-group">
@@ -30,15 +30,16 @@
             name="privatekey"
             class="form-control"
             type="text" 
-            required
+            required #name="ngModel"
             >
         </div>
-
+        
         <div class="form-check">
             <input [(ngModel)]="donation.anonymousFlag" type="checkbox" name="flag" class="form-check-input" id="flag">
             <label class="form-check-label" for="flag">Donate as anonymouse</label>
         </div>
-        <button class = "btn btn-primary" (click)="donate()" >Donate</button>
+        <!-- <button class = "btn btn-primary" [disabled]="!donateForm.form.valid" (click)="donate()" >Donate</button> -->
+        <button class = "btn btn-primary"(click)="donate()" >Donate</button>
+
     </div>
 </form>
-{{donateForm.value | json}}

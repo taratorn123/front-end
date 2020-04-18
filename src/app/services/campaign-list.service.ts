@@ -10,22 +10,27 @@ export class CampaignListService {
   private campaignListUrl: string;
   private campaignIdUrl: string;
   private campaignByUserIdUrl: string;
+  private campaignHeaderDetailUrl: string;
 
-  constructor(private http:HttpClient) { 
+  constructor(private http:HttpClient) 
+  { 
     this.campaignListUrl = 'http://localhost:8080/campaigns-list'
     this.campaignIdUrl = 'http://localhost:8080/campaigns'
-    this.campaignByUserIdUrl = 'http://localhost:8080/userscampaigns'}
+    this.campaignByUserIdUrl = 'http://localhost:8080/userscampaigns'
+    this.campaignHeaderDetailUrl = 'http://localhost:8080/'
+  }
   
-  public findAll() {
+  public findAll() 
+  {
     return this.http.get<CampaignModel[]>(this.campaignListUrl);
   }
-  public getCampaignDetails(campaignID){
+  public getCampaignDetails(campaignID)
+  {
     return this.http.get<CampaignModel>(this.campaignIdUrl + '/' + campaignID);
   }
-  public findCampaignByCurrentUser() {
+  public findCampaignByCurrentUser() 
+  {
     var userIdLong = +sessionStorage.getItem('userId')
     return this.http.get<CampaignModel[]>(this.campaignByUserIdUrl+ '/' + userIdLong);
   }
-  
-
 } 
