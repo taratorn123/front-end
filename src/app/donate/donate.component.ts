@@ -43,7 +43,7 @@ export class DonateComponent implements OnInit
     console.log('opening');
     if(sessionStorage.getItem('userId') == null)
     {
-      const modalRef = this.modalService.open(NgbdModalContent,{centered: true} );
+      const modalRef = this.modalService.open(NgbdModalContentDonate,{centered: true} );
       modalRef.componentInstance.choice = '1';
     }
     else
@@ -54,24 +54,24 @@ export class DonateComponent implements OnInit
           /* Not enough money */
           if(result == 0)
           {
-            const modalRef = this.modalService.open(NgbdModalContent,{centered: true} );
+            const modalRef = this.modalService.open(NgbdModalContentDonate,{centered: true} );
             modalRef.componentInstance.choice = '2';
           }
           /* Incorrect private key */
           else if(result == 1)
           {
-            const modalRef = this.modalService.open(NgbdModalContent,{centered: true} );
+            const modalRef = this.modalService.open(NgbdModalContentDonate,{centered: true} );
             modalRef.componentInstance.choice = '3';
           }
           /* Cannot send transaction*/
           else if(result == 2)
           {
-            const modalRef = this.modalService.open(NgbdModalContent,{centered: true} );
+            const modalRef = this.modalService.open(NgbdModalContentDonate,{centered: true} );
             modalRef.componentInstance.choice = '4';
           }
           else if(result == 3)
           {
-            const modalRef = this.modalService.open(NgbdModalContent,{centered: true} );
+            const modalRef = this.modalService.open(NgbdModalContentDonate,{centered: true} );
             modalRef.componentInstance.choice = '5';
           }
         });
@@ -167,7 +167,7 @@ export class DonateComponent implements OnInit
 
   `
 })
-export class NgbdModalContent {
+export class NgbdModalContentDonate {
   @Input() choice;
 
   constructor(public activeModal: NgbActiveModal, private router: Router)
@@ -186,18 +186,4 @@ export class NgbdModalContent {
     this.router.navigate(['/sign-in']);
     console.log("Success");
   }
-  // <div *ngIf="{{choice}} == 2">
-    // <div class="modal-header">
-    //   <h3>Error</h3>
-    //   <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
-    //     <span aria-hidden="true">&times;</span>
-    //   </button>
-    // </div>
-    // <div class="modal-body">
-    //   <h4>{{choice}}</h4>
-    // </div>
-    // <div class="modal-footer">
-    //   <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
-    // </div>
-  // </div>
 }

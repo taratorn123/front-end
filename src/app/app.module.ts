@@ -30,8 +30,8 @@ import { UserTransactionHistoryComponent } from './user-transaction-history/user
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { VerificationComponent } from './verification/verification.component';
 import { ManageCampaignComponent } from './manage-campaign/manage-campaign.component';
-import { NgbdModalContentComponent } from './signup-form/ngbd-modal-content/ngbd-modal-content.component';
-import { NgbdModalContent } from './donate/donate.component'
+import { NgbdModalContentDonate } from './donate/donate.component'
+import { NgbdModalContentSignup } from './signup-form/signup-form.component'
 
 @NgModule({
   declarations: [
@@ -52,12 +52,13 @@ import { NgbdModalContent } from './donate/donate.component'
     EditProfileComponent,
     VerificationComponent,
     ManageCampaignComponent,
-    NgbdModalContentComponent,
-    NgbdModalContent
+    NgbdModalContentDonate,
+    NgbdModalContentSignup
   ],
   entryComponents: 
   [
-    NgbdModalContent
+    NgbdModalContentDonate,
+    NgbdModalContentSignup
   ],
   imports: [
     BrowserModule,

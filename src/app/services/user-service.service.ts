@@ -12,15 +12,17 @@ export class UserService
   private emailUrl: string;
   private checkVerification: string;
   private getUserIdUrl:string;
-
+  private checkUserUrl: string;
+  private verficationUserUrl: string;
 
   constructor(private http: HttpClient) 
   {
     this.emailUrl= 'http://localhost:8080/sendmail';
     this.usersUrl = 'http://localhost:8080/users';
     this.checkVerification = 'http://localhost:8080/checkVerification';
-    this.getUserIdUrl = 'http://localhost:8080/getUserId'
-
+    this.getUserIdUrl = 'http://localhost:8080/getUserId';
+    this.checkUserUrl = 'http://localhost:8080/checkUser';
+    this.verficationUserUrl = "http://localhost:8080/userImageVerification"
   }
 
 
@@ -47,6 +49,14 @@ export class UserService
   public checkUserVerification(id: string)
   {
     return this.http.get<number>(this.checkVerification+'/'+id);
+  }
+  public checkUserExistence(user: User)
+  {
+    return this.http.post<number>(this.checkUserUrl,user);
+  }
+  public saveVerification(uploadData: FormData)
+  {
+    return this.http.post<boolean>(this.verficationUserUrl,uploadData);
   }
   
 }

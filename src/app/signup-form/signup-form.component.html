@@ -8,7 +8,7 @@
         </div>
         <div class = "row">
             <div class="col align-self-center">
-                <h1 class="h3 mb-3 font-weight-normal">Sign up</h1>
+                <h1>Sign up</h1>
             </div>
         </div>
         <hr>
@@ -40,7 +40,10 @@
                 id="username"
                 name="username"
                 placeholder="Username"
-                required autofocus #email="ngModel">
+                required autofocus #name="ngModel">
+                <div class="errorCode" *ngIf="user.username.length < 5 && user.username != ''">
+                    *Username must have more than 4 letters
+                </div>
             </div>
         </div>
         <div class = "row">
@@ -64,7 +67,10 @@
                 id="password"
                 name="password"
                 placeholder="Password"
-                required autofocus #email="ngModel">
+                required autofocus #name="ngModel">
+                <div class="errorCode" *ngIf="user.password.length < 5 && user.password != ''">
+                    *Password must have more than 4 letters
+                </div>
             </div>
         </div>
         <div class = "row">
@@ -75,12 +81,43 @@
                 id="passwordConfirmation"
                 name="passwordConfirmation"
                 placeholder="Password Confirmation"
-                required autofocus #email="ngModel">
+                required autofocus #name="ngModel">
+                <div class="errorCode" *ngIf="user.password != user.passwordConfirmation">
+                    *Password does not matched
+                </div>
+                <div class="verificationFlag form-check">
+                    <input [(ngModel)]="user.verificationFlag" type="checkbox" name="flag" class="form-check-input" id="flag">
+                    <label class="form-check-label" for="flag">Act as a beneficiary (access create campaign feature)</label>
+                </div>
+            </div>
+        </div>
+        <div class="verificationPart" *ngIf="user.verificationFlag">
+            <div class="row">
+                <div class="col">
+                    <div class="textPicture"><h5>Picture of verification</h5></div>
+                    <img class="picture mb-4" src="../../assets/img/Registration/ImageVerification.png" alt="">
+                    <img class="picture mb-4" [src]="identityURL" height="200" *ngIf="identityURL">
+                    <input type="file" (change)="onFileChanged($event,1)">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="textPicture"><h5>Signature</h5></div>
+                    <img class="picture mb-4" src="../../assets/img/Registration/Signature.png" alt="" width="426" height="353">
+                    <img class="picture mb-4" [src]="signatureURL" height="200" *ngIf="signatureURL">
+                    <input type="file" (change)="onFileChanged($event,2)">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    Hello There
+                </div>
             </div>
         </div>
         <!-- <div [hidden]="!email.pristine" class="alert alert-danger">Email is required</div> -->
         <!-- <label for="inputPassword" class="sr-only">Password</label> -->
         <!-- <input type="password" id="inputPassword" class="form-control" placeholder="Password" required> -->
         <button type="submit" [disabled]="!userForm.form.valid" class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+        <h4 class="login"> Already have an account? <a href ="/sign-in">Sign in here</a></h4>
     </div>
 </form>
