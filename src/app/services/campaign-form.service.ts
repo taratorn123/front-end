@@ -19,53 +19,33 @@ export class CampaignFormService {
     this.campaignUserUrl = 'http://localhost:8080/campaignUser';
    }
   
-  // Return the StepOne data
-  // getPersonal(): StepOne {
-  //   var personal: StepOne = {
-  //       targetDonation: this.campaignModel.targetDonation,
-  //       campaignName: this.campaignModel.campaignName,
-  //       category: this.campaignModel.category,
-  //       fundRaisingAs: this.campaignModel.fundRaisingAs,
-  //   };
-  //   return personal;
-  // }
-  
- // Update the StepOne data only when the StepOne Form had been validated successfully
-  // setPersonal(data: StepOne) {
-  //     this.isPersonalFormValid = true;
-  //     this.campaignModel.targetDonation = data.targetDonation;
-  //     this.campaignModel.campaignName = data.campaignName;
-  //     this.campaignModel.category = data.category;
-  //     this.campaignModel.fundRaisingAs = data.fundRaisingAs;
-  // }
-
+   // Return the entire Form Data
   getFormData(): CampaignModel {
-      // Return the entire Form Data
       return this.campaignModel;
   }
-
+  
+  // Return the form data after all this.* members had been reset
   resetFormData(): CampaignModel {
-      // Return the form data after all this.* members had been reset
       this.campaignModel.clear();
       this.isPersonalFormValid = this.isWorkFormValid = this.isAddressFormValid = false;
       return this.campaignModel;
   }
-
+  
+  // Return true if all forms had been validated successfully; otherwise, return false
   isFormValid() {
-      // Return true if all forms had been validated successfully; otherwise, return false
       return this.isPersonalFormValid &&
               this.isWorkFormValid && 
               this.isAddressFormValid;
   }
 
   //Save campaign then return campaignId
-  public saveCampaign(uploadData: FormData) {
-    return this.http.post<number>(this.campaignUrl, uploadData);
+  public saveCampaign(campaignModel:CampaignModel) {
+    return this.http.post<number>(this.campaignUrl, campaignModel);
   }
 
   //Save user(campaign's owner) and campaign together
-  public saveCampaignUser(CampaignModel:CampaignModel){
-    return this.http.post<number>(this.campaignUserUrl, CampaignModel)
+  public saveCampaignUser(campaignModel:CampaignModel){
+    return this.http.post<number>(this.campaignUserUrl, campaignModel)
   }
 
 }

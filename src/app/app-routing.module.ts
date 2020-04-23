@@ -1,3 +1,4 @@
+import { ManageCampaignIdComponent } from './manage-campaign-id/manage-campaign-id.component';
 import { ManageCampaignComponent } from './manage-campaign/manage-campaign.component';
 import { CreateCampaignOneComponent } from './create-campaign-one/create-campaign-one.component';
 import { AuthGaurdService } from './services/auth-gaurd.service';
@@ -16,6 +17,7 @@ import { CampaignTransactionHistoryComponent } from './campaign-transaction-hist
 import { UserTransactionHistoryComponent } from './user-transaction-history/user-transaction-history.component';
 import { VerificationComponent } from './verification/verification.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { EditCampaignComponent } from './edit-campaign/edit-campaign.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
@@ -32,7 +34,10 @@ const routes: Routes = [
   { path: 'user-transaction-history', component: UserTransactionHistoryComponent},
   { path: 'edit-profile', component: EditProfileComponent},
   { path: 'verification', component: VerificationComponent},
-  { path: 'manage-campaign', component: ManageCampaignComponent}
+  { path: 'manage-campaigns', component: ManageCampaignComponent},
+  { path: 'manage-campaigns/:id', component: ManageCampaignIdComponent},
+  { path: 'manage-campaigns/:id/edit-campaign', component: EditCampaignComponent}
+
 ];
 
 @NgModule({

@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { CampaignModel } from './../../models/campaign-model';
 import { CampaignListService } from './../services/campaign-list.service';
 import { Component, OnInit } from '@angular/core';
@@ -13,11 +14,21 @@ export class ManageCampaignComponent implements OnInit {
   filteredCampaigns: CampaignModel[];
 
 
-  constructor(private campaignListService: CampaignListService) {
+  constructor(private campaignListService: CampaignListService,
+              private router: Router) {
     this.subscription = this.campaignListService.findCampaignByCurrentUser().subscribe(campaigns => this.filteredCampaigns = campaigns); 
   }
 
   ngOnInit() {
   }
-
+  
+  getNavigation(link, id)
+  {
+    console.log('Campaign ID'+id);
+    if(id === ''){
+        this.router.navigate([link]);
+    } else {
+        this.router.navigate([link + '/' + id]);
+    }
+  }
 }

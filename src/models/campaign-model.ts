@@ -13,7 +13,18 @@ export class CampaignModel
     endDate : Date = new Date();
     activeFlag : boolean = true;
     deleteFlag : boolean = false;
-
+    user: [{
+        id : number;
+        firstName: string;
+        lastName: string ;
+        email: string ;
+        username: string;
+        password: string;
+        passwordConfirmation: string;
+        verificationFlag: boolean;
+        routeSignatureImage:String;
+        routeImageVerification:String;
+      }]
     clear() {
         this.campaignId = null;
         this.targetDonation = null;

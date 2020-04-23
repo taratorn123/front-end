@@ -2,11 +2,14 @@ import { AuthGaurdService } from './services/auth-gaurd.service';
 import { AuthenticationService } from './services/authentication.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+//AngularFire Firebase
 import { AngularFireModule } from "@angular/fire";
-import { AngularFireAuthModule } from "@angular/fire/auth";
+import { AngularFireStorageModule } from "@angular/fire/storage"
 import { AngularFireDatabaseModule } from "@angular/fire/database";
 import { environment } from '../environments/environment';
+//Bootstrap
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+//Quilljs
 import { QuillModule } from 'ngx-quill';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -31,7 +34,9 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { VerificationComponent } from './verification/verification.component';
 import { ManageCampaignComponent } from './manage-campaign/manage-campaign.component';
 import { NgbdModalContentComponent } from './signup-form/ngbd-modal-content/ngbd-modal-content.component';
-import { NgbdModalContent } from './donate/donate.component'
+import { NgbdModalContent } from './donate/donate.component';
+import { EditCampaignComponent } from './edit-campaign/edit-campaign.component';
+import { ManageCampaignIdComponent } from './manage-campaign-id/manage-campaign-id.component'
 
 @NgModule({
   declarations: [
@@ -53,7 +58,9 @@ import { NgbdModalContent } from './donate/donate.component'
     VerificationComponent,
     ManageCampaignComponent,
     NgbdModalContentComponent,
-    NgbdModalContent
+    NgbdModalContent,
+    EditCampaignComponent,
+    ManageCampaignIdComponent
   ],
   entryComponents: 
   [
@@ -64,9 +71,9 @@ import { NgbdModalContent } from './donate/donate.component'
     HttpClientModule,
     // HttpClient,
     AppRoutingModule,
-    AngularFireAuthModule,
+    AngularFireStorageModule,
     AngularFireDatabaseModule,
-    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireModule.initializeApp(environment.firebaseConfig),
     FormsModule,
     ReactiveFormsModule,
     NgbModule,

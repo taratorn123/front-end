@@ -28,7 +28,7 @@
       <a *ngIf="loginService.isUserLoggedIn()" ngbDropdownToggle class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
       <div ngbDropdownMenu class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown01">
         <a *ngIf="loginService.isUserLoggedIn()" class="dropdown-item" href="/edit-profile">Edit Profile</a>
-        <a *ngIf="loginService.isUserLoggedIn()" class="dropdown-item" href="/manage-campaign">Manage Campaigns</a>
+        <a *ngIf="loginService.isUserLoggedIn()" class="dropdown-item" href="/manage-campaigns">Manage Campaigns</a>
         <a *ngIf="loginService.isUserLoggedIn()" class="dropdown-item" href="/user-transaction-history">Donation History</a>
         <a *ngIf="loginService.isUserLoggedIn()" class="dropdown-item" href="/sign-out">Sign out</a>
       </div>

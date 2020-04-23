@@ -1,3 +1,4 @@
+import { CampaignListService } from './../services/campaign-list.service';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { QuillModule } from 'ngx-quill';
 import Quill from 'quill';
@@ -9,12 +10,14 @@ import { FormBuilder, FormGroup, FormControl, Validators, FormArray } from '@ang
 import { CampaignModel } from './../../models/campaign-model';
 import { CampaignFormService } from './../services/campaign-form.service';
 import { finalize } from "rxjs/operators"
+import { User } from 'src/models/User';
+
 @Component({
-  selector: 'app-create-campaign-one',
-  templateUrl: './create-campaign-one.component.html',
-  styleUrls: ['./create-campaign-one.component.css']
+  selector: 'app-edit-campaign',
+  templateUrl: './edit-campaign.component.html',
+  styleUrls: ['./edit-campaign.component.css']
 })
-export class CreateCampaignOneComponent implements OnInit {
+export class EditCampaignComponent implements OnInit {
   campaignModel: CampaignModel;
   form: any;
   selectedImage: any = null;
@@ -39,16 +42,49 @@ export class CreateCampaignOneComponent implements OnInit {
     height: '300px',
     backgroundColor: '#ffffff'
   }
-  
+  campaignData : CampaignModel;
+  campaignDataTemp : any;
+  userData : User;
+  campaignID: number;
 
   
   constructor(private router: Router,
+    private actRoute: ActivatedRoute,
     private campaignFormService: CampaignFormService,
     private userService: UserService,
+    private campaignListService : CampaignListService,
     private storage:AngularFireStorage) { 
       this.campaignModel = new CampaignModel();
+      this.userData = new User;
+
     }
   
+    ngOnInit() {
+      //Get campaignId from route snapshot
+      this.campaignID = this.actRoute.snapshot.params['id'];
+      console.log("campaignID: "+ this.campaignID);
+      this.loadCampaignDetails(this.campaignID);
+      //Declare form group
+      this.formTemplate = new FormGroup({
+        targetDonation: new FormControl('',Validators.required),
+        campaignName: new FormControl('',Validators.required),
+        category: new FormControl('',Validators.required),
+        fundRaisingAs: new FormControl('',Validators.required),
+        imageUrl: new FormControl('',Validators.required),
+        editor: new FormControl('',Validators.required)
+      })
+    }
+
+  /*Get campaignDetail by using campaignId */
+  loadCampaignDetails(campaignID)
+  {
+    this.campaignListService.getCampaignDetails(campaignID).subscribe(data => {
+    this.campaignData = data;
+    this.campaignDataTemp = data.user;
+    this.userData = this.campaignDataTemp;
+    console.log(this.campaignData);
+    });
+  }
   //Used to display the selected image
   onFileChanged(event) {
     console.log(event);
@@ -74,20 +110,9 @@ export class CreateCampaignOneComponent implements OnInit {
     this.editorContent = this.formTemplate.get('editor').value;
     console.log(this.formTemplate.get('editor').value)
     this.campaignModel.campaignDetail = this.editorContent;
-
   }
 
-  ngOnInit() {
-    this.formTemplate = new FormGroup({
-      targetDonation: new FormControl('',Validators.required),
-      campaignName: new FormControl('',Validators.required),
-      category: new FormControl('',Validators.required),
-      fundRaisingAs: new FormControl('',Validators.required),
-      imageUrl: new FormControl('',Validators.required),
-      editor: new FormControl('',Validators.required)
-    })
-    this.resetForm();
-  }
+ 
   
   //This is for uploading campaign
   ngOnSubmit(formValue) {
@@ -100,10 +125,10 @@ export class CreateCampaignOneComponent implements OnInit {
       this.campaignModel.fundRaisingAs = formValue['fundRaisingAs'];
       this.campaignModel.campaignDetail = formValue['editor'];
       this.campaignModel.coverImageName = 'cover.jpg';
-      //Send assigned value to SpringBoot
+      //Send assigned value to SpringBoot, return campaignId
       this.campaignFormService.saveCampaign(this.campaignModel).subscribe(campaignId => {
         console.log("campaignId = "+campaignId)
-        var userIdLong = +sessionStorage.getItem('userId'); // userIdLong: number
+        var userIdLong = +sessionStorage.getItem('userId');
         this.campaignModel.campaignId = campaignId
         this.campaignModel.userId = userIdLong
         this.campaignModel.coverImageName = "cover.jpg";

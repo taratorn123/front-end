@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs/internal/Subscription';
 })
 export class CampaignsComponent implements OnInit {
   campaignModels: CampaignModel[];
-  campaigns: {campaignName : string}[];
+  campaignsName: {campaignName : string}[];
   filteredCampaigns: any[];
   subscription: Subscription;
 
@@ -19,7 +19,7 @@ export class CampaignsComponent implements OnInit {
               private router:Router
               )
   { 
-    this.subscription = this.campaignListService.findAll().subscribe(campaigns => this.filteredCampaigns = this.campaigns = campaigns);
+    this.subscription = this.campaignListService.findAll().subscribe(campaigns => this.filteredCampaigns = this.campaignsName = campaigns);
   }
 
   ngOnInit() {
@@ -44,7 +44,7 @@ export class CampaignsComponent implements OnInit {
   filter(query : string) 
   {
    this.filteredCampaigns = (query) ?
-    this.campaigns.filter(p => p.campaignName.toLowerCase().includes(query.toLowerCase())):
-    this.campaigns;
+    this.campaignsName.filter(p => p.campaignName.toLowerCase().includes(query.toLowerCase())):
+    this.campaignsName;
   }
 }

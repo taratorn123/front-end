@@ -1,15 +1,16 @@
+import { User } from './../../models/User';
 import { Component, OnInit } from '@angular/core';
 import { CampaignListService } from './../services/campaign-list.service';
 import { CampaignModel } from './../../models/campaign-model';
 import { Router, ActivatedRoute } from '@angular/router';
-import { User } from 'src/models/User';
 
 @Component({
-  selector: 'app-view-campaign',
-  templateUrl: './view-campaign.component.html',
-  styleUrls: ['./view-campaign.component.css']
+  selector: 'app-manage-campaign-id',
+  templateUrl: './manage-campaign-id.component.html',
+  styleUrls: ['./manage-campaign-id.component.css']
 })
-export class ViewCampaignComponent implements OnInit {
+export class ManageCampaignIdComponent implements OnInit {
+
   campaignData : CampaignModel;
   campaignDataTemp : any;
   userData : User;
@@ -21,6 +22,7 @@ export class ViewCampaignComponent implements OnInit {
 
   ngOnInit() 
   {
+
     this.campaignID = this.actRoute.snapshot.params['id'];
     console.log("campaignID: "+ this.campaignID);
     this.loadCampaignDetails(this.campaignID);
@@ -34,22 +36,19 @@ export class ViewCampaignComponent implements OnInit {
     this.userData = this.campaignDataTemp;
     console.log(this.campaignData);
     });
+    console.log("the dude: "+this.campaignData);
+
   }
-  navigateDonate()
-  {
-    /* The reference is not to Angular itself but to an Angular Module called Angular UI.Router. 
-    This module allows you to turn your Angular application into a State Machine, 
-    and handle what appears on the view based on these states, rather than only on the URL parameters. 
-    Many people consider this an essential Angular Module, and far more functional 
-    than the default $routeProvider. */
-    console.log('From view-campaign'+this.campaignID);
-    this.router.navigate(['donate'+'/'+this.campaignID]);
-  }
-  navigateHistoryTransaction()
-  {
-    this.router.navigate(['campaign-transaction-history'+'/'+this.campaignID])
-  }
+ 
   navigation(link){
     this.router.navigate([link]);
+  }
+  navigateToEditCampaign(link1, id, link2) {
+    console.log('Campaign ID'+id);
+    if(id === ''){
+        this.router.navigate([link1]);
+    } else {
+        this.router.navigate([link1 + '/' + id+ '/' +link2]);
+    }
   }
 }
