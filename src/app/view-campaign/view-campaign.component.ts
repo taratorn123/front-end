@@ -5,6 +5,7 @@ import { CampaignModel } from './../../models/campaign-model';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Report } from './../../models/report.model';
 import { ReportService } from './../services/report.service'
+import { User } from 'src/models/User';
 
 @Component({
   selector: 'app-view-campaign',
@@ -13,13 +14,17 @@ import { ReportService } from './../services/report.service'
 })
 export class ViewCampaignComponent implements OnInit {
   campaignData : CampaignModel;
+  campaignDataTemp : any;
+  userData : User;
   campaignID: number;
   constructor(private campaignListService: CampaignListService,
     private router: Router,
     private actRoute: ActivatedRoute,
-    private modalService: NgbModal) {
-    
-   }
+    private modalService: NgbModal) 
+    {
+      this.campaignData = new CampaignModel;
+      this.userData = new User;
+    }
 
   ngOnInit() 
   {
@@ -32,6 +37,8 @@ export class ViewCampaignComponent implements OnInit {
   {
     this.campaignListService.getCampaignDetails(campaignID).subscribe(data => {
     this.campaignData = data;
+    this.campaignDataTemp = data.user;
+    this.userData = this.campaignDataTemp;
     console.log(this.campaignData);
     });
   }

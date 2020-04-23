@@ -1,3 +1,4 @@
+import { ManageCampaignIdComponent } from './manage-campaign-id/manage-campaign-id.component';
 import { ManageCampaignComponent } from './manage-campaign/manage-campaign.component';
 import { CreateCampaignOneComponent } from './create-campaign-one/create-campaign-one.component';
 import { AuthGaurdService } from './services/auth-gaurd.service';
@@ -21,6 +22,7 @@ import { ReportComponent } from './report/report.component';
 import { ReportDetailComponent } from './report-detail/report-detail.component';
 import { IdentityVerificationComponent } from './identity-verification/identity-verification.component'
 import { InactivateCampaignComponent} from './inactivate-campaign/inactivate-campaign.component'
+import { EditCampaignComponent } from './edit-campaign/edit-campaign.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
@@ -42,7 +44,11 @@ const routes: Routes = [
   { path: 'report', component: ReportComponent},
   { path: 'reportDetail/:id', component: ReportDetailComponent},
   { path: 'identity-verification', component: IdentityVerificationComponent},
-  { path: 'inactivate-campaign', component: InactivateCampaignComponent}
+  { path: 'inactivate-campaign', component: InactivateCampaignComponent},
+  { path: 'manage-campaigns', component: ManageCampaignComponent},
+  { path: 'manage-campaigns/:id', component: ManageCampaignIdComponent},
+  { path: 'manage-campaigns/:id/edit-campaign', component: EditCampaignComponent}
+
 ];
 
 @NgModule({

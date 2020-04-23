@@ -1,11 +1,10 @@
 
 <div class="col-md-12 order-md-1 container">
     <h4 class="mb-3">Create Campaign</h4>
-    <form [formGroup]="editorForm" (ngSubmit)="ngOnSubmit()" #stepOneForm="ngForm" class="editForm"  novalidate>
+    <form [formGroup]="formTemplate" (ngSubmit)="ngOnSubmit(formTemplate.value)" class="editForm">
       
-
+      <!-- Campaign's target donation Section -->
       <div class="mb-3 form-group">
-        
         <label class="control-label" for="targetDonation">Goal</label>  
         <div class="input-group">
           <div class="input-group-prepend">
@@ -13,47 +12,40 @@
           </div>
           <input type="number" 
           class="form-control" 
-          #targetDonation="ngModel"
+          formControlName="targetDonation"
           required name="targetDonation" 
           placeholder="Baht" 
-          [(ngModel)]="campaignModel.targetDonation"
-          [ngModelOptions]="{standalone: true}" 
           required>
-          <div class="alert alert-danger" style="width: 100%;" [hidden]="targetDonation.valid">
+          <div class="alert alert-danger" *ngIf="isSubmitted && formControls.targetDonation.errors?.required" style="width: 100%;">
             Your goal is required.
           </div>
         </div>
       </div>
-
+      <!-- Campaign's title Section -->
       <div class="mb-3 form-group">
         <label class="control-label" for="campaignName">Title</label>  
         <input class="form-control" 
-        #campaignName="ngModel" 
+        formControlName="campaignName"
         required 
         name="campaignName" 
         type="text" 
         placeholder="Title" 
-        [(ngModel)]="campaignModel.campaignName"
-        [ngModelOptions]="{standalone: true}" 
         >
-        
-        <div class="alert alert-danger" style="width: 100%;" [hidden]="campaignName.valid">
+        <div class="alert alert-danger" *ngIf="isSubmitted && formControls.campaignName.errors?.required" style="width: 100%;">
           Please enter a campaign title.
         </div>
       </div>
 
       <div class="row">
+        <!-- Campaign's category Section -->
         <div class="col-md-6 mb-3 form-group">
           <label for="category">Campaign Category</label>
           <select class="custom-select form-control d-block w-100" 
+          formControlName="category"
           id="category" 
-          #category="ngModel" 
           required 
           name="category" 
           type="text" 
-          [(ngModel)]="campaignModel.category"
-          [ngModelOptions]="{standalone: true}" 
- 
           required>
             <option value="">Choose...</option>
             <option>United States</option>
@@ -63,41 +55,42 @@
             <option>Medical</option>
             <option>Charity</option>
           </select>
-          <div class="alert alert-danger" style="width: 100%;" [hidden]="category.valid">
+          <div class="alert alert-danger" *ngIf="isSubmitted && formControls.category.errors?.required" style="width: 100%;">
             Please choose category.
           </div>
         </div>
-
+        <!-- Campaign's individual or organiztion? Section -->
         <div class="col-md-6 mb-3 form-group">
           <label for="fundRaisingAs">Fundraising as who</label>
           <select class="custom-select d-block w-100" 
+          formControlName="fundRaisingAs"
           id="fundRaisingAs" 
-          #fundRaisingAs="ngModel" 
           required name="fundRaisingAs" 
           type="text" 
-          [(ngModel)]="campaignModel.fundRaisingAs" 
-          [ngModelOptions]="{standalone: true}" 
-
           required>
             <option value="">Choose...</option>
             <option>California</option>
           </select>
-          <div class="alert alert-danger" style="width: 100%;" [hidden]="fundRaisingAs.valid">
+          <div class="alert alert-danger" *ngIf="isSubmitted && formControls.fundRaisingAs.errors?.required" style="width: 100%;">
             Please choose who you are fundraising as.
           </div>
         </div>
       </div>
-      
+      <!-- Campaign's upload cover image Section -->
       <div class="mb-3 form-group">
         <h3>Cover Image Uploading</h3>
         <div>
-            <input type="file" (change)="onFileChanged($event)">
-
-            <img [src]="imgURL" height="200" *ngIf="imgURL">
+            <input type="file"
+            formControlName="imageUrl"
+            (change)="onFileChanged($event)">
+            <img [src]="imageUrl" height="200" *ngIf="imageUrl">
+        </div>
+        <div class="alert alert-danger" *ngIf="isSubmitted && formControls.imageUrl.errors?.required" style="width: 100%;">
+          Please choose a cover image.
         </div>
         <hr />
       </div>
-
+      <!-- Campaign's quilljs editor Section -->
       <div class="mb-3 form-group">
         <div class="row pt-5">
           <div class="col-md-8 bg-light">
@@ -105,12 +98,16 @@
             <quill-editor id="discipline-qe" 
             [style]="editorStyle" 
             [modules]="config" 
-            formControlName="editor"></quill-editor>
+            formControlName="editor">
+            </quill-editor>
           </div>
           <div class="col-md-4 bg-light p-4">
             <h3>Output</h3>
             <p class="my-5" [innerHTML]="editorContent"></p>
           </div>
+        </div>
+        <div class="alert alert-danger" *ngIf="isSubmitted && formControls.editor.errors?.required" style="width: 100%;">
+          Please enter story.
         </div>
       </div>
       <!-- <button class="btn btn-primary mt-5" (click)="submitEditor()">Submit</button> -->
@@ -119,7 +116,7 @@
 
 
       <div class="form-group text-center">
-        <button type="submit" class="btn btn-primary btn-lg btn-block" [disabled]="!stepOneForm.valid" (click)="submitEditor()" >Submit</button>
+        <button type="submit" class="btn btn-primary btn-lg btn-block" (click)="submitEditor()" >Submit</button>
       </div>
     </form>
     
