@@ -315,7 +315,17 @@ export class SignupFormComponent
     </div>
   </div>
 
-  `
+  `,
+  styles: [`
+  .modal-header
+    {
+      border: none !important;
+    }
+    .modal-footer
+    {
+      border: none !important;
+    }
+  `],
 })
 export class NgbdModalContentSignup
 {

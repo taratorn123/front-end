@@ -30,9 +30,16 @@ import { UserTransactionHistoryComponent } from './user-transaction-history/user
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { VerificationComponent } from './verification/verification.component';
 import { ManageCampaignComponent } from './manage-campaign/manage-campaign.component';
-import { NgbdModalContentDonate } from './donate/donate.component'
-import { NgbdModalContentSignup } from './signup-form/signup-form.component'
+import { AdminHomePageComponent } from './admin-home-page/admin-home-page.component';
 
+import { NgbdModalContentDonate } from './donate/donate.component'
+import { NgbdModalContentSignup } from './signup-form/signup-form.component';
+import { NgbdModalContentReport } from './view-campaign/view-campaign.component';
+import { ReportComponent } from './report/report.component';
+import { ReportDetailComponent } from './report-detail/report-detail.component';
+import { NgbdModalContentReportAdmin } from './report/report.component';
+import { IdentityVerificationComponent } from './identity-verification/identity-verification.component';
+import { InactivateCampaignComponent } from './inactivate-campaign/inactivate-campaign.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,12 +60,21 @@ import { NgbdModalContentSignup } from './signup-form/signup-form.component'
     VerificationComponent,
     ManageCampaignComponent,
     NgbdModalContentDonate,
-    NgbdModalContentSignup
+    NgbdModalContentSignup,
+    NgbdModalContentReport,
+    AdminHomePageComponent,
+    ReportComponent,
+    ReportDetailComponent,
+    NgbdModalContentReportAdmin,
+    IdentityVerificationComponent,
+    InactivateCampaignComponent
   ],
   entryComponents: 
   [
     NgbdModalContentDonate,
-    NgbdModalContentSignup
+    NgbdModalContentSignup,
+    NgbdModalContentReport,
+    NgbdModalContentReportAdmin
   ],
   imports: [
     BrowserModule,

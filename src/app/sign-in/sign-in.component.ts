@@ -32,7 +32,6 @@ export class SignInComponent implements OnInit {
       console.log(result);
       if(result == true)
       {
-        console.log(this.username);
         this.userService.getUserId(this.user.username).subscribe(userId=>
           {
             sessionStorage.setItem('userId', userId);
@@ -43,10 +42,23 @@ export class SignInComponent implements OnInit {
                 {
                   this.router.navigate(['/verification'])
                   sessionStorage.setItem('emailVerfication', '1');
+                  sessionStorage.getItem('privilege')
                 }
                 else
                 {
-                  this.gotoHome()
+                  this.userService.getUserPrivilege(userId).subscribe(privilege=>
+                    {
+                      sessionStorage.setItem('privilege',privilege.toString())
+                      console.log("From sign-in component : "+sessionStorage.getItem('privilege'))
+                      if(privilege == 3)
+                      {
+                        this.router.navigate(['/admin'])
+                      }
+                      else
+                      {
+                        this.gotoHome()
+                      }
+                    });
                 }
               })
           });

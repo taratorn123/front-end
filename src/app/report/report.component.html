@@ -1,0 +1,25 @@
+<div class="card my-5">
+  <div class="card-body">
+    <h2 style = "text-align: center;margin-bottom: 20px;">Report Campaign</h2>
+    <table class="reportTable table table-bordered table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Campaign ID</th>
+          <th scope="col">Campaign Name</th>
+          <th scope="col">Report Number</th>
+          <th scope="col">Visit Campaign</th>
+          <th scope="col">Inactivate Campaign</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let report of reports">
+          <td>{{report.campaignId}}</td>
+          <td>{{report.campaignName}}</td>
+          <td><a [routerLink]="" (click)="displayReportDetail(report.campaignId)">{{report.reportNumber}}</a></td>
+          <td><a [routerLink]="" (click)="navigateToCampaign(report.campaignId)">visit</a></td>
+          <td><a [routerLink]="" (click)="inactivateCampaign(report.campaignId)">Inactivate</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

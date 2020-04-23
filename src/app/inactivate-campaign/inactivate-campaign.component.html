@@ -1,0 +1,23 @@
+<div class="card my-5">
+    <div class="card-body">
+      <h2 style = "text-align: center;margin-bottom: 20px;">Inactive Campaign</h2>
+      <table class="reportTable table table-bordered table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Campaign ID</th>
+            <th scope="col">Campaign Name</th>
+            <th scope="col">Visit Campaign</th>
+            <th scope="col">Activate Campaign</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let campaign of campaigns">
+            <td>{{campaign.id}}</td>
+            <td>{{campaign.campaignName}}</td>
+            <td><a [routerLink]="" (click)="navigateToCampaign(campaign.id)">visit</a></td>
+            <td><a [routerLink]="" (click)="activateCampaign(campaign.id)">Activate</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

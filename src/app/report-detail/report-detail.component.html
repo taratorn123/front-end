@@ -1,0 +1,33 @@
+<div class="card my-5">
+    <div class="card-body">
+        <table class="table table-bordered table-striped tableHeader">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="row" style="width:25%">ID</th>
+                    <td>{{ campaignId}}</td>
+                </tr>
+                <tr>
+                    <th scope="row" style="width:25%">Campaign Name</th>
+                    <td>{{ campaignName }}</td>
+                </tr>
+            </thead>
+        </table>
+        <hr>
+        <table class="table table-bordered table-striped tableDetail">
+            <thead class="thead-dark">
+                <tr class="column">
+                    <th scope="col">Time</th>
+                    <th scope="col">User ID</th>
+                    <th scope="col">Report Detail</th>
+                 </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let detail of reportDetail">
+                    <td>{{ detail.reportTime | date:'medium'}}</td>
+                    <td>{{ detail.userId }}</td>
+                    <td>{{ detail.detail }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

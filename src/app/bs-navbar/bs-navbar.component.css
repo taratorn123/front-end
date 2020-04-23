@@ -24,6 +24,11 @@
     margin-left: auto!important;
 } */
 
-.auto-adjust {
+.auto-adjust 
+{
+    margin-left: auto!important;
+}
+.test
+{
     margin-left: auto!important;
 }

@@ -14,6 +14,8 @@ export class UserService
   private getUserIdUrl:string;
   private checkUserUrl: string;
   private verficationUserUrl: string;
+  private privilegeUrl: string;
+  private verificationRequestUserUrl: string;
 
   constructor(private http: HttpClient) 
   {
@@ -22,7 +24,9 @@ export class UserService
     this.checkVerification = 'http://localhost:8080/checkVerification';
     this.getUserIdUrl = 'http://localhost:8080/getUserId';
     this.checkUserUrl = 'http://localhost:8080/checkUser';
-    this.verficationUserUrl = "http://localhost:8080/userImageVerification"
+    this.verficationUserUrl = "http://localhost:8080/userImageVerification";
+    this.privilegeUrl = 'http://localhost:8080/checkPrivilege';
+    this.verificationRequestUserUrl = 'http://localhost:8080/getverificationrequest'
   }
 
 
@@ -58,5 +62,12 @@ export class UserService
   {
     return this.http.post<boolean>(this.verficationUserUrl,uploadData);
   }
-  
+  public getUserPrivilege(userId : string)
+  {
+    return this.http.post<number>(this.privilegeUrl,userId);
+  }
+  public getVerificationRequestUser()
+  {
+    return this.http.get<User[]>(this.verificationRequestUserUrl);
+  }
 }

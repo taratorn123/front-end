@@ -1,7 +1,10 @@
 import { Router, ActivatedRoute } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { CampaignListService } from './../services/campaign-list.service';
 import { CampaignModel } from './../../models/campaign-model';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Report } from './../../models/report.model';
+import { ReportService } from './../services/report.service'
 
 @Component({
   selector: 'app-view-campaign',
@@ -11,7 +14,10 @@ import { CampaignModel } from './../../models/campaign-model';
 export class ViewCampaignComponent implements OnInit {
   campaignData : CampaignModel;
   campaignID: number;
-  constructor(private campaignListService: CampaignListService,private router: Router,private actRoute: ActivatedRoute) {
+  constructor(private campaignListService: CampaignListService,
+    private router: Router,
+    private actRoute: ActivatedRoute,
+    private modalService: NgbModal) {
     
    }
 
@@ -43,7 +49,106 @@ export class ViewCampaignComponent implements OnInit {
   {
     this.router.navigate(['campaign-transaction-history'+'/'+this.campaignID])
   }
-  navigation(link){
+  navigation(link)
+  {
     this.router.navigate([link]);
+  }
+  reportCampaign()
+  {
+    const modalRef = this.modalService.open(NgbdModalContentReport,{centered: true} );
+    modalRef.componentInstance.campaignId = this.campaignID;
+  }
+
+}
+
+
+@Component({
+  selector: 'ngbd-modal-content',
+  template: `
+    <div class="modal-header">
+        <h3>Report</h3>
+      <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form (ngSumbit)="sendReport()" #reportForm="ngForm">
+        <div class="form-group reportDetail">
+          <input name="detail"
+          type="text"
+          [(ngModel)]="report.detail"
+          id = "detail"
+          class="form-control"
+          placeholder="Report detail"
+          required #name="ngModel"
+          >
+        </div>
+        <div class="errorCode" *ngIf="this.report.userId == null">
+          *Please login
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <div *ngIf="this.report.userId == null;else normalButton">
+        <button type="button" style="margin:5px;" class="btn btn-primary" (click)="sendReport()">Login</button>
+        <button type="button" style="margin:5px;" class="btn btn-primary" [disabled]="this.report.userId == null" (click)="sendReport()">Send</button>
+      </div>
+      <ng-template #normalButton>
+        <button type="button" class="btn btn-primary" [disabled]="!reportForm.form.valid" (click)="sendReport()">Send</button>
+      </ng-template>
+    </div>
+    `,
+    styles: [`
+    .modal-header
+    {
+      border: none !important;
+    }
+    .modal-footer
+    {
+      border: none !important;
+    }
+    .errorCode
+    {
+      margin-top: 1px;
+      text-align: left;
+      color:red;
+    }
+    `],
+    })
+export class NgbdModalContentReport 
+{
+  @Input() campaignId;
+
+  report : Report;
+  result : string;
+  
+  constructor(private activeModal: NgbActiveModal, 
+    private router: Router,
+    private reportService: ReportService,
+    private actRoute: ActivatedRoute,)
+  {
+    this.report = new Report();
+  }
+  ngOnInit()
+  {
+    this.report.userId = sessionStorage.getItem("userId");
+  }
+  sendReport()
+  {
+    console.log("Sending report");
+    this.report.userId = sessionStorage.getItem('userId');
+    this.report.campaignId = this.campaignId;
+    if(this.report.userId == null)
+    {
+      this.router.navigate(['/sign-in']);
+      this.activeModal.close('Close click');
+    }
+    this.reportService.reportCampaign(this.report).subscribe(result=>
+    {
+      if(result)
+      {
+        this.activeModal.close('Close click');
+      }
+    })
   }
 }
