@@ -32,63 +32,34 @@
           </li>
       </ul>
     </div>
-  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-    <ul class="navbar-nav auto-adjust">
-      <li class="nav-item active">
-        <a class="nav-link" routerLink="/">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/campaigns" (onClick)="filteredSearch.clear()">Campaign</a>
-      </li>
-      <li class="nav-item">
-        <a *ngIf="loginService.isUserLoggedIn()" class="nav-link" routerLink="/create-campaign-one">Create Campaign</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/about-us">About us</a>
-      </li>
-      <li class="nav-item">
-      <a *ngIf="!loginService.isUserLoggedIn()" class="nav-link click" routerLink="/sign-in">Sign in</a>
-    </li>
-    <li ngbDropdown class="nav-item dropdown">
-      <a *ngIf="loginService.isUserLoggedIn()" ngbDropdownToggle class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
-      <div ngbDropdownMenu class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown01">
-        <a *ngIf="loginService.isUserLoggedIn()" class="dropdown-item" href="/edit-profile">Edit Profile</a>
-        <a *ngIf="loginService.isUserLoggedIn()" class="dropdown-item" href="/manage-campaigns">Manage Campaigns</a>
-        <a *ngIf="loginService.isUserLoggedIn()" class="dropdown-item" href="/user-transaction-history">Donation History</a>
-        <a *ngIf="loginService.isUserLoggedIn()" class="dropdown-item" href="/sign-out">Sign out</a>
-      </div>
-    </li>
-    </ul>
   </div>
-
-  
   <ng-template #normalConsole>
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
       <ul class="navbar-nav auto-adjust">
-          <li class="nav-item active">
-            <a class="nav-link" routerLink="/">Home <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/campaigns" (onClick)="filteredSearch.clear()">Campaign</a>
-          </li>
-          <li class="nav-item">
-            <a *ngIf="loginService.isUserLoggedIn()" class="nav-link" routerLink="/create-campaign-one">Create Campaign</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/about-us">About us</a>
-          </li>
-          <li class="nav-item">
-          <a *ngIf="!loginService.isUserLoggedIn()" class="nav-link click" routerLink="/sign-in">Sign in</a>
-          </li>
-          <li ngbDropdown class="nav-item dropdown">
-            <a *ngIf="loginService.isUserLoggedIn()" ngbDropdownToggle class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
-            <div ngbDropdownMenu class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown01">
-              <a *ngIf="loginService.isUserLoggedIn()" class="dropdown-item" href="/edit-profile">Edit Profile</a>
-              <a *ngIf="loginService.isUserLoggedIn()" class="dropdown-item" href="/manage-campaign">Manage Campaigns</a>
-              <a *ngIf="loginService.isUserLoggedIn()" class="dropdown-item" href="/user-transaction-history">Donation History</a>
-              <a *ngIf="loginService.isUserLoggedIn()" class="dropdown-item" href="/sign-out">Sign out</a>
-            </div>
-          </li>
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/campaigns" (onClick)="filteredSearch.clear()">Campaign</a>
+        </li>
+        <li class="nav-item">
+          <a *ngIf="loginService.isUserLoggedIn()" class="nav-link" routerLink="/create-campaign-one">Create Campaign</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/about-us">About us</a>
+        </li>
+        <li class="nav-item">
+        <a *ngIf="!loginService.isUserLoggedIn()" class="nav-link click" routerLink="/sign-in">Sign in</a>
+      </li>
+      <li ngbDropdown class="nav-item dropdown">
+        <a *ngIf="loginService.isUserLoggedIn()" ngbDropdownToggle class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
+        <div ngbDropdownMenu class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown01">
+          <a *ngIf="loginService.isUserLoggedIn()" class="dropdown-item" href="/edit-profile">Edit Profile</a>
+          <a *ngIf="loginService.isUserLoggedIn()" class="dropdown-item" href="/manage-campaigns">Manage Campaigns</a>
+          <a *ngIf="loginService.isUserLoggedIn()" class="dropdown-item" href="/user-transaction-history">Donation History</a>
+          <a *ngIf="loginService.isUserLoggedIn()" class="dropdown-item" href="/sign-out">Sign out</a>
+        </div>
+      </li>
       </ul>
     </div>
   </ng-template>
