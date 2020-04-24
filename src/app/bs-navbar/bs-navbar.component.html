@@ -12,9 +12,9 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div *ngIf="getPrivilege() == 3;else normalConsole">
+  <div class="auto-adjust" *ngIf="getPrivilege() == 3;else normalConsole">
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-      <ul class="navbar-nav test">
+      <ul class="navbar-nav ">
           <li class="nav-item active">
             <a class="nav-link" routerLink="/">Home <span class="sr-only">(current)</span></a>
           </li>

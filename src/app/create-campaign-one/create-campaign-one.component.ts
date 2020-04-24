@@ -89,7 +89,7 @@ export class CreateCampaignOneComponent implements OnInit {
     this.resetForm();
   }
   
-  //This is for uploading campaign
+  //This is for submiting campaign
   ngOnSubmit(formValue) {
     this.isSubmitted = true;
     if(this.formTemplate.valid){

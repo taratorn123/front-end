@@ -75,7 +75,7 @@ export class EditCampaignComponent implements OnInit {
       })
     }
 
-  /*Get campaignDetail by using campaignId */
+  //Get campaignDetail by using campaignId
   loadCampaignDetails(campaignID)
   {
     this.campaignListService.getCampaignDetails(campaignID).subscribe(data => {
