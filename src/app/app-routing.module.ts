@@ -1,3 +1,4 @@
+import { UpdateCampaignComponent } from './update-campaign/update-campaign.component';
 import { ManageCampaignIdComponent } from './manage-campaign-id/manage-campaign-id.component';
 import { ManageCampaignComponent } from './manage-campaign/manage-campaign.component';
 import { CreateCampaignOneComponent } from './create-campaign-one/create-campaign-one.component';
@@ -23,6 +24,8 @@ import { ReportDetailComponent } from './report-detail/report-detail.component';
 import { IdentityVerificationComponent } from './identity-verification/identity-verification.component'
 import { InactivateCampaignComponent} from './inactivate-campaign/inactivate-campaign.component'
 import { EditCampaignComponent } from './edit-campaign/edit-campaign.component';
+import { ViewCampaignUpdateComponent } from './view-campaign-update/view-campaign-update.component';
+import { ViewCampaignCommentComponent } from './view-campaign-comment/view-campaign-comment.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
@@ -47,7 +50,11 @@ const routes: Routes = [
   { path: 'inactivate-campaign', component: InactivateCampaignComponent},
   { path: 'manage-campaigns', component: ManageCampaignComponent},
   { path: 'manage-campaigns/:id', component: ManageCampaignIdComponent},
-  { path: 'manage-campaigns/:id/edit-campaign', component: EditCampaignComponent}
+  { path: 'manage-campaigns/:id/edit-campaign', component: EditCampaignComponent},
+  { path: 'manage-campaigns/:id/update-campaign', component: UpdateCampaignComponent},
+  { path: 'manage-campaigns/:id/view-update-campaign', component: ViewCampaignUpdateComponent},
+  { path: 'manage-campaigns/:id/view-comment-campaign', component: ViewCampaignCommentComponent}
+
 
 ];
 

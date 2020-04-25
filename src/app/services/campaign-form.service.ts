@@ -1,3 +1,4 @@
+import { CampaignUpdate } from './../../models/campaign-update';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CampaignModel} from './../../models/campaign-model';
@@ -12,11 +13,15 @@ export class CampaignFormService {
   private isWorkFormValid: boolean = false;
   private isAddressFormValid: boolean = false;
 
+  private editCampaignUrl:string;
   private campaignUrl: string;
   private campaignUserUrl: string;
+  private updateCampaignUrl: string;
   constructor(private http : HttpClient) {
     this.campaignUrl = 'http://localhost:8080/campaigns';
     this.campaignUserUrl = 'http://localhost:8080/campaignUser';
+    this.editCampaignUrl = 'http://localhost:8080/editCampaigns';
+    this.updateCampaignUrl = 'http://localhost:8080/updateCampaigns';
    }
   
    // Return the entire Form Data
@@ -42,10 +47,16 @@ export class CampaignFormService {
   public saveCampaign(campaignModel:CampaignModel) {
     return this.http.post<number>(this.campaignUrl, campaignModel);
   }
-
+  //Edit campaign then return campaignId
+  public editCampaign(campaignModel:CampaignModel) {
+    return this.http.post<number>(this.editCampaignUrl, campaignModel);
+  }
   //Save user(campaign's owner) and campaign together
   public saveCampaignUser(campaignModel:CampaignModel){
     return this.http.post<number>(this.campaignUserUrl, campaignModel)
   }
-
+  //Save campaign's update
+  public saveCampaignUpdate(campaignUpdate:CampaignUpdate){
+    return this.http.post<number>(this.updateCampaignUrl, campaignUpdate)
+  }
 }

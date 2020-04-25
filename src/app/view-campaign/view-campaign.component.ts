@@ -6,6 +6,7 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Report } from './../../models/report.model';
 import { ReportService } from './../services/report.service'
 import { User } from 'src/models/User';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-view-campaign',
@@ -17,6 +18,9 @@ export class ViewCampaignComponent implements OnInit {
   campaignDataTemp : any;
   userData : User;
   campaignID: number;
+  //Date
+  today= new Date();
+  jstoday = '';
   constructor(private campaignListService: CampaignListService,
     private router: Router,
     private actRoute: ActivatedRoute,
@@ -31,6 +35,8 @@ export class ViewCampaignComponent implements OnInit {
     this.campaignID = this.actRoute.snapshot.params['id'];
     console.log("campaignID: "+ this.campaignID);
     this.loadCampaignDetails(this.campaignID);
+    //FormatDate
+    console.log(this.today)
   }
   /*Get campaignDetail by using campaignId */
   loadCampaignDetails(campaignID)

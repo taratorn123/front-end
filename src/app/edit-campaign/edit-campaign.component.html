@@ -1,6 +1,7 @@
 
 <div class="col-md-12 order-md-1 container">
   <h4 class="mb-3">Edit Campaign</h4>
+  <hr>
   <form [formGroup]="formTemplate" (ngSubmit)="ngOnSubmit(formTemplate.value)" class="editForm">
     
     <!-- Campaign's target donation Section -->
@@ -15,7 +16,6 @@
         formControlName="targetDonation"
         required name="targetDonation" 
         placeholder="Baht" 
-        [(ngModel)]="campaignData.targetDonation"
         required>
         <div class="alert alert-danger" *ngIf="isSubmitted && formControls.targetDonation.errors?.required" style="width: 100%;">
           Your goal is required.

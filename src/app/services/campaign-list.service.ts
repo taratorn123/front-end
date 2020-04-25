@@ -1,3 +1,4 @@
+import { CampaignUpdate } from './../../models/campaign-update';
 import { CampaignModel } from './../../models/campaign-model';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
@@ -11,6 +12,7 @@ export class CampaignListService {
   private campaignListUrl: string;
   private campaignIdUrl: string;
   private campaignByUserIdUrl: string;
+  private campaignUpdateByCampaignId: string;
   private campaignInActivateUrl: string;
   private getInactiveCampaignUrl: string;
   private activateCampaignUrl: string;
@@ -20,6 +22,7 @@ export class CampaignListService {
     this.campaignListUrl = 'http://localhost:8080/campaigns-list'
     this.campaignIdUrl = 'http://localhost:8080/campaigns'
     this.campaignByUserIdUrl = 'http://localhost:8080/userscampaigns'
+    this.campaignUpdateByCampaignId = 'http://localhost:8080/getUpdateCampaigns'
     this.campaignInActivateUrl = 'http://localhost:8080/inactivateCampaign'
     this.getInactiveCampaignUrl = 'http://localhost:8080/getInactiveCampaign'
     this.activateCampaignUrl = 'http://localhost:8080/activeCampaign'
@@ -37,6 +40,11 @@ export class CampaignListService {
   {
     var userIdLong = +sessionStorage.getItem('userId')
     return this.http.get<CampaignModel[]>(this.campaignByUserIdUrl+ '/' + userIdLong);
+  }
+  //Find list of updates using campaignId
+  public findUpdateCampaignByCurrentCampaign(campaignId: number) 
+  {
+    return this.http.get<CampaignUpdate[]>(this.campaignUpdateByCampaignId+ '/' + campaignId);
   }
   public inActivateCampaign(campaignId:String)
   {

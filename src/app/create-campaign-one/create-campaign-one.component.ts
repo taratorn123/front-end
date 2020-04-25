@@ -108,7 +108,7 @@ export class CreateCampaignOneComponent implements OnInit {
         this.campaignModel.userId = userIdLong
         this.campaignModel.coverImageName = "cover.jpg";
         //Uploading Image to Firebase storage
-        var filePath = `${this.campaignModel.campaignId}/coverImage/${this.campaignModel.coverImageName}`
+        var filePath = `${this.campaignModel.userId}/campaign/${this.campaignModel.campaignId}/coverImage/${this.campaignModel.coverImageName}`
         const fileRef = this.storage.ref(filePath);
         console.log("filePath: "+filePath)
         this.storage.upload(filePath,this.selectedImage).snapshotChanges().pipe(
