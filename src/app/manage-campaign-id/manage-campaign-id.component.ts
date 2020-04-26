@@ -51,4 +51,20 @@ export class ManageCampaignIdComponent implements OnInit {
         this.router.navigate([link1 + '/' + id+ '/' +link2]);
     }
   }
+  navigateToUpdateCampaign(link1, id, link2) {
+    console.log('Campaign ID'+id);
+    if(id === ''){
+        this.router.navigate([link1]);
+    } else {
+        this.router.navigate([link1 + '/' + id+ '/' +link2]);
+    }
+  }
+  navigateToViewUpdateCampaign(link1, id, link2) {
+    console.log('Campaign ID'+id);
+    if(id === ''){
+        this.router.navigate([link1]);
+    } else {
+        this.router.navigate([link1 + '/' + id+ '/' +link2]);
+    }
+  }
 }

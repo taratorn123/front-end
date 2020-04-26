@@ -46,6 +46,10 @@ import { NgbdModalContentReportAdmin } from './report/report.component';
 import { IdentityVerificationComponent } from './identity-verification/identity-verification.component';
 import { InactivateCampaignComponent } from './inactivate-campaign/inactivate-campaign.component';
 import { IdentityVerificationDetailComponent } from './identity-verification-detail/identity-verification-detail.component'
+import { UpdateCampaignComponent } from './update-campaign/update-campaign.component';
+import { DateAgoPipe } from './pipes/date-ago.pipe';
+import { ViewCampaignUpdateComponent } from './view-campaign-update/view-campaign-update.component';
+import { ViewCampaignCommentComponent } from './view-campaign-comment/view-campaign-comment.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -76,7 +80,11 @@ import { IdentityVerificationDetailComponent } from './identity-verification-det
     InactivateCampaignComponent,
     EditCampaignComponent,
     ManageCampaignIdComponent,
-    IdentityVerificationDetailComponent
+    IdentityVerificationDetailComponent,
+    UpdateCampaignComponent,
+    DateAgoPipe,
+    ViewCampaignUpdateComponent,
+    ViewCampaignCommentComponent
   ],
   entryComponents: 
   [

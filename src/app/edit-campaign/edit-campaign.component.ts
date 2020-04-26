@@ -60,42 +60,48 @@ export class EditCampaignComponent implements OnInit {
     }
   
     ngOnInit() {
-      //Get campaignId from route snapshot
-      this.campaignID = this.actRoute.snapshot.params['id'];
-      console.log("campaignID: "+ this.campaignID);
-      this.loadCampaignDetails(this.campaignID);
       //Declare form group
       this.formTemplate = new FormGroup({
         targetDonation: new FormControl('',Validators.required),
         campaignName: new FormControl('',Validators.required),
         category: new FormControl('',Validators.required),
         fundRaisingAs: new FormControl('',Validators.required),
-        imageUrl: new FormControl('',Validators.required),
+        imageUrl: new FormControl(''),
         editor: new FormControl('',Validators.required)
       })
+      //Get campaignId from route snapshot
+      this.campaignID = this.actRoute.snapshot.params['id'];
+      console.log("campaignID: "+ this.campaignID);
+      this.campaignModel.campaignId = this.campaignID
+      console.log("this.campaignModel.campaignId ngOnInIt : = "+this.campaignModel.campaignId)
+
+      this.campaignListService.getCampaignDetails(this.campaignID).subscribe(campaignModelData => {
+        this.campaignData = campaignModelData
+        console.log("campaignData: " + this.campaignData)
+        //To show current cover image 
+        this.imageUrl = this.campaignData.coverImagePath
+        //To set current image path
+        this.campaignModel.coverImagePath = this.imageUrl
+        console.log("coverImagePath(onFileChanged): "+this.imageUrl)
+      //Declare form group
+      this.formTemplate.controls['targetDonation'].setValue(this.campaignData.targetDonation)
+      this.formTemplate.controls['campaignName'].setValue(this.campaignData.campaignName)
+      this.formTemplate.controls['category'].setValue(this.campaignData.category)
+      this.formTemplate.controls['fundRaisingAs'].setValue(this.campaignData.fundRaisingAs)
+      this.formTemplate.controls['editor'].setValue(this.campaignData.campaignDetail)
+    });
     }
 
-  //Get campaignDetail by using campaignId
-  loadCampaignDetails(campaignID)
-  {
-    this.campaignListService.getCampaignDetails(campaignID).subscribe(data => {
-    this.campaignData = data;
-    this.campaignDataTemp = data.user;
-    this.userData = this.campaignDataTemp;
-    console.log(this.campaignData);
-    });
-  }
+ 
   //Used to display the selected image
   onFileChanged(event) {
-    console.log(event);
-    this.selectedImage = event.target.files[0];
-    var blob = new Blob([event.target.result], { type: "image/jpeg" });
-    let reader = new FileReader();
-    reader.readAsDataURL(event.target.files[0]);
-    reader.onload = (event2) => {
-      this.imageUrl = reader.result;
-  };
-
+      console.log(event);
+      this.selectedImage = event.target.files[0];
+      let reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0]);
+      reader.onload = (event2) => {
+        this.imageUrl = reader.result;
+      };
  }
 
  //Fix length (10) for text editor
@@ -126,27 +132,29 @@ export class EditCampaignComponent implements OnInit {
       this.campaignModel.campaignDetail = formValue['editor'];
       this.campaignModel.coverImageName = 'cover.jpg';
       //Send assigned value to SpringBoot, return campaignId
-      this.campaignFormService.saveCampaign(this.campaignModel).subscribe(campaignId => {
-        console.log("campaignId = "+campaignId)
-        var userIdLong = +sessionStorage.getItem('userId');
-        this.campaignModel.campaignId = campaignId
-        this.campaignModel.userId = userIdLong
-        this.campaignModel.coverImageName = "cover.jpg";
-        //Uploading Image to Firebase storage
-        var filePath = `${this.campaignModel.campaignId}/coverImage/${this.campaignModel.coverImageName}`
-        const fileRef = this.storage.ref(filePath);
-        console.log("filePath: "+filePath)
-        this.storage.upload(filePath,this.selectedImage).snapshotChanges().pipe(
-          finalize(()=>{
-            fileRef.getDownloadURL().subscribe((url)=>{
-              formValue['imageUrl'] = url;
-              this.campaignModel.coverImagePath = formValue['imageUrl']
-              //Send new assigned value (campaignId with userId, coverImagePath) to Springboot
-              this.campaignFormService.saveCampaignUser(this.campaignModel).subscribe()
-              this.resetForm();
+      this.campaignFormService.editCampaign(this.campaignModel).subscribe(campaignId => {
+        if(this.selectedImage != null){
+          console.log("campaignId = "+campaignId)
+          var userIdLong = +sessionStorage.getItem('userId');
+          this.campaignModel.campaignId = campaignId
+          console.log("this.campaignModel.campaignId Submit : = "+this.campaignModel.campaignId)
+          this.campaignModel.userId = userIdLong
+          this.campaignModel.coverImageName = "cover.jpg";
+          //Uploading Image to Firebase storage
+          var filePath = `${this.campaignModel.userId}/campaign/${this.campaignModel.campaignId}/coverImage/${this.campaignModel.coverImageName}`
+          const fileRef = this.storage.ref(filePath);
+          console.log("filePath: "+filePath)
+          this.storage.upload(filePath,this.selectedImage).snapshotChanges().pipe(
+            finalize(()=>{
+              fileRef.getDownloadURL().subscribe((url)=>{
+                formValue['imageUrl'] = url;
+                this.campaignModel.coverImagePath = formValue['imageUrl']
+                //Send new assigned value (campaignId with userId, coverImagePath) to Springboot
+                this.campaignFormService.saveCampaignUser(this.campaignModel).subscribe()
+              })
             })
-          })
-        ).subscribe();
+          ).subscribe();
+        }
       });
     }
   }

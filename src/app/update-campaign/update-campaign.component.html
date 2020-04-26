@@ -1,0 +1,33 @@
+<div class="col-md-12 order-md-1 container">
+    <h4 class="mb-3">Update Campaign</h4>
+    <form [formGroup]="formTemplate" (ngSubmit)="ngOnSubmit(formTemplate.value)" class="editForm">
+      <hr>
+      <!-- Campaign's quilljs editor Section -->
+      <div class="mb-3 form-group">
+        <div class="row pt-5">
+          <div class="col-md-8 bg-light">
+            <label for="editor"><h3>Update</h3></label>
+            <quill-editor id="discipline-qe" 
+            [style]="editorStyle" 
+            [modules]="config" 
+            formControlName="editor">
+            </quill-editor>
+          </div>
+          <div class="col-md-4 bg-light p-4">
+            <h3>Output</h3>
+            <p class="my-5" [innerHTML]="editorContent"></p>
+          </div>
+        </div>
+        <div class="alert alert-danger" *ngIf="isSubmitted && formControls.editor.errors?.required" style="width: 100%;">
+          Please enter story.
+        </div>
+      </div>
+      <!-- Submit button -->
+      <div class="form-group text-center">
+        <button type="submit" class="btn btn-primary btn-lg btn-block" (click)="submitEditor()" >Submit</button>
+      </div>
+    </form>
+    
+  </div>
+  
+  

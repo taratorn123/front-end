@@ -26,46 +26,19 @@
         <img class="img-fluid rounded" [src]="campaignData.coverImagePath" alt="">
         <br>
         <button type="button" class="btn btn-primary" (click) ="navigateToEditCampaign('manage-campaigns', campaignData.id,'edit-campaign')" >Edit</button>
-        <button type="button" class="btn btn-primary" >View</button>
+        <button type="button" class="btn btn-primary" (click) ="navigateToUpdateCampaign('manage-campaigns', campaignData.id,'update-campaign')" >Update</button>
+        <button type="button" class="btn btn-primary" >View Preview</button>
+
         <hr>
 
         <!-- Post Content -->
-        <button type="button" class="btn btn-primary" >Comments</button>
-        <button type="button" class="btn btn-primary" >Updates</button>
+        <button type="button" class="btn btn-primary" (click)="showThis = false">View Comments</button>
+        <button type="button" class="btn btn-primary" (click)="showThis = true" >View Updates</button>
         <hr>
-        <!-- Single Comment -->
-        <div class="media mb-4">
-          <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-          <div class="media-body">
-            <h5 class="mt-0">Commenter Name</h5>
-            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-          </div>
+        <div class="" [hidden]="showThis">
+          <app-view-campaign-comment></app-view-campaign-comment>
         </div>
-
-        <!-- Comment with nested comments -->
-        <div class="media mb-4">
-          <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-          <div class="media-body">
-            <h5 class="mt-0">Commenter Name</h5>
-            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-
-            <div class="media mt-4">
-              <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-              <div class="media-body">
-                <h5 class="mt-0">Commenter Name</h5>
-                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-              </div>
-            </div>
-
-            <div class="media mt-4">
-              <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-              <div class="media-body">
-                <h5 class="mt-0">Commenter Name</h5>
-                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-              </div>
-            </div>
-
-          </div>
+        <div class="" [hidden]="!showThis">
+          <app-view-campaign-update></app-view-campaign-update>
         </div>
-
       </div>
