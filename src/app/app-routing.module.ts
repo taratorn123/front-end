@@ -52,7 +52,7 @@ const routes: Routes = [
   { path: 'manage-campaigns', component: ManageCampaignComponent},
   { path: 'manage-campaigns/:id', component: ManageCampaignIdComponent},
   { path: 'manage-campaigns/:id/edit-campaign', component: EditCampaignComponent},
-  { path: 'identityDetail/:id', component: IdentityVerificationDetailComponent}
+  { path: 'identityDetail/:id', component: IdentityVerificationDetailComponent},
   { path: 'manage-campaigns/:id/update-campaign', component: UpdateCampaignComponent},
   { path: 'manage-campaigns/:id/view-update-campaign', component: ViewCampaignUpdateComponent},
   { path: 'manage-campaigns/:id/view-comment-campaign', component: ViewCampaignCommentComponent}
