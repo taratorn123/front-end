@@ -10,7 +10,6 @@ export class CampaignModel
     coverImageName : string = '';
     campaignDetail : string = '';
     startDate : Date = new Date();
-    endDate : Date = new Date();
     activeFlag : boolean = true;
     deleteFlag : boolean = false;
     user: [{

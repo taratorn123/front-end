@@ -1,16 +1,18 @@
 <main role="main" class="container">
     <div class="my-3 p-3 bg-white rounded box-shadow">
       <h6 class="border-bottom border-gray pb-2 mb-0">Recent comments</h6>
-      <ng-container *ngFor="let campaignUpdate of filteredUpdates">
+      <ng-container *ngFor="let campaignComment of filteredComments">
         <div class="media text-muted pt-3">
             <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
             <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray" >
-            <strong class="d-block text-gray-dark">@username {{campaignUpdate.updateTimestamp | dateAgo}}
-                <p class="font-weight-normal" [innerHTML]="campaignUpdate.campaignUpdateDetail"></p>
+              
+            <strong class="d-block text-gray-dark font-weight-bold" *ngIf="campaignComment.anonymousFlag == 0" >{{campaignComment.user.firstName}} {{campaignComment.user.lastName}} <p class="d-inline font-weight-light">{{campaignComment.timestamp | dateAgo}}</p>
             </strong>
+            <strong class="d-block text-gray-dark font-weight-bold" *ngIf="campaignComment.anonymousFlag == 1" >Anonymous <p class="d-inline font-weight-light">{{campaignComment.timestamp | dateAgo}}</p>
+            </strong>
+            {{campaignComment.comment}}
             </p>
         </div>
       </ng-container>
-
     </div>
 </main>

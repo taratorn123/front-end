@@ -100,6 +100,7 @@ export class CreateCampaignOneComponent implements OnInit {
       this.campaignModel.fundRaisingAs = formValue['fundRaisingAs'];
       this.campaignModel.campaignDetail = formValue['editor'];
       this.campaignModel.coverImageName = 'cover.jpg';
+      this.campaignModel.startDate = new Date();
       //Send assigned value to SpringBoot
       this.campaignFormService.saveCampaign(this.campaignModel).subscribe(campaignId => {
         console.log("campaignId = "+campaignId)

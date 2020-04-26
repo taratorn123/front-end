@@ -1,3 +1,4 @@
+import { AccountDonation } from './../../models/account-donation.model';
 import { CampaignUpdate } from './../../models/campaign-update';
 import { CampaignModel } from './../../models/campaign-model';
 import { Injectable } from '@angular/core';
@@ -12,17 +13,20 @@ export class CampaignListService {
   private campaignListUrl: string;
   private campaignIdUrl: string;
   private campaignByUserIdUrl: string;
-  private campaignUpdateByCampaignId: string;
+  private campaignUpdateByCampaignIdUrl: string;
+  private campaignCommentByCampaignIdUrl: string;
+
   private campaignInActivateUrl: string;
   private getInactiveCampaignUrl: string;
   private activateCampaignUrl: string;
-
+  
   constructor(private http:HttpClient) 
   { 
     this.campaignListUrl = 'http://localhost:8080/campaigns-list'
     this.campaignIdUrl = 'http://localhost:8080/campaigns'
     this.campaignByUserIdUrl = 'http://localhost:8080/userscampaigns'
-    this.campaignUpdateByCampaignId = 'http://localhost:8080/getUpdateCampaigns'
+    this.campaignUpdateByCampaignIdUrl = 'http://localhost:8080/getUpdateCampaigns'
+    this.campaignCommentByCampaignIdUrl = 'http://localhost:8080/getCommentCampaigns'
     this.campaignInActivateUrl = 'http://localhost:8080/inactivateCampaign'
     this.getInactiveCampaignUrl = 'http://localhost:8080/getInactiveCampaign'
     this.activateCampaignUrl = 'http://localhost:8080/activeCampaign'
@@ -44,7 +48,12 @@ export class CampaignListService {
   //Find list of updates using campaignId
   public findUpdateCampaignByCurrentCampaign(campaignId: number) 
   {
-    return this.http.get<CampaignUpdate[]>(this.campaignUpdateByCampaignId+ '/' + campaignId);
+    return this.http.get<CampaignUpdate[]>(this.campaignUpdateByCampaignIdUrl+ '/' + campaignId);
+  }
+  //Find list of updates using campaignId
+  public findCommentCampaignByCurrentCampaign(campaignId: number) 
+  {
+    return this.http.get<AccountDonation[]>(this.campaignCommentByCampaignIdUrl+ '/' + campaignId);
   }
   public inActivateCampaign(campaignId:String)
   {
