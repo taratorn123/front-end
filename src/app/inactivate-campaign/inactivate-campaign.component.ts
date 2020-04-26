@@ -21,6 +21,11 @@ export class InactivateCampaignComponent implements OnInit
 
   ngOnInit() 
   {
+    console.log(sessionStorage.getItem('privilege') )
+    if(sessionStorage.getItem('privilege') != '3')
+    {
+      this.router.navigate(["/"]);
+    }
     this.campaignService.getInactiveCampaign().subscribe(result=>
       {
         console.log(result);
@@ -40,6 +45,7 @@ export class InactivateCampaignComponent implements OnInit
       if(result)
       {
         console.log('success')
+        location.reload();
       }
     })
   }

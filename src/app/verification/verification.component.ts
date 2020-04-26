@@ -29,7 +29,7 @@ export class VerificationComponent implements OnInit {
     this.userId = sessionStorage.getItem('userId')
     this.userService.emailVerify(this.userId).subscribe(result=>
       {
-        if(result == 1)
+        if(result)
         {
           console.log("Sending Email success");
         }

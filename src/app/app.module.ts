@@ -45,6 +45,7 @@ import { ReportDetailComponent } from './report-detail/report-detail.component';
 import { NgbdModalContentReportAdmin } from './report/report.component';
 import { IdentityVerificationComponent } from './identity-verification/identity-verification.component';
 import { InactivateCampaignComponent } from './inactivate-campaign/inactivate-campaign.component';
+import { IdentityVerificationDetailComponent } from './identity-verification-detail/identity-verification-detail.component'
 import { UpdateCampaignComponent } from './update-campaign/update-campaign.component';
 import { DateAgoPipe } from './pipes/date-ago.pipe';
 import { ViewCampaignUpdateComponent } from './view-campaign-update/view-campaign-update.component';
@@ -79,6 +80,7 @@ import { ViewCampaignCommentComponent } from './view-campaign-comment/view-campa
     InactivateCampaignComponent,
     EditCampaignComponent,
     ManageCampaignIdComponent,
+    IdentityVerificationDetailComponent,
     UpdateCampaignComponent,
     DateAgoPipe,
     ViewCampaignUpdateComponent,
