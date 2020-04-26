@@ -23,6 +23,7 @@ import { ReportDetailComponent } from './report-detail/report-detail.component';
 import { IdentityVerificationComponent } from './identity-verification/identity-verification.component'
 import { InactivateCampaignComponent} from './inactivate-campaign/inactivate-campaign.component'
 import { EditCampaignComponent } from './edit-campaign/edit-campaign.component';
+import { IdentityVerificationDetailComponent} from './identity-verification-detail/identity-verification-detail.component'
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
@@ -47,7 +48,8 @@ const routes: Routes = [
   { path: 'inactivate-campaign', component: InactivateCampaignComponent},
   { path: 'manage-campaigns', component: ManageCampaignComponent},
   { path: 'manage-campaigns/:id', component: ManageCampaignIdComponent},
-  { path: 'manage-campaigns/:id/edit-campaign', component: EditCampaignComponent}
+  { path: 'manage-campaigns/:id/edit-campaign', component: EditCampaignComponent},
+  { path: 'identityDetail/:id', component: IdentityVerificationDetailComponent}
 
 ];
 

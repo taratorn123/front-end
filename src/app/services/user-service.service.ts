@@ -16,6 +16,10 @@ export class UserService
   private verficationUserUrl: string;
   private privilegeUrl: string;
   private verificationRequestUserUrl: string;
+  private signatureUserUrl: string;
+  private getUserByIdUrl: string;
+  private approveUserIdentityUrl: string;
+  private declineUserIdentityUrl: string;
 
   constructor(private http: HttpClient) 
   {
@@ -25,8 +29,12 @@ export class UserService
     this.getUserIdUrl = 'http://localhost:8080/getUserId';
     this.checkUserUrl = 'http://localhost:8080/checkUser';
     this.verficationUserUrl = "http://localhost:8080/userImageVerification";
+    this.signatureUserUrl = 'http://localhost:8080/userImageSignature';
     this.privilegeUrl = 'http://localhost:8080/checkPrivilege';
     this.verificationRequestUserUrl = 'http://localhost:8080/getverificationrequest'
+    this.getUserByIdUrl = 'http://localhost:8080/getUser';
+    this.approveUserIdentityUrl = 'http://localhost:8080/approveuseridentity'
+    this.declineUserIdentityUrl = ''
   }
 
 
@@ -48,7 +56,7 @@ export class UserService
   public emailVerify(id: string)
   {
     console.log("Sending email to backend");
-    return this.http.get<number>(this.emailUrl+'/'+id);
+    return this.http.post<boolean>(this.emailUrl,id);
   }
   public checkUserVerification(id: string)
   {
@@ -58,9 +66,13 @@ export class UserService
   {
     return this.http.post<number>(this.checkUserUrl,user);
   }
-  public saveVerification(uploadData: FormData)
+  public saveVerification(user: User)
   {
-    return this.http.post<boolean>(this.verficationUserUrl,uploadData);
+    return this.http.post<boolean>(this.verficationUserUrl,user);
+  }
+  public saveSignature(user: User)
+  {
+    return this.http.post<boolean>(this.signatureUserUrl,user);
   }
   public getUserPrivilege(userId : string)
   {
@@ -70,4 +82,17 @@ export class UserService
   {
     return this.http.get<User[]>(this.verificationRequestUserUrl);
   }
+  public getUserById(userId:String)
+  {
+    return this.http.post<User>(this.getUserByIdUrl,userId);
+  }
+  public approveUserIdentity(userId : String)
+  {
+    return this.http.post<boolean>(this.approveUserIdentityUrl,userId)
+  }
+  public declineUserIdentity(userId : String)
+  {
+    return this.http.post<boolean>(this.approveUserIdentityUrl,userId)
+  }
+  
 }

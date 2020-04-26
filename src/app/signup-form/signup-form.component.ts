@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../services/user-service.service';
 import { User } from '../../models/User';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { finalize } from "rxjs/operators"
+import { AngularFireStorage } from '@angular/fire/storage';
 
 
 @Component({
@@ -27,7 +29,8 @@ export class SignupFormComponent
   signature : String;
  
   constructor(private route: ActivatedRoute, private router: Router, 
-    private userService: UserService, private modalService : NgbModal) 
+    private userService: UserService, private modalService : NgbModal,
+    private storage:AngularFireStorage) 
   {
     this.user = new User();
   }
@@ -35,120 +38,128 @@ export class SignupFormComponent
   onSubmit() 
  {
     /* password not match */
-    if(this.user.password != this.user.passwordConfirmation)
-    {
-      const modalRef = this.modalService.open(NgbdModalContentSignup,{centered: true} );
-      modalRef.componentInstance.choice = '2';
-    }
-    /* username length */
-    else if(this.user.username.length < 5)
-    {
-      const modalRef = this.modalService.open(NgbdModalContentSignup,{centered: true} );
-      modalRef.componentInstance.choice = '3';
-    }
-    /* password length*/
-    else if(this.user.password.length < 5)
-    {
-      const modalRef = this.modalService.open(NgbdModalContentSignup,{centered: true} );
-      modalRef.componentInstance.choice = '4';
-    }
-    else
+    if(this.user.password == this.user.passwordConfirmation && this.user.username.length > 4 &&
+      this.user.password.length > 4)
     {
       /* check user existence*/
       this.userService.checkUserExistence(this.user).subscribe(result =>
-      {
-        console.log("this is result from check user "+result)
-        /* User already exist*/
-        if(result == 0)
         {
-          const modalRef = this.modalService.open(NgbdModalContentSignup,{centered: true} );
-          modalRef.componentInstance.choice = '5';
-        }
-        /* Email already exist */
-        else if(result == 1)
-        {
-          const modalRef = this.modalService.open(NgbdModalContentSignup,{centered: true} );
-          modalRef.componentInstance.choice = '6';
-        }
-        else
-        {
-          /* If user click on verification flag */
-          if(this.user.verificationFlag)
+          console.log("this is result from check user "+result)
+          /* User already exist*/
+          if(result == 0)
           {
-            if(this.identityURL == null && this.signatureURL == null)
+            const modalRef = this.modalService.open(NgbdModalContentSignup,{centered: true} );
+            modalRef.componentInstance.choice = '5';
+          }
+          /* Email already exist */
+          else if(result == 1)
+          {
+            const modalRef = this.modalService.open(NgbdModalContentSignup,{centered: true} );
+            modalRef.componentInstance.choice = '6';
+          }
+          else
+          {
+            /* If user click on verification flag */
+            if(this.user.verificationFlag)
             {
-              /* Check image null */
-              const modalRef = this.modalService.open(NgbdModalContentSignup,{centered: true} );
-              modalRef.componentInstance.choice = '1';
+              if(this.identityURL == null && this.signatureURL == null)
+              {
+                /* Check image null */
+                const modalRef = this.modalService.open(NgbdModalContentSignup,{centered: true} );
+                modalRef.componentInstance.choice = '1';
+              }
+              else
+              {
+                this.userService.save(this.user).subscribe(createUserResult => 
+                {
+                  this.user.id = createUserResult
+                  var verificationFilePath = `${this.user.id}/verification/verification.jpg`
+                  var signatureFilePath = `${this.user.id}/verification/signature.jpg`
+                  const verificationFileRef = this.storage.ref(verificationFilePath);
+                  const signatureFileRef = this.storage.ref(signatureFilePath);
+                  console.log("filePath: "+verificationFilePath)
+                  console.log("filePath: "+signatureFilePath)
+                  this.storage.upload(verificationFilePath,this.identityFile).snapshotChanges().pipe
+                  (
+                    finalize(()=>
+                    {
+                      verificationFileRef.getDownloadURL().subscribe((verificationUrl)=>
+                      {
+                        this.user.routeImageVerification = verificationUrl;
+                        console.log("Verfication "+this.user.routeImageVerification)
+                        //Send new assigned value (campaignId with userId, coverImagePath) to Springboot
+                        this.userService.saveVerification(this.user).subscribe(verificationResult=>
+                        {
+                          if(verificationResult)
+                          {
+                            this.storage.upload(signatureFilePath,this.signatureFile).snapshotChanges().pipe
+                            (
+                              finalize(()=>
+                              {
+                                signatureFileRef.getDownloadURL().subscribe((signatureUrl)=>
+                                {
+                                  this.user.routeSignatureImage = signatureUrl;
+                                  console.log("Signature "+this.user.routeSignatureImage)
+                                  //Send new assigned value (campaignId with userId, coverImagePath) to Springboot
+                                  this.userService.saveSignature(this.user).subscribe(signatureResult=>
+                                  {
+                                    if(signatureResult)
+                                    {
+                                      console.log(createUserResult.toString);
+                                      console.log('User information : '+this.user)
+                                      this.userService.emailVerify(createUserResult.toString()).subscribe(verificationResult =>
+                                      {
+                                        if(verificationResult)
+                                        {
+                                          console.log("Sending Email success");
+                                          console.log("userService emailVerify");
+                                          const modalRef = this.modalService.open(NgbdModalContentSignup,{centered: true} );
+                                          modalRef.componentInstance.choice = '8';
+                                        }
+                                        else
+                                        {
+                                          const modalRef = this.modalService.open(NgbdModalContentSignup,{centered: true} );
+                                          modalRef.componentInstance.choice = '7';
+                                        }
+                                      });
+                                    }
+                                  })
+                                })
+                              })
+                            ).subscribe();
+                          }
+                        })
+                      })
+                    })
+                  ).subscribe();
+                });
+              }
             }
+            /* If user didn't choose to verify */
             else
             {
               this.userService.save(this.user).subscribe(createUserResult => 
-                {
-                  /* stellar transaction error */
-                  if(createUserResult == 0)
-                  {
-                    const modalRef = this.modalService.open(NgbdModalContentSignup,{centered: true} );
-                    modalRef.componentInstance.choice = '7';
-                  }
-                  else
-                  {
-                    const uploadData = new FormData();
-                    uploadData.append("userId", createUserResult.toString());
-                    uploadData.append("verification", this.identityFile);
-                    uploadData.append("signature", this.signatureFile);
-                    console.log('Upload data');
-                    this.userService.saveVerification(uploadData).subscribe(verificationResult=>
-                    {
-                      if(verificationResult)
-                      {
-                        console.log(createUserResult.toString);
-                        this.userService.emailVerify(createUserResult.toString()).subscribe(verificationResult =>
-                        {
-                          if(verificationResult == 1)
-                          console.log("Sending Email success");
-                        });
-                        console.log("userService emailVerify");
-                        const modalRef = this.modalService.open(NgbdModalContentSignup,{centered: true} );
-                        modalRef.componentInstance.choice = '8';
-                      }
-                      else
-                      {
-                        const modalRef = this.modalService.open(NgbdModalContentSignup,{centered: true} );
-                        modalRef.componentInstance.choice = '7';
-                      }
-                    });
-                  }
-                });
-            }
-          }
-          /* If user didn't choose to verify */
-          else
-          {
-            this.userService.save(this.user).subscribe(createUserResult => 
-            {
-              /* stellar transaction error */
-              if(createUserResult == 0)
-              {
-                const modalRef = this.modalService.open(NgbdModalContentSignup,{centered: true} );
-                modalRef.componentInstance.choice = '7';
-              }
-              else
               {
                 console.log(createUserResult.toString);
                 this.userService.emailVerify(createUserResult.toString()).subscribe(verificationResult =>
                 {
-                  if(verificationResult == 1)
-                  console.log("Sending Email success");
+                  if(verificationResult)
+                  {
+                    console.log("Sending Email success");
+                    console.log("userService emailVerify");
+                    const modalRef = this.modalService.open(NgbdModalContentSignup,{centered: true} );
+                    modalRef.componentInstance.choice = '8';
+                  }
+                  else
+                  {
+                    const modalRef = this.modalService.open(NgbdModalContentSignup,{centered: true} );
+                    modalRef.componentInstance.choice = '7';
+                  }
                 });
-                console.log("userService emailVerify");
-                const modalRef = this.modalService.open(NgbdModalContentSignup,{centered: true} );
-                modalRef.componentInstance.choice = '8';
-              }
-            });
+              });
+            }
           }
-        }
-      })
+        })
     }
   }
   onFileChanged(event,choice : number) 
@@ -311,7 +322,7 @@ export class SignupFormComponent
       <h4>Please verify your email</h4>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-primary" (click)="activeModal.close('Close click')">Close</button>
+      <button type="button" class="btn btn-primary" (click)="navigateLogin()">Close</button>
     </div>
   </div>
 
@@ -332,5 +343,10 @@ export class NgbdModalContentSignup
   @Input() choice;
   constructor(public activeModal: NgbActiveModal, private router: Router)
   {
+  }
+  navigateLogin()
+  {
+    this.activeModal.close('Close click')
+    this.router.navigate(['/sign-in'])
   }
 }

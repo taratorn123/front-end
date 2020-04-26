@@ -32,7 +32,7 @@ export class IdentityVerificationComponent implements OnInit {
   }
   displayVerificationDetail(userId : String)
   {
-    
+    this.router.navigate(['/identityDetail/'+userId]);
   }
 
 }

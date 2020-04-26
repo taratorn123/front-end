@@ -1,18 +1,13 @@
-import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
-import { Injectable } from '@angular/core';
+import { Injectable, Output } from '@angular/core';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { finalize } from "rxjs/operators"
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class ImageService {
-imageDetailList:AngularFireList<any>;
-  constructor(private firebase:AngularFireDatabase) { }
-
-  getImageDetailList(){
-    this.imageDetailList = this.firebase.list('imageDetails');
-  }
-  
-  insertImageDetails(imageDetails){
-    this.imageDetailList.push(imageDetails);
-  }
+export class ImageService 
+{
+  ImageUrl : string;
+  constructor(private storage:AngularFireStorage) { }
 }

@@ -68,7 +68,7 @@ export class ReportComponent implements OnInit {
       <h3 style="text-align: center; ;">Inactivated</h3>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-primary" (click)="activeModal.close('Close click')">Close</button>
+      <button type="button" class="btn btn-primary" (click)="inactivateDone()">Close</button>
     </div>
   `,
   styles: [`
@@ -86,5 +86,10 @@ export class NgbdModalContentReportAdmin
 {
   constructor(public activeModal: NgbActiveModal, private router: Router)
   {
+  }
+  inactivateDone()
+  {
+    this.activeModal.close('Close click')
+    location.reload();
   }
 }

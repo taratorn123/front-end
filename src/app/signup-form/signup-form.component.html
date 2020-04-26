@@ -96,7 +96,9 @@
                 <div class="col">
                     <div class="textPicture"><h5>Picture of verification</h5></div>
                     <img class="picture mb-4" src="../../assets/img/Registration/ImageVerification.png" alt="">
+                    <br>
                     <img class="picture mb-4" [src]="identityURL" height="200" *ngIf="identityURL">
+                    <br>
                     <input type="file" (change)="onFileChanged($event,1)">
                 </div>
             </div>
@@ -104,7 +106,9 @@
                 <div class="col">
                     <div class="textPicture"><h5>Signature</h5></div>
                     <img class="picture mb-4" src="../../assets/img/Registration/Signature.png" alt="" width="426" height="353">
+                    <br>
                     <img class="picture mb-4" [src]="signatureURL" height="200" *ngIf="signatureURL">
+                    <br>
                     <input type="file" (change)="onFileChanged($event,2)">
                 </div>
             </div>

@@ -44,7 +44,8 @@ import { ReportComponent } from './report/report.component';
 import { ReportDetailComponent } from './report-detail/report-detail.component';
 import { NgbdModalContentReportAdmin } from './report/report.component';
 import { IdentityVerificationComponent } from './identity-verification/identity-verification.component';
-import { InactivateCampaignComponent } from './inactivate-campaign/inactivate-campaign.component'
+import { InactivateCampaignComponent } from './inactivate-campaign/inactivate-campaign.component';
+import { IdentityVerificationDetailComponent } from './identity-verification-detail/identity-verification-detail.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -74,7 +75,8 @@ import { InactivateCampaignComponent } from './inactivate-campaign/inactivate-ca
     IdentityVerificationComponent,
     InactivateCampaignComponent,
     EditCampaignComponent,
-    ManageCampaignIdComponent
+    ManageCampaignIdComponent,
+    IdentityVerificationDetailComponent
   ],
   entryComponents: 
   [
