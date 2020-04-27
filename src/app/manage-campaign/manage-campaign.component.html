@@ -3,22 +3,24 @@
     <div class="col-md-12 order-md-1 container">
         <h4 class="mb-3">Manage Your Campaign</h4>
         <hr>      
-        <div class="cardList row" >
+        <div class="cardList row"style="margin-left: auto; margin-right: auto;" >
                 <ng-container *ngFor="let campaignModel of filteredCampaigns">
                   <div class="card mb-3 cardListItem" style="max-width: 278.5px;" fxFlex="0 1 calc(33.3% - 32px)" >
-                    <img [src]="campaignModel.coverImagePath" class="card-img-top" alt="coverImage"  >
-                    <div class="card-body">
+                    <div class="crop">
+                      <img [src]="campaignModel.coverImagePath" class="card-img-top" alt="coverImage"  >
+                    </div>
+                      <div class="card-body">
                       <div class="collapsedText">
                         <h5 class="card-title">{{campaignModel.campaignName}}</h5>
                       </div>
                       <p class="card-text">{{campaignModel.campaignId}}</p>
-                      <div [class.collapsed]="isCollapsed">
+                      <div [class.collapsedDescription]="isCollapsed">
                         <p class="card-text test" [innerHTML]="campaignModel.campaignDetail"></p>
                       </div>
-                    </div>
-                    <div class="card-footer">
+                      </div>
+                    <div class="card-footer card-footer-button">
                       <!-- <small class="text-muted">{{campaignModel.coverImagePath}}</small> -->
-                      <button type="button" class="btn btn-success" style="float: right;" (click)="getNavigation('manage-campaigns', campaignModel.id)">Manage</button>
+                      <button type="button" class="btn btn-outline-primary" (click)="getNavigation('manage-campaigns', campaignModel.id)">Manage</button>
                     </div>
                   </div>
                 </ng-container>

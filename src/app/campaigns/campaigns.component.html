@@ -4,7 +4,7 @@
         <input #query (keyup)="filter(query.value)" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
     </div>
     <div ngbDropdown class="dropdown">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" ngbDropdownToggle data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" ngbDropdownToggle data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Category
       </button>
       <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -19,41 +19,45 @@
   </div>
   
   <h2 style="text-align: center; padding: 2% 0%;">OUR CAUSES</h2>
-<div class="cardList card-list-padding row" >
-    <!-- <ng-container > -->
-        <!-- Card component -->
-        <!-- <div class="card mb-3 cardListItem" style="max-width: 540px;" fxFlex="0 1 calc(33.3% - 32px)">
-            <div class="row no-gutters">
-              <div class="col-md-4">
-                <img src="{{campaignModel.coverImagePath}}" class="card-img">
-              </div>
-              <div class="col-md-8">
+  <div class="centerCampaigns">
+    <div class="cardList row" style="margin-left: auto; margin-right: auto;">
+        <!-- <ng-container > -->
+            <!-- Card component -->
+            <!-- <div class="card mb-3 cardListItem" style="max-width: 540px;" fxFlex="0 1 calc(33.3% - 32px)">
+                <div class="row no-gutters">
+                  <div class="col-md-4">
+                    <img src="{{campaignModel.coverImagePath}}" class="card-img">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h5 class="card-title">{{campaignModel.campaignName}}</h5>
+                      <p class="card-text" >{{campaignModel.coverImagePath}}</p>
+                      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+            <ng-container  *ngFor="let campaignModel of filteredCampaigns">
+              <div class="card mb-3 cardListItem" style="max-width: 278.5px;" fxFlex="0 1 calc(33.3% - 32px)" >
+                <div class="crop">
+                  <img [src]="campaignModel.coverImagePath" class="card-img-top" alt="coverImage"  >
+                </div>
                 <div class="card-body">
+                  <div class="collapsedText">
                   <h5 class="card-title">{{campaignModel.campaignName}}</h5>
-                  <p class="card-text" >{{campaignModel.coverImagePath}}</p>
-                  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                  </div>
+                  <p class="card-text">{{campaignModel.campaignId}}</p>
+                  <div [class.collapsedDescription]="isCollapsed">
+                    <p class="card-text test" [innerHTML]="campaignModel.campaignDetail"></p>
+                  </div>
+                </div>
+                <div class="card-footer card-footer-button">
+                  <!-- <small class="text-muted">{{campaignModel.coverImagePath}}</small> -->
+                  <button type="button" class="btn btn-outline-info"  (click)="getNavigation('campaigns', campaignModel.id)">View</button>
                 </div>
               </div>
-            </div>
-          </div> -->
-        <ng-container *ngFor="let campaignModel of filteredCampaigns">
-          <div class="card mb-3 cardListItem" style="max-width: 278.5px;" fxFlex="0 1 calc(33.3% - 32px)" >
-            <img [src]="campaignModel.coverImagePath" class="card-img-top" alt="coverImage"  >
-            <div class="card-body">
-              <div class="collapsedText">
-              <h5 class="card-title">{{campaignModel.campaignName}}</h5>
-              </div>
-              <p class="card-text">{{campaignModel.campaignId}}</p>
-              <div [class.collapsedDescription]="isCollapsed">
-                <p class="card-text test" [innerHTML]="campaignModel.campaignDetail"></p>
-              </div>
-            </div>
-            <div class="card-footer card-footer-button">
-              <!-- <small class="text-muted">{{campaignModel.coverImagePath}}</small> -->
-              <button type="button" class="btn btn-success"  (click)="getNavigation('campaigns', campaignModel.id)">View</button>
-            </div>
-          </div>
-        </ng-container>
-    <!-- </ng-container> -->
+            </ng-container>
+        <!-- </ng-container> -->
+      </div>
   </div>
 </div>

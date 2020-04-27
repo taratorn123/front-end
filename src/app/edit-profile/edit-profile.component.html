@@ -43,7 +43,18 @@
         #name="ngModel"
         autofocus>
       </div>
-
+      <div class="mb-3 form-group">
+        <h6>Profile Image Uploading</h6>
+        <div *ngIf="userImage == null;else displaySelectedPicture">
+          <img class="picture mb-4" src={{userData.routeUserImage}} alt="" width="200" height="200">
+        </div>
+        <ng-template #displaySelectedPicture>
+          <img class="picture mb-4" [src]="userImage" height="200" *ngIf="userImage">
+        </ng-template>
+        <div>
+          <input style = "margin-bottom: 20px;"type="file" (change)="onFileChanged($event,2)">
+        </div>
+      </div>
       <button type="submit" class="btn btn-lg btn-primary btn-block" type="submit">Save</button>
   </div>
 </form>

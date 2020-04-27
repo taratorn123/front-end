@@ -2,6 +2,7 @@ import { User } from './../../models/User';
 import { UserService } from './user-service.service';
 import { Injectable, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { EditProfileDataService } from './../services/edit-profile-data.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,10 +12,10 @@ export class AuthenticationService  {
   private isAuthenticated: boolean;
   private getUserId: string;
   private result: boolean = false;
- 
   isMatch: boolean;
-  
-  constructor(private userService: UserService, private http: HttpClient) 
+  constructor(private userService: UserService, 
+              private http: HttpClient,
+              private editProfileDataService: EditProfileDataService) 
   {
     this.findByUsernameUrl = 'http://localhost:8080/findByUsername';
     this.getUserId = 'http://localhost:8080/getUserId';
@@ -54,8 +55,6 @@ export class AuthenticationService  {
   //  );
     
   }
-    
-    
 
   isUserLoggedIn() 
   {

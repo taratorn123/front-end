@@ -5,9 +5,8 @@ body{
 }
 
 .container {
-  width: 100%;
-  max-width: 100%;
-  margin: 0 auto;
+  max-width: 960px;
+  padding: 30px 32px;
 }
 
 #horizontal-list{
@@ -109,3 +108,18 @@ body{
       overflow: hidden;
       text-overflow: ellipsis;
     }
+    .img {
+      float:  left;
+      width:  100px;
+      height: 100px;
+      background-size: cover;
+  }
+  .crop {
+    height: 184.33px;
+    width: 276.5px;
+    overflow: hidden;
+   }
+   .crop img{
+    height: auto;
+    width: 276.5px;
+  }

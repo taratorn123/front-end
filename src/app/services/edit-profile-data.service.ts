@@ -12,7 +12,7 @@ export class EditProfileDataService {
   public userName: string;
   constructor(private http: HttpClient) {
    }
-  /* Get userId of current user, by using username from sesstionStorage */
+  /* Get user data of current user, by using username from sesstionStorage */
   get() {
     this.userName = sessionStorage.getItem('username');
     return this.http.get<User>(this.CURRENTUSER_API + '/' + this.userName);

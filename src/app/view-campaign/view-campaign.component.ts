@@ -18,6 +18,7 @@ export class ViewCampaignComponent implements OnInit {
   campaignDataTemp : any;
   userData : User;
   campaignID: number;
+  width:any;
   //Date
   today= new Date();
   jstoday = '';
@@ -32,6 +33,7 @@ export class ViewCampaignComponent implements OnInit {
 
   ngOnInit() 
   {
+    this.width = 45;
     this.campaignID = this.actRoute.snapshot.params['id'];
     console.log("campaignID: "+ this.campaignID);
     this.loadCampaignDetails(this.campaignID);
