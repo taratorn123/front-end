@@ -99,9 +99,6 @@ export class EditCampaignComponent implements OnInit {
       this.selectedImage = event.target.files[0];
       let reader = new FileReader();
       reader.readAsDataURL(event.target.files[0]);
-      reader.onload = (event2) => {
-        this.imageUrl = reader.result;
-      };
  }
 
  //Fix length (10) for text editor

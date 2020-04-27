@@ -146,6 +146,7 @@ export class SignupFormComponent
             {
               this.userService.save(this.user).subscribe(createUserResult => 
               {
+                this.user.id = createUserResult
                 console.log(createUserResult.toString);
                 this.user.routeUserImage = '../../assets/img/Registration/DefaultUser.png'
                 this.userService.setUserCoverImage(this.user).subscribe(coverResult=>

@@ -1,60 +1,48 @@
 
-<form (ngSubmit)="onEdit()" #userForm="ngForm" class="editForm">
-
 <div class="col-md-12 order-md-1 container">
+
+<form [formGroup]="formTemplate" (ngSubmit)="ngOnSubmit(formTemplate.value)" #userForm="ngForm" class="editForm">
+
     <h4 class="mb-3">Edit Profile</h4>
     <hr>
-    <div class="userProfile">
-      <div *ngIf="userImage == null;else displaySelectedPicture">
-        <img class="picture mb-4" src={{userData.routeUserImage}} alt="" width="200" height="200">
-      </div>
-      <ng-template #displaySelectedPicture>
-        <img class="picture mb-4" [src]="userImage" height="200" *ngIf="userImageResult">
-      </ng-template>
-    <br>
-    <img class="picture mb-4" src={{userImage}} height="200" *ngIf="userImageResult">
-    <input style = "margin-bottom: 20px;"type="file" (change)="onFileChanged($event,2)">
-    <br>
-    </div>
       <div class="mb-3 form-group">
         <label class="control-label" for="firstName">First Name</label>  
-            <input  [(ngModel)]="userData.firstName" 
+            <input
             class="form-control"
+            formControlName="firstName"
             id="firstName"
             name="firstName"
-            #name="ngModel"
             autofocus>
       </div>
       <div class="mb-3 form-group">
         <label class="control-label" for="lastName">Last Name</label>  
-        <input  [(ngModel)]="userData.lastName" 
+        <input 
         class="form-control"
+        formControlName="lastName"
         id="lastName"
         name="lastName"
-        #name="ngModel"
         autofocus>
       </div>
       <div class="mb-3 form-group">
         <label class="control-label" for="email">Email</label>  
-        <input  [(ngModel)]="userData.email" 
+        <input  
         class="form-control"
+        formControlName="email"
         id="email"
         name="email"
-        #name="ngModel"
         autofocus>
       </div>
+      <!-- Campaign's upload cover image Section -->
       <div class="mb-3 form-group">
-        <h6>Profile Image Uploading</h6>
-        <div *ngIf="userImage == null;else displaySelectedPicture">
-          <img class="picture mb-4" src={{userData.routeUserImage}} alt="" width="200" height="200">
-        </div>
-        <ng-template #displaySelectedPicture>
-          <img class="picture mb-4" [src]="userImage" height="200" *ngIf="userImage">
-        </ng-template>
+        <h3>Cover Image Uploading</h3>
         <div>
-          <input style = "margin-bottom: 20px;"type="file" (change)="onFileChanged($event,2)">
+            <input type="file"
+            formControlName="imageUrl"
+            (change)="onFileChanged($event)">
+            <img [src]="imageUrl" height="200" *ngIf="imageUrl">
         </div>
+        <hr />
       </div>
       <button type="submit" class="btn btn-lg btn-primary btn-block" type="submit">Save</button>
-  </div>
 </form>
+</div>

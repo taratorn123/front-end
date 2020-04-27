@@ -10,6 +10,6 @@ export class User
     verificationFlag: boolean = false;
     routeSignatureImage:String  ="";
     routeImageVerification:String = "";
-    routeUserImage:String="";
+    routeUserImage:string="";
     privilegeLevel:number;
 }

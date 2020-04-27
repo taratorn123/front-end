@@ -123,3 +123,8 @@ body{
     height: auto;
     width: 276.5px;
   }
+
+  .cardCampaignFooter{
+    text-align: center;
+    margin: 0 15px;
+  }
