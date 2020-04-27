@@ -22,6 +22,8 @@ export class ViewCampaignCommentComponent implements OnInit {
   ngOnInit() {
     this.campaignID = this.actRoute.snapshot.params['id'];
     console.log("campaignID: "+ this.campaignID);
-    this.subscription = this.campaignListService.findCommentCampaignByCurrentCampaign(this.campaignID).subscribe(comments => this.filteredComments = comments); 
+    this.subscription = this.campaignListService.findCommentCampaignByCurrentCampaign(this.campaignID).subscribe(comments => {
+      this.filteredComments = comments
+    });
   }
 }
