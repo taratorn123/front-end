@@ -20,7 +20,7 @@ export class UserService
   private getUserByIdUrl: string;
   private approveUserIdentityUrl: string;
   private declineUserIdentityUrl: string;
-
+  private setUserCoverImageUrl: string;
   constructor(private http: HttpClient) 
   {
     this.emailUrl= 'http://localhost:8080/sendmail';
@@ -34,7 +34,8 @@ export class UserService
     this.verificationRequestUserUrl = 'http://localhost:8080/getverificationrequest'
     this.getUserByIdUrl = 'http://localhost:8080/getUser';
     this.approveUserIdentityUrl = 'http://localhost:8080/approveuseridentity'
-    this.declineUserIdentityUrl = ''
+    this.declineUserIdentityUrl = 'http://localhost:8080/declineuseridentity'
+    this.setUserCoverImageUrl = 'http://localhost:8080/setUserCoverImage'
   }
 
 
@@ -92,7 +93,11 @@ export class UserService
   }
   public declineUserIdentity(userId : String)
   {
-    return this.http.post<boolean>(this.approveUserIdentityUrl,userId)
+    return this.http.post<boolean>(this.declineUserIdentityUrl,userId)
+  }
+  public setUserCoverImage(user : User)
+  {
+    return this.http.post<boolean>(this.setUserCoverImageUrl,user);
   }
   
 }

@@ -24,7 +24,6 @@ export class SignupFormComponent
   receivedImageData: any;
   base64Data: any;
   convertedImage: any;
-
   identity : String;
   signature : String;
  
@@ -107,21 +106,28 @@ export class SignupFormComponent
                                     {
                                       console.log(createUserResult.toString);
                                       console.log('User information : '+this.user)
-                                      this.userService.emailVerify(createUserResult.toString()).subscribe(verificationResult =>
-                                      {
-                                        if(verificationResult)
+                                      this.user.routeUserImage = '../../assets/img/Registration/DefaultUser.png'
+                                      this.userService.setUserCoverImage(this.user).subscribe(coverResult=>
                                         {
-                                          console.log("Sending Email success");
-                                          console.log("userService emailVerify");
-                                          const modalRef = this.modalService.open(NgbdModalContentSignup,{centered: true} );
-                                          modalRef.componentInstance.choice = '8';
-                                        }
-                                        else
-                                        {
-                                          const modalRef = this.modalService.open(NgbdModalContentSignup,{centered: true} );
-                                          modalRef.componentInstance.choice = '7';
-                                        }
-                                      });
+                                          if(coverResult)
+                                          {
+                                            this.userService.emailVerify(createUserResult.toString()).subscribe(verificationResult =>
+                                              {
+                                                if(verificationResult)
+                                                {
+                                                  console.log("Sending Email success");
+                                                  console.log("userService emailVerify");
+                                                  const modalRef = this.modalService.open(NgbdModalContentSignup,{centered: true} );
+                                                  modalRef.componentInstance.choice = '8';
+                                                }
+                                                else
+                                                {
+                                                  const modalRef = this.modalService.open(NgbdModalContentSignup,{centered: true} );
+                                                  modalRef.componentInstance.choice = '7';
+                                                }
+                                              });
+                                          }
+                                        })
                                     }
                                   })
                                 })
@@ -141,21 +147,28 @@ export class SignupFormComponent
               this.userService.save(this.user).subscribe(createUserResult => 
               {
                 console.log(createUserResult.toString);
-                this.userService.emailVerify(createUserResult.toString()).subscribe(verificationResult =>
-                {
-                  if(verificationResult)
+                this.user.routeUserImage = '../../assets/img/Registration/DefaultUser.png'
+                this.userService.setUserCoverImage(this.user).subscribe(coverResult=>
                   {
-                    console.log("Sending Email success");
-                    console.log("userService emailVerify");
-                    const modalRef = this.modalService.open(NgbdModalContentSignup,{centered: true} );
-                    modalRef.componentInstance.choice = '8';
-                  }
-                  else
-                  {
-                    const modalRef = this.modalService.open(NgbdModalContentSignup,{centered: true} );
-                    modalRef.componentInstance.choice = '7';
-                  }
-                });
+                    if(coverResult)
+                    {
+                      this.userService.emailVerify(createUserResult.toString()).subscribe(verificationResult =>
+                        {
+                          if(verificationResult)
+                          {
+                            console.log("Sending Email success");
+                            console.log("userService emailVerify");
+                            const modalRef = this.modalService.open(NgbdModalContentSignup,{centered: true} );
+                            modalRef.componentInstance.choice = '8';
+                          }
+                          else
+                          {
+                            const modalRef = this.modalService.open(NgbdModalContentSignup,{centered: true} );
+                            modalRef.componentInstance.choice = '7';
+                          }
+                        });
+                    }
+                  })
               });
             }
           }

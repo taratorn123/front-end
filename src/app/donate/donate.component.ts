@@ -7,6 +7,7 @@ import { TransactionService } from 'src/app/services/transaction.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Session } from 'protractor';
+import { CurrencyService } from '../services/currency.service';
 
 @Component({
   /* selector is basically a custome html tag that can
@@ -18,6 +19,7 @@ import { Session } from 'protractor';
 
 export class DonateComponent implements OnInit 
 {
+  
   donateForm: FormGroup;
   profileData: ProfileModel;
   donation: AccountDonation;
@@ -29,12 +31,13 @@ export class DonateComponent implements OnInit
               private transaction: TransactionService,
               private modalService: NgbModal,
               private route: ActivatedRoute, 
-              private router: Router) 
+              private router: Router,
+              private currencyService : CurrencyService)
   { 
     this.donation = new AccountDonation();
     this.username = sessionStorage.getItem('username');
   }
-
+  
   /* This method use to send donate form to spring boot backend
   If transaction send successfully it will au*/
   donate()
@@ -85,6 +88,11 @@ export class DonateComponent implements OnInit
     console.log('This is username '+this.username);
     this.donation.userId = this.username;
     this.donation.campaignId = this.campaignID;
+    this.currencyService.getCurrency().subscribe(data=>
+      {
+        console.log(data);
+      })
+    
   }
 
 }
