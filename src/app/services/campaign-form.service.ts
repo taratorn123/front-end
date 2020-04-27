@@ -17,11 +17,14 @@ export class CampaignFormService {
   private campaignUrl: string;
   private campaignUserUrl: string;
   private updateCampaignUrl: string;
+  private updateCampaignIdUrl: string;
+
   constructor(private http : HttpClient) {
     this.campaignUrl = 'http://localhost:8080/campaigns';
     this.campaignUserUrl = 'http://localhost:8080/campaignUser';
     this.editCampaignUrl = 'http://localhost:8080/editCampaigns';
     this.updateCampaignUrl = 'http://localhost:8080/updateCampaigns';
+    this.updateCampaignIdUrl = 'http://localhost:8080/updateCampaignsId';
    }
   
    // Return the entire Form Data
@@ -58,5 +61,9 @@ export class CampaignFormService {
   //Save campaign's update
   public saveCampaignUpdate(campaignUpdate:CampaignUpdate){
     return this.http.post<number>(this.updateCampaignUrl, campaignUpdate)
+  }
+
+  public getLastestUpdateId(){
+    return this.http.get<number>(this.updateCampaignIdUrl)
   }
 }

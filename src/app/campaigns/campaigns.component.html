@@ -1,22 +1,25 @@
 <div class="container">
-<div class="row">
+  <div class="row searchBar">
+    <div>
+        <input #query (keyup)="filter(query.value)" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+    </div>
+    <div ngbDropdown class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" ngbDropdownToggle data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Category
+      </button>
+      <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" (click)="getCampaignByCategory('Education')">Education</a>
+        <a class="dropdown-item" (click)="getCampaignByCategory('Animals')">Animals</a>
+        <a class="dropdown-item" (click)="getCampaignByCategory('Human rights')">Human rights</a>
+        <a class="dropdown-item" (click)="getCampaignByCategory('Medical')">Medical</a>
+        <a class="dropdown-item" (click)="getCampaignByCategory('Charity')">Charity</a>
+        <a class="dropdown-item" (click)="getAllCampaign()">See all</a>
+      </div>
+    </div>
+  </div>
   
-  <div class="table col-9">
-    <ul id="horizontal-list">
-      <li><a href="/campaigns"><img class="categoryLogo" src="../../assets/img/Education.png" alt="educationCategory" /><p>Education</p></a></li>
-      <li><a href="#"><img class="categoryLogo" src="../../assets/img/Animals.png" alt="animalCategory" /><p>Animals</p></a></li>
-      <li><a href="#"><img class="categoryLogo" src="../../assets/img/Human rights.png" alt="humanRightsCategory" /><p>Human rights</p></a></li>
-      <li><a href="#"><img class="categoryLogo" src="../../assets/img/Medical.png" alt="medicalCategory" /><p>Medical</p></a></li>
-      <li><a href="#"><img class="categoryLogo" src="../../assets/img/Charity.png" alt="charityCategory" /><p>Charity</p></a></li>
-    </ul>
-  </div>
-  <div class="col-3">
-    <p>
-      <input #query (keyup)="filter(query.value)" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-    </p>
-  </div>
-</div>
-<div class="cardList row" >
+  <h2 style="text-align: center; padding: 2% 0%;">OUR CAUSES</h2>
+<div class="cardList card-list-padding row" >
     <!-- <ng-container > -->
         <!-- Card component -->
         <!-- <div class="card mb-3 cardListItem" style="max-width: 540px;" fxFlex="0 1 calc(33.3% - 32px)">
@@ -37,13 +40,17 @@
           <div class="card mb-3 cardListItem" style="max-width: 278.5px;" fxFlex="0 1 calc(33.3% - 32px)" >
             <img [src]="campaignModel.coverImagePath" class="card-img-top" alt="coverImage"  >
             <div class="card-body">
+              <div class="collapsedText">
               <h5 class="card-title">{{campaignModel.campaignName}}</h5>
+              </div>
               <p class="card-text">{{campaignModel.campaignId}}</p>
-              <p class="card-text test" [innerHTML]="campaignModel.campaignDetail"></p>
+              <div [class.collapsedDescription]="isCollapsed">
+                <p class="card-text test" [innerHTML]="campaignModel.campaignDetail"></p>
+              </div>
             </div>
-            <div class="card-footer">
-              <small class="text-muted">{{campaignModel.coverImagePath}}</small>
-              <button type="button" class="btn btn-success" style="float: right;" (click)="getNavigation('campaigns', campaignModel.id)">View</button>
+            <div class="card-footer card-footer-button">
+              <!-- <small class="text-muted">{{campaignModel.coverImagePath}}</small> -->
+              <button type="button" class="btn btn-success"  (click)="getNavigation('campaigns', campaignModel.id)">View</button>
             </div>
           </div>
         </ng-container>

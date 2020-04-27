@@ -99,3 +99,12 @@
       /* li a:hover {
         background-color: #111111;
       } */
+      div.collapsed {
+        height: 100px;
+        overflow: hidden;
+    }
+      div.collapsedText {
+        white-space:nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }

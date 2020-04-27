@@ -50,6 +50,9 @@ import { UpdateCampaignComponent } from './update-campaign/update-campaign.compo
 import { DateAgoPipe } from './pipes/date-ago.pipe';
 import { ViewCampaignUpdateComponent } from './view-campaign-update/view-campaign-update.component';
 import { ViewCampaignCommentComponent } from './view-campaign-comment/view-campaign-comment.component';
+import { SafeHtmlPipe } from './pipes/safe-html.pipe';
+import { ViewCampaignCardComponent } from './view-campaign-card/view-campaign-card.component';
+import { ReadMoreComponent } from './readmore/readmore.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -84,7 +87,10 @@ import { ViewCampaignCommentComponent } from './view-campaign-comment/view-campa
     UpdateCampaignComponent,
     DateAgoPipe,
     ViewCampaignUpdateComponent,
-    ViewCampaignCommentComponent
+    ViewCampaignCommentComponent,
+    SafeHtmlPipe,
+    ViewCampaignCardComponent,
+    ReadMoreComponent
   ],
   entryComponents: 
   [

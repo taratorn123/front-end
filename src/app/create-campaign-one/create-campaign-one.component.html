@@ -50,7 +50,6 @@
           type="text" 
           required>
             <option value="">Choose...</option>
-            <option>United States</option>
             <option>Education</option>
             <option>Animals</option>
             <option>Human rights</option>
@@ -71,7 +70,8 @@
           type="text" 
           required>
             <option value="">Choose...</option>
-            <option>California</option>
+            <option>Individual</option>
+            <option>Organization</option>
           </select>
           <div class="alert alert-danger" *ngIf="isSubmitted && formControls.fundRaisingAs.errors?.required" style="width: 100%;">
             Please choose who you are fundraising as.
