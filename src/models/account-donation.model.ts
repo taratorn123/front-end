@@ -7,6 +7,7 @@ export class AccountDonation
     comment: String = null;
     privateKey: String;
     anonymousFlag: Boolean = false;
+    exchangeRate: string;
     // contructor(amount : String,
     //     comment: String,
     //     anonymousFlag: string,

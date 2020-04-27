@@ -25,6 +25,8 @@ export class DonateComponent implements OnInit
   donation: AccountDonation;
   username : String;
   campaignID : String;
+  usd : string;
+  currentRate : string;
 
   constructor(private fb: FormBuilder,
               public http: HttpClient, 
@@ -51,6 +53,7 @@ export class DonateComponent implements OnInit
     }
     else
     {
+      this.donation.exchangeRate = this.currentRate;
       this.transaction.saveDonation(this.donation).subscribe(result => 
         {
           console.log(result);
@@ -88,9 +91,13 @@ export class DonateComponent implements OnInit
     console.log('This is username '+this.username);
     this.donation.userId = this.username;
     this.donation.campaignId = this.campaignID;
-    this.currencyService.getCurrency().subscribe(data=>
+    this.currencyService.getCryptoCurrency().subscribe(data=>
       {
-        console.log(data);
+        this.usd = data['XLM']['USD']
+        this.currencyService.getCurrencyUSDBase().subscribe(currencyData=>
+          {
+            this.currentRate = (parseFloat(currencyData['rates']['THB']) * parseFloat(this.usd)).toString()
+          })
       })
     
   }

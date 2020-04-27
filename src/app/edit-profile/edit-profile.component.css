@@ -14,7 +14,7 @@
   #discipline-qe /deep/ .ql-container{
     height: 300px;
   }
-  .picture
+  /* .picture
   {
     margin-top:50px;
     width: 200px;
@@ -31,8 +31,8 @@
   {
     position: relative; 
     left: 50px 
-  }
-  .btn
+   } */
+  .btn 
   {
     margin-top: 40px;
   }

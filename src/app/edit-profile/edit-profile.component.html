@@ -4,7 +4,18 @@
 <div class="col-md-12 order-md-1 container">
     <h4 class="mb-3">Edit Profile</h4>
     <hr>
-    
+    <div class="userProfile">
+      <div *ngIf="userImage == null;else displaySelectedPicture">
+        <img class="picture mb-4" src={{userData.routeUserImage}} alt="" width="200" height="200">
+      </div>
+      <ng-template #displaySelectedPicture>
+        <img class="picture mb-4" [src]="userImage" height="200" *ngIf="userImageResult">
+      </ng-template>
+    <br>
+    <img class="picture mb-4" src={{userImage}} height="200" *ngIf="userImageResult">
+    <input style = "margin-bottom: 20px;"type="file" (change)="onFileChanged($event,2)">
+    <br>
+    </div>
       <div class="mb-3 form-group">
         <label class="control-label" for="firstName">First Name</label>  
             <input  [(ngModel)]="userData.firstName" 
