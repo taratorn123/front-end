@@ -14,3 +14,11 @@
   #discipline-qe /deep/ .ql-container{
     height: 300px;
   }
+  /* Target tag in innerHtml (<p><img></p>) */
+  :host p.update-desc::ng-deep img {
+    width: 100%;
+    min-height:200px;
+    height: auto;
+    display: inline-block;
+    margin: 0 auto;
+  }

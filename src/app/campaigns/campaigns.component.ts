@@ -14,6 +14,7 @@ export class CampaignsComponent implements OnInit {
   campaignsName: {campaignName : string}[];
   filteredCampaigns: any[];
   subscription: Subscription;
+  isCollapsed = true;
 
   constructor(private campaignListService: CampaignListService,
               private router:Router
@@ -28,6 +29,12 @@ export class CampaignsComponent implements OnInit {
       this.campaignModels = data;
       console.log(this.campaignModels);
     });
+  }
+  getCampaignByCategory(category:string){
+    this.subscription = this.campaignListService.findCampaignByCategory(category).subscribe(campaigns =>this.filteredCampaigns = this.campaignsName = campaigns);
+  }
+  getAllCampaign(){
+    this.subscription = this.campaignListService.findAll().subscribe(campaigns => this.filteredCampaigns = this.campaignsName = campaigns);
   }
   getNavigation(link, id)
   {

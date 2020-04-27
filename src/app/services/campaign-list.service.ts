@@ -15,6 +15,7 @@ export class CampaignListService {
   private campaignByUserIdUrl: string;
   private campaignUpdateByCampaignIdUrl: string;
   private campaignCommentByCampaignIdUrl: string;
+  private campaignByCategoryUrl: string;
 
   private campaignInActivateUrl: string;
   private getInactiveCampaignUrl: string;
@@ -30,6 +31,7 @@ export class CampaignListService {
     this.campaignInActivateUrl = 'http://localhost:8080/inactivateCampaign'
     this.getInactiveCampaignUrl = 'http://localhost:8080/getInactiveCampaign'
     this.activateCampaignUrl = 'http://localhost:8080/activeCampaign'
+    this.campaignByCategoryUrl = 'http://localhost:8080/getCampaignCategory'
   }
   
   public findAll() 
@@ -54,6 +56,11 @@ export class CampaignListService {
   public findCommentCampaignByCurrentCampaign(campaignId: number) 
   {
     return this.http.get<AccountDonation[]>(this.campaignCommentByCampaignIdUrl+ '/' + campaignId);
+  }
+  //Find list of campaigns using category
+  public findCampaignByCategory(campaignCategory: string) 
+  {
+    return this.http.get<CampaignModel[]>(this.campaignByCategoryUrl+ '/' + campaignCategory);
   }
   public inActivateCampaign(campaignId:String)
   {

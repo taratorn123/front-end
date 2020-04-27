@@ -14,6 +14,7 @@ import { finalize } from "rxjs/operators"
 import { User } from 'src/models/User';
 import {formatDate } from '@angular/common';
 
+
 @Component({
   selector: 'app-update-campaign',
   templateUrl: './update-campaign.component.html',
@@ -27,22 +28,28 @@ export class UpdateCampaignComponent implements OnInit {
   backgroundColor: '#ffffff'
   }
   //Config the tool of quilljs
+  
   config = {
     toolbar: [
-      'bold','italic','underline','image'
+      'bold','italic','underline','image','imageResize'
     ]
   }
   //Form & Models
   formTemplate: FormGroup;
   campaignModel: CampaignModel;
   campaignUpdate:CampaignUpdate;
+  campaignDataTemp : any;
+
   userData: User;
   //Date
   //jstoday = '';
   today:Date;
   editorContent: string;
-  campaignID: number;
 
+  campaignID: number;
+  campaignUpdateId: number;
+  editorInstance: any;
+  
   constructor(private router: Router,
     private actRoute: ActivatedRoute,
     private campaignFormService: CampaignFormService,
@@ -65,10 +72,52 @@ export class UpdateCampaignComponent implements OnInit {
     //console.log(this.today)
   }
 //Display campaign detail in output section (quilljs)
-submitEditor() {
-  this.editorContent = this.formTemplate.get('editor').value;
-  console.log(this.formTemplate.get('editor').value)
-  this.campaignModel.campaignDetail = this.editorContent;
+submitEditor(quill) {
+  this.editorInstance = quill
+  let toolbar = quill.getModule('toolbar');
+  toolbar.addHandler('image', this.imageEditor.bind(this));
+  
+}
+
+imageEditor(){
+  let data:any = this.editorInstance
+  if(this.editorInstance != null){
+    let range = this.editorInstance.getSelection()
+    if(range != null){
+      let input = document.createElement('input')
+      input.setAttribute('type','file')
+      input.setAttribute('accept','image/png, image/jpeg')
+      input.addEventListener('change',()=>{
+        if(input.files != null){
+          let file = input.files[0]
+          if(file != null){
+            let reader = new FileReader()
+            reader.readAsDataURL(file)
+            //Uploading Image to Firebase storage
+            this.campaignFormService.getLastestUpdateId().subscribe(lastestUpdateId => {
+              if(lastestUpdateId != null)
+              this.campaignUpdateId = lastestUpdateId+1
+              else
+              this.campaignUpdateId = 1;
+            
+            console.log("campaignUpdateId: "+this.campaignUpdateId)
+              var filePath = `${sessionStorage.getItem('userId')}/campaign/${this.actRoute.snapshot.params['id']}/updateImage/${this.campaignUpdateId}.jpg`
+              const fileRef = this.storage.ref(filePath);
+              console.log("filePath: "+filePath)
+              this.storage.upload(filePath,file).snapshotChanges().pipe(
+                finalize(()=>{
+                  fileRef.getDownloadURL().subscribe((url)=>{
+                    data.insertEmbed(range.index, 'image', url)
+                  })
+                })
+              ).subscribe();
+            })
+          }
+        }
+      })
+      input.click();
+    }
+  }
 }
   ngOnSubmit(formValue){
     //Get campaignId from route snapshot
@@ -76,6 +125,8 @@ submitEditor() {
     this.campaignUpdate.campaignId = this.campaignID
 
     this.campaignUpdate.campaignUpdateDetail = formValue['editor'];
+    console.log("editor: "+ this.campaignUpdate.campaignUpdateDetail)
+
     this.today= new Date();
 
     this.campaignUpdate.updateTimestamp = this.today;

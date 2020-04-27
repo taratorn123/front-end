@@ -80,10 +80,32 @@ body{
       display: block;
       color: black;
       text-align: center;
-      padding: 16px;
       text-decoration: none;
     }
-    
+    .searchBar {
+      margin-left: auto!important;
+      padding: 2% 2%; 
+      align-items: center; 
+      justify-content: center!important;
+  
+
+    }
+    .card-list-padding{
+      padding: 0% 5%;
+    }
+    .card-footer-button{
+      text-align: right;
+    }
+    div.collapsedDescription {
+      height: 100px;
+      overflow: hidden;
+    }
     /* li a:hover {
       background-color: #111111;
     } */
+
+    div.collapsedText {
+      white-space:nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }

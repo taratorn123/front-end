@@ -13,6 +13,7 @@ export class ManageCampaignComponent implements OnInit {
   subscription: Subscription;
   filteredCampaigns: CampaignModel[];
 
+  isCollapsed = true;
 
   constructor(private campaignListService: CampaignListService,
               private router: Router) {
