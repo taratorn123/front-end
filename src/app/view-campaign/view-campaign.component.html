@@ -1,64 +1,62 @@
- <!-- Page Content -->
- <div class="container">
+<!-- Page Content -->
+<div class="container">
+  <div class="row">
+    <!-- Title -->
+    <h1 class="mt-4" style="margin-bottom: 40px; padding-left: 15px;">{{campaignData.campaignName}}</h1>
+  </div>
+  <div class="row">
+    <!-- Post Content Column -->
+    <div class="col-lg-8">
+      
+      <!-- Preview Image -->
+      <img class="img-fluid rounded" [src]="campaignData.coverImagePath" alt="">
+      <!-- Author -->
+      <p class="lead" style="margin-top: 16px;">
+        by {{userData.firstName}} {{userData.lastName}}
+      </p>
+      <hr>
+      <!-- Date/Time -->
+      <p>Created: {{campaignData.startDate | date}}  |  Category: {{campaignData.category}}</p>
+      <hr>
 
-    <div class="row">
-
-      <!-- Post Content Column -->
-      <div class="col-lg-8">
-
-        <!-- Title -->
-        <h1 class="mt-4">{{campaignData.campaignName}}</h1>
-
-        <!-- Author -->
-        <p class="lead">
-          by {{userData.firstName}} {{userData.lastName}}
-        </p>
-
-        <hr>
-
-        <!-- Date/Time -->
-        <p>Created: {{campaignData.startDate | date}}  |  Category: {{campaignData.category}}</p>
-
-        <hr>
-
-        <!-- Preview Image -->
-        <img class="img-fluid rounded" [src]="campaignData.coverImagePath" alt="">
-        <br>
-        <button type="button" class="btn btn-primary" (click) ="navigateDonate();">Donate</button>
-        <button type="button" class="btn btn-primary" (click) ="navigateHistoryTransaction();">History</button>
-        <button type="button" class="btn btn-primary" (click) ="reportCampaign();">Report</button>
-        <hr>
-
+      <read-more>
+        <!-- Post Content -->
+        <p [innerHTML]="campaignData.campaignDetail"></p>
+      </read-more>
         
-        <read-more>
-          <!-- Post Content -->
-          <p [innerHTML]="campaignData.campaignDetail"></p>
-        </read-more>
-        
-        <hr>
-        <button type="button" class="btn btn-primary" (click)="showThis = false">View Comments</button>
-        <button type="button" class="btn btn-primary" (click)="showThis = true" >View Updates</button>
-        <hr>
-        <div class="" [hidden]="showThis">
-          <app-view-campaign-comment></app-view-campaign-comment>
-        </div>
-        <div class="" [hidden]="!showThis">
-          <app-view-campaign-update></app-view-campaign-update>
-        </div>
-        <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus.</p>
-
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, doloribus, dolorem iusto blanditiis unde eius illum consequuntur neque dicta incidunt ullam ea hic porro optio ratione repellat perspiciatis. Enim, iure!</p>
-
-        <blockquote class="blockquote">
-          <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-          <footer class="blockquote-footer">Someone famous in
-            <cite title="Source Title">Source Title</cite>
-          </footer>
-        </blockquote>
-
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, nostrum, aliquid, animi, ut quas placeat totam sunt tempora commodi nihil ullam alias modi dicta saepe minima ab quo voluptatem obcaecati?</p>
-
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, dolor quis. Sunt, ut, explicabo, aliquam tenetur ratione tempore quidem voluptates cupiditate voluptas illo saepe quaerat numquam recusandae? Qui, necessitatibus, est!</p>
-
-        <hr> -->
+      <hr>
+      <div style="text-align: center;">
+        <button type="button" class="btn btn-outline-info btnMenu" (click)="showThis = false">View Comments</button>
+        <button type="button" class="btn btn-outline-info btnMenu" (click)="showThis = true" >View Updates</button>
+        <button type="button" class="btn btn-outline-info btnMenu" (click) ="navigateHistoryTransaction();">View Donation</button>
+        <button type="button" class="btn btn-outline-danger btnMenu" (click) ="reportCampaign();">Report</button>
       </div>
+      <hr>
+      <div  [hidden]="showThis">
+        <app-view-campaign-comment></app-view-campaign-comment>
+      </div>
+      <div  [hidden]="!showThis">
+        <app-view-campaign-update></app-view-campaign-update>
+      </div>
+    </div>
+    
+    
+    
+    <!-- Paste below code to manage campaign id -->
+    <!-- Sidebar Widgets Column -->
+    <div class="col-lg-4">
+      <!-- Side Widget -->
+      <div class="card lg-4">
+        <h5 class="card-header">฿1,254 raised of ฿{{campaignData.targetDonation}} goal</h5>
+        <div class="card-body">
+            <div class="first">
+              <div [ngStyle]="{'width.%':width}" class="second"></div>
+            </div>
+            <div class="donateBtn">
+              <button type="button" class="btn btn-success" (click) ="navigateDonate();">Donate</button>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

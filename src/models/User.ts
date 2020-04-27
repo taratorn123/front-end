@@ -11,5 +11,5 @@ export class User
     routeSignatureImage:String  ="";
     routeImageVerification:String = "";
     routeUserImage:String="";
-
+    privilegeLevel:number;
 }
