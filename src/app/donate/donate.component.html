@@ -1,3 +1,27 @@
+<script>
+    var apikey = 
+    {
+        key:'38c0e932-1e4e-4fdd-85f1-71e540748840'
+    }
+    request('GET','https://pro-api.coinmarketcap.com/v1/global-metrics/quotes/latest?CMC_PRO_API_KEY='+apikey).then((r1)=>
+    {
+        var x1 = JSON.parse(r1.target.responseText);
+        console.log(x1.data.quote.USE.total_market_cap);
+        console.log("Heelo");
+    }).catch()
+    function request(method,url)
+    {
+        return new Promise(function (resolve, reject)
+        {
+            var xhr = new XMLHttpRequest();
+            xhr.open(method, url);
+            xhr.onload = resolve;
+            xhr.onerror = reject;
+            xhr.send
+        });
+    }
+</script>
+
 <!-- #dondateForm is use to reference this form -->
 <form (ngSumbit)="donate()" #donateForm="ngForm">
     <div class="container">

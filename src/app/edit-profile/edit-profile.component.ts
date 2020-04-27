@@ -13,6 +13,7 @@ export class EditProfileComponent implements OnInit {
   userData : User;
   temp : User;
   result: any;
+  userImage: any = null;
   constructor(private editProfileDataService: EditProfileDataService) { 
     this.userData = new User
     this.temp = new User
@@ -26,7 +27,8 @@ export class EditProfileComponent implements OnInit {
       });
   }
 
-  onEdit() {
+  onEdit() 
+  {
     this.temp = this.userData
     this.editProfileDataService.get().subscribe(data => {
       this.editProfileDataService.editUserDetail(this.temp).subscribe(data => {
@@ -35,5 +37,17 @@ export class EditProfileComponent implements OnInit {
     
       });
     })
+  }
+  onFileChanged(event) 
+  {
+    console.log(event);
+    this.userImage = event.target.files[0];
+    let reader = new FileReader();
+    reader.readAsDataURL(event.target.files[0]);
+    reader.onload = (event2) => 
+    {
+      this.userImage = reader.result;
+    };
+    this.userImage = reader.result;
   }
 }

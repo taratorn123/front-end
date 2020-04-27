@@ -14,3 +14,25 @@
   #discipline-qe /deep/ .ql-container{
     height: 300px;
   }
+  .picture
+  {
+    margin-top:50px;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  .userProfile
+  {
+    margin: auto;
+    text-align: center;
+  }
+  .userProfile input
+  {
+    position: relative; 
+    left: 50px 
+  }
+  .btn
+  {
+    margin-top: 40px;
+  }
