@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpHeaders  } from '@angular/common/http';
+import 'rxjs/add/operator/map'
 
 @Injectable({
   providedIn: 'root'
@@ -7,12 +8,18 @@ import { HttpClient } from '@angular/common/http';
 export class CurrencyService
 {
 
+  result: any;
+  option: any;
   constructor(private http:HttpClient) 
   { 
 
   }
-  getCurrency()
+  getCryptoCurrency()
   {
-    return this.http.get('https://pro-api.coinmarketcap.com/v1/global-metrics/quotes/latest?CMC_PRO_API_KEY=38c0e932-1e4e-4fdd-85f1-71e540748840');
+    return this.http.get<JSON>('https://min-api.cryptocompare.com/data/pricemulti?fsyms=XLM&tsyms=USD&api_key=9c24fbeaae03690ca51aecabdac1791ec5c0d07a662561a8651b563fb88697d4')
+  }
+  getCurrencyUSDBase()
+  {
+    return this.http.get<JSON>('https://api.exchangeratesapi.io/latest?base=USD')
   }
 }

@@ -9,9 +9,10 @@
         <img class="picture mb-4" src={{userData.routeUserImage}} alt="" width="200" height="200">
       </div>
       <ng-template #displaySelectedPicture>
-        <img class="picture mb-4" [src]="userImage" height="200" *ngIf="userImage">
+        <img class="picture mb-4" [src]="userImage" height="200" *ngIf="userImageResult">
       </ng-template>
     <br>
+    <img class="picture mb-4" src={{userImage}} height="200" *ngIf="userImageResult">
     <input style = "margin-bottom: 20px;"type="file" (change)="onFileChanged($event,2)">
     <br>
     </div>
