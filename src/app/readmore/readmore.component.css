@@ -1,4 +1,5 @@
 div.collapsed {
-    height: 250px;
+    min-height: 24px;
+    max-height: 250px;
     overflow: hidden;
 }

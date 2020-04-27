@@ -4,7 +4,7 @@
         <input #query (keyup)="filter(query.value)" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
     </div>
     <div ngbDropdown class="dropdown">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" ngbDropdownToggle data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" ngbDropdownToggle data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Category
       </button>
       <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -53,7 +53,7 @@
                 </div>
                 <div class="card-footer card-footer-button">
                   <!-- <small class="text-muted">{{campaignModel.coverImagePath}}</small> -->
-                  <button type="button" class="btn btn-success"  (click)="getNavigation('campaigns', campaignModel.id)">View</button>
+                  <button type="button" class="btn btn-outline-info"  (click)="getNavigation('campaigns', campaignModel.id)">View</button>
                 </div>
               </div>
             </ng-container>
