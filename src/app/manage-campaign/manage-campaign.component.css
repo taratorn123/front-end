@@ -96,15 +96,45 @@
         text-decoration: none;
       }
       
+      .searchBar {
+        margin-left: auto!important;
+        padding: 2% 2%; 
+        align-items: center; 
+        justify-content: center!important;
+    
+  
+      }
+      .card-list-padding{
+        padding: 0% 5%;
+      }
+      .card-footer-button{
+        text-align: right;
+      }
+      div.collapsedDescription {
+        height: 100px;
+        overflow: hidden;
+      }
       /* li a:hover {
         background-color: #111111;
       } */
-      div.collapsed {
-        height: 100px;
-        overflow: hidden;
-    }
+  
       div.collapsedText {
         white-space:nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
       }
+      .img {
+        float:  left;
+        width:  100px;
+        height: 100px;
+        background-size: cover;
+    }
+    .crop {
+      height: 184.33px;
+      width: 276.5px;
+      overflow: hidden;
+     }
+     .crop img{
+      height: auto;
+      width: 276.5px;
+    }
