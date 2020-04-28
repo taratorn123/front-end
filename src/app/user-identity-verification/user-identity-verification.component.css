@@ -1,0 +1,21 @@
+.container
+{
+    margin:auto;
+    text-align: center;
+}
+.container h3
+{
+    padding-top: 20px;
+}
+.row
+{
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+.btn
+{
+    margin-top: 30px;
+    align-items: center;
+    margin-bottom: 30px;
+}
+

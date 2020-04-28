@@ -29,7 +29,7 @@ import { ViewCampaignUpdateComponent } from './view-campaign-update/view-campaig
 import { ViewCampaignCommentComponent } from './view-campaign-comment/view-campaign-comment.component';
 import { ViewCampaignCardComponent } from './view-campaign-card/view-campaign-card.component';
 import { ReadMoreComponent } from './readmore/readmore.component';
-
+import { UserIdentityVerificationComponent } from './user-identity-verification/user-identity-verification.component'
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
@@ -59,9 +59,8 @@ const routes: Routes = [
   { path: 'manage-campaigns/:id/view-update-campaign', component: ViewCampaignUpdateComponent},
   { path: 'manage-campaigns/:id/view-comment-campaign', component: ViewCampaignCommentComponent},
   { path: 'manage-campaigns/:id/view-card-campaign', component: ViewCampaignCardComponent},
-  { path: 'manage-campaigns/:id/readmore', component: ReadMoreComponent}
-
-
+  { path: 'manage-campaigns/:id/readmore', component: ReadMoreComponent},
+  { path: 'user-verification', component: UserIdentityVerificationComponent}
 ];
 
 @NgModule({

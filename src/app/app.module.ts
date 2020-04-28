@@ -36,6 +36,7 @@ import { ManageCampaignComponent } from './manage-campaign/manage-campaign.compo
 import { EditCampaignComponent } from './edit-campaign/edit-campaign.component';
 import { ManageCampaignIdComponent } from './manage-campaign-id/manage-campaign-id.component'
 
+import { NgbdModalContentEdit } from './user-identity-verification/user-identity-verification.component'
 import { NgbdModalContentDonate } from './donate/donate.component'
 import { NgbdModalContentSignup } from './signup-form/signup-form.component';
 import { NgbdModalContentReport } from './view-campaign/view-campaign.component';
@@ -52,6 +53,7 @@ import { ViewCampaignCommentComponent } from './view-campaign-comment/view-campa
 import { SafeHtmlPipe } from './pipes/safe-html.pipe';
 import { ViewCampaignCardComponent } from './view-campaign-card/view-campaign-card.component';
 import { ReadMoreComponent } from './readmore/readmore.component';
+import { UserIdentityVerificationComponent } from './user-identity-verification/user-identity-verification.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -88,14 +90,17 @@ import { ReadMoreComponent } from './readmore/readmore.component';
     ViewCampaignCommentComponent,
     SafeHtmlPipe,
     ViewCampaignCardComponent,
-    ReadMoreComponent
+    ReadMoreComponent,
+    UserIdentityVerificationComponent,
+    NgbdModalContentEdit
   ],
   entryComponents: 
   [
     NgbdModalContentDonate,
     NgbdModalContentSignup,
     NgbdModalContentReport,
-    NgbdModalContentReportAdmin
+    NgbdModalContentReportAdmin,
+    NgbdModalContentEdit
   ],
   imports: [
     BrowserModule,

@@ -7,7 +7,7 @@ import { finalize } from "rxjs/operators"
 import { AngularFireStorage } from '@angular/fire/storage';
 import { UserService } from '../services/user-service.service'
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
-
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-profile',
@@ -27,10 +27,13 @@ export class EditProfileComponent implements OnInit
   isSubmitted: boolean;
   closeResult: string;
 
+
   constructor(private editProfileDataService: EditProfileDataService,
     private storage:AngularFireStorage,
     private userService : UserService,
-    private modalService: NgbModal) 
+    private modalService: NgbModal,
+    private route: ActivatedRoute, 
+    private router: Router) 
     { 
     this.userData = new User
     this.temp = new User
@@ -47,6 +50,7 @@ export class EditProfileComponent implements OnInit
     this.editProfileDataService.get().subscribe(data => 
       {
       this.userData = data;
+      console.log(this.userData);
       //To show current cover image 
       if(this.userData.routeUserImage == null)
       this.imageUrl = '../../assets/img/DefaultUserProfile/defaultUser.jpg'
@@ -90,6 +94,11 @@ export class EditProfileComponent implements OnInit
     }
   }
 
+  activate()
+  {
+    this.router.navigate(['/user-verification'])
+  }
+
   get formControls(){
     return this.formTemplate['controls']
   }
@@ -109,6 +118,7 @@ export class EditProfileComponent implements OnInit
       this.selectedImage = null;
     }
   }
+
 
   open(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
