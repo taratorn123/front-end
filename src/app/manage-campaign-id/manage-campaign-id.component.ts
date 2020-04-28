@@ -18,6 +18,7 @@ export class ManageCampaignIdComponent implements OnInit {
   totalDonate: number;
   campaignDataTemp1: CampaignModel;
   width: number;
+  showThis : boolean;
   constructor(private campaignListService: CampaignListService,private router: Router,private actRoute: ActivatedRoute) {
     this.campaignData = new CampaignModel;
     this.userData = new User;

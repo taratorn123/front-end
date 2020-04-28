@@ -40,7 +40,7 @@
           <a class="nav-link" routerLink="/" [ngClass]="{'active-link':clicked}" routerLinkActive="active-link" (click)="Clicked()">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/campaigns" (onClick)="filteredSearch.clear()" [ngClass]="{'active-link':clicked}" routerLinkActive="active-link" (click)="Clicked()">Campaign</a>
+          <a class="nav-link" routerLink="/campaigns" [ngClass]="{'active-link':clicked}" routerLinkActive="active-link" (click)="Clicked()">Campaign</a>
         </li>
         <li class="nav-item">
           <a *ngIf="getPrivilege() == 2" class="nav-link" routerLink="/create-campaign-one" [ngClass]="{'active-link':clicked}" routerLinkActive="active-link" (click)="Clicked()">Create Campaign</a>
