@@ -83,6 +83,9 @@ export class SignInComponent implements OnInit {
   gotoHome() 
   {
     this.router.navigate([''])
+    .then(() => {
+      window.location.reload();
+    });
   }
 
   gotoSignUp() {
