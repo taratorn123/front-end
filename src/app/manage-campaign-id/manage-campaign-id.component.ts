@@ -25,7 +25,7 @@ export class ManageCampaignIdComponent implements OnInit {
 
   ngOnInit() 
   {
-
+    
     this.campaignID = this.actRoute.snapshot.params['id'];
     console.log("campaignID: "+ this.campaignID);
     this.loadCampaignDetails(this.campaignID);
@@ -51,7 +51,7 @@ export class ManageCampaignIdComponent implements OnInit {
     console.log(this.campaignData);
     });
     console.log("the dude: "+this.campaignData);
-
+    
   }
  
   navigation(link){
@@ -80,5 +80,8 @@ export class ManageCampaignIdComponent implements OnInit {
     } else {
         this.router.navigate([link1 + '/' + id+ '/' +link2]);
     }
+  }
+  navigateToPreviewCampaign(id){
+    this.router.navigate(['campaigns' + '/' + id]);
   }
 }

@@ -21,6 +21,7 @@ export class ManageCampaignComponent implements OnInit {
   }
 
   ngOnInit() {
+    
   }
   
   getNavigation(link, id)

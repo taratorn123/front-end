@@ -121,7 +121,7 @@ export class CreateCampaignOneComponent implements OnInit {
               //Send new assigned value (campaignId with userId, coverImagePath) to Springboot
               this.campaignFormService.saveCampaignUser(this.campaignModel).subscribe()
               this.resetForm();
-              this.gotoCampaign();
+              this.gotoManage(campaignId);
             })
           })
         ).subscribe();
@@ -147,7 +147,10 @@ export class CreateCampaignOneComponent implements OnInit {
     this.selectedImage = null;
     this.isSubmitted = false;
   }
-  gotoCampaign() {
-    this.router.navigate(['campaigns']);
+  gotoManage(campaignId:number) {
+    this.router.navigate(['manage-campaigns' + '/' + campaignId])
+    .then(() => {
+      window.location.reload();
+    });
   }
 }
