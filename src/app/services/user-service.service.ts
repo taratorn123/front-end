@@ -21,6 +21,8 @@ export class UserService
   private approveUserIdentityUrl: string;
   private declineUserIdentityUrl: string;
   private setUserCoverImageUrl: string;
+  private getUserBalanceUrl: string;
+  private userId: number;
   constructor(private http: HttpClient) 
   {
     this.emailUrl= 'http://localhost:8080/sendmail';
@@ -36,6 +38,7 @@ export class UserService
     this.approveUserIdentityUrl = 'http://localhost:8080/approveuseridentity'
     this.declineUserIdentityUrl = 'http://localhost:8080/declineuseridentity'
     this.setUserCoverImageUrl = 'http://localhost:8080/setUserCoverImage'
+    this.getUserBalanceUrl = 'http://localhost:8080/getUserBalance'
   }
 
 
@@ -98,6 +101,11 @@ export class UserService
   public setUserCoverImage(user : User)
   {
     return this.http.post<boolean>(this.setUserCoverImageUrl,user);
+  }
+  public getUserBalance()
+  {
+    this.userId = +sessionStorage.getItem('userId')
+    return  this.http.get<string>(this.getUserBalanceUrl+'/'+this.userId)
   }
   
 }
