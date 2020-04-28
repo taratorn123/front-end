@@ -6,6 +6,7 @@ import { EditProfileDataService } from './../services/edit-profile-data.service'
 import { finalize } from "rxjs/operators"
 import { AngularFireStorage } from '@angular/fire/storage';
 import { UserService } from '../services/user-service.service'
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -24,8 +25,12 @@ export class EditProfileComponent implements OnInit
   selectedImage: any;
   imageUrl: string;
   isSubmitted: boolean;
+  closeResult: string;
+
   constructor(private editProfileDataService: EditProfileDataService,
-    private storage:AngularFireStorage,private userService : UserService) 
+    private storage:AngularFireStorage,
+    private userService : UserService,
+    private modalService: NgbModal) 
     { 
     this.userData = new User
     this.temp = new User
@@ -102,6 +107,23 @@ export class EditProfileComponent implements OnInit
     {
       this.imageUrl = '../../assets/img/DefaultUserProfile/defaultUser.jpg'
       this.selectedImage = null;
+    }
+  }
+
+  open(content) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return  `with: ${reason}`;
     }
   }
 }

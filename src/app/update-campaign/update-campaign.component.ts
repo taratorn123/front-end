@@ -13,6 +13,7 @@ import { CampaignFormService } from './../services/campaign-form.service';
 import { finalize } from "rxjs/operators"
 import { User } from 'src/models/User';
 import {formatDate } from '@angular/common';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -39,23 +40,22 @@ export class UpdateCampaignComponent implements OnInit {
   campaignModel: CampaignModel;
   campaignUpdate:CampaignUpdate;
   campaignDataTemp : any;
-
   userData: User;
-  //Date
-  //jstoday = '';
+  
   today:Date;
   editorContent: string;
-
   campaignID: number;
   campaignUpdateId: number;
   editorInstance: any;
+  isSubmitted: boolean;
   
   constructor(private router: Router,
     private actRoute: ActivatedRoute,
     private campaignFormService: CampaignFormService,
     private userService: UserService,
     private campaignListService : CampaignListService,
-    private storage:AngularFireStorage) { 
+    private storage:AngularFireStorage,
+    private modalService: NgbModal) { 
       this.campaignModel = new CampaignModel();
       this.campaignUpdate = new CampaignUpdate();
       this.userData = new User();
@@ -72,12 +72,11 @@ export class UpdateCampaignComponent implements OnInit {
     //console.log(this.today)
   }
 //Display campaign detail in output section (quilljs)
-submitEditor(quill) {
-  this.editorInstance = quill
-  let toolbar = quill.getModule('toolbar');
-  toolbar.addHandler('image', this.imageEditor.bind(this));
-  
-}
+// submitEditor(quill) {
+//   this.editorInstance = quill
+//   let toolbar = quill.getModule('toolbar');
+//   toolbar.addHandler('image', this.imageEditor.bind(this));
+// }
 
 imageEditor(){
   let data:any = this.editorInstance
@@ -120,17 +119,33 @@ imageEditor(){
   }
 }
   ngOnSubmit(formValue){
-    //Get campaignId from route snapshot
-    this.campaignID = this.actRoute.snapshot.params['id'];
-    this.campaignUpdate.campaignId = this.campaignID
+    this.isSubmitted = true;
+      if(this.formTemplate.valid){
+      //Get campaignId from route snapshot
+      this.campaignID = this.actRoute.snapshot.params['id'];
+      this.campaignUpdate.campaignId = this.campaignID
 
-    this.campaignUpdate.campaignUpdateDetail = formValue['editor'];
-    console.log("editor: "+ this.campaignUpdate.campaignUpdateDetail)
+      this.campaignUpdate.campaignUpdateDetail = formValue['editor'];
+      console.log("editor: "+ this.campaignUpdate.campaignUpdateDetail)
 
-    this.today= new Date();
+      this.today= new Date();
 
-    this.campaignUpdate.updateTimestamp = this.today;
-    this.campaignFormService.saveCampaignUpdate(this.campaignUpdate).subscribe();
+      this.campaignUpdate.updateTimestamp = this.today;
+      this.campaignFormService.saveCampaignUpdate(this.campaignUpdate).subscribe();
+      this.resetForm()
+    }
   }
 
+  get formControls(){
+    return this.formTemplate['controls']
+  }
+
+  //Reset FormGroup
+  resetForm(){
+    this.formTemplate.reset();
+    this.formTemplate.setValue({
+      editor: ''
+    });
+    this.isSubmitted = false;
+  }
 }

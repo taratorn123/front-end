@@ -11,6 +11,7 @@ import { CampaignModel } from './../../models/campaign-model';
 import { CampaignFormService } from './../services/campaign-form.service';
 import { finalize } from "rxjs/operators"
 import { User } from 'src/models/User';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-edit-campaign',
@@ -29,7 +30,7 @@ export class EditCampaignComponent implements OnInit {
   isSubmitted:boolean=false;
   formTemplate: FormGroup;
   editorContent: string;
-
+  closeResult: string;
   //Config the tool of quilljs
   config = {
     toolbar: [
@@ -53,7 +54,8 @@ export class EditCampaignComponent implements OnInit {
     private campaignFormService: CampaignFormService,
     private userService: UserService,
     private campaignListService : CampaignListService,
-    private storage:AngularFireStorage) { 
+    private storage:AngularFireStorage,
+    private modalService: NgbModal) { 
       this.campaignModel = new CampaignModel();
       this.userData = new User;
 
@@ -109,11 +111,11 @@ export class EditCampaignComponent implements OnInit {
   }
 
   //Display campaign detail in output section (quilljs)
-  submitEditor() {
-    this.editorContent = this.formTemplate.get('editor').value;
-    console.log(this.formTemplate.get('editor').value)
-    this.campaignModel.campaignDetail = this.editorContent;
-  }
+  // submitEditor() {
+  //   this.editorContent = this.formTemplate.get('editor').value;
+  //   console.log(this.formTemplate.get('editor').value)
+  //   this.campaignModel.campaignDetail = this.editorContent;
+  // }
 
  
   
@@ -173,5 +175,23 @@ export class EditCampaignComponent implements OnInit {
     this.imageUrl = null;
     this.selectedImage = null;
     this.isSubmitted = false;
+  }
+
+  open(content) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+  
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return  `with: ${reason}`;
+    }
   }
 }

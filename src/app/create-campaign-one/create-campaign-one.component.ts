@@ -24,7 +24,7 @@ export class CreateCampaignOneComponent implements OnInit {
   receivedImageData: any;
   base64Data: any;
   convertedImage: any;
-  isSubmitted:boolean=false;
+  isSubmitted:boolean;
   formTemplate: FormGroup;
   editorContent: string;
 
@@ -87,7 +87,6 @@ export class CreateCampaignOneComponent implements OnInit {
       imageUrl: new FormControl('',Validators.required),
       editor: new FormControl('',Validators.required)
     })
-    this.resetForm();
   }
   
   //This is for submiting campaign

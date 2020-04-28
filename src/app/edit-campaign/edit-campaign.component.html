@@ -70,7 +70,8 @@
         type="text" 
         required>
           <option value="">Choose...</option>
-          <option>California</option>
+          <option>Individual</option>
+          <option>Organization</option>
         </select>
         <div class="alert alert-danger" *ngIf="isSubmitted && formControls.fundRaisingAs.errors?.required" style="width: 100%;">
           Please choose who you are fundraising as.
@@ -94,7 +95,7 @@
     <!-- Campaign's quilljs editor Section -->
     <div class="mb-3 form-group">
       <div class="row pt-5">
-        <div class="col-md-8 bg-light">
+        <div class="col-md-12 bg-light">
           <label for="editor"><h3>Story</h3></label>
           <quill-editor id="discipline-qe" 
           [style]="editorStyle" 
@@ -102,10 +103,7 @@
           formControlName="editor">
           </quill-editor>
         </div>
-        <div class="col-md-4 bg-light p-4">
-          <h3>Output</h3>
-          <p class="my-5" [innerHTML]="editorContent"></p>
-        </div>
+        
       </div>
       <div class="alert alert-danger" *ngIf="isSubmitted && formControls.editor.errors?.required" style="width: 100%;">
         Please enter story.
@@ -115,8 +113,24 @@
     <!-- <pre>{{ campaignModel | json }}</pre> -->
 
     <div class="form-group text-center">
-      <button type="submit" class="btn btn-primary btn-lg btn-block" (click)="submitEditor()" >Submit</button>
+      <button type="submit" class="btn btn-primary btn-lg btn-block" (click)="open(mymodal)" >Submit</button>
     </div>
+    <!-- For successful popup -->
+    <ng-template #mymodal let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Edit Campaign</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Successful
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Ok</button>
+      </div>
+    </ng-template>
+
   </form>
   
 </div>

@@ -43,6 +43,18 @@
         </div>
         <hr />
       </div>
-      <button type="submit" class="btn btn-lg btn-primary btn-block" type="submit">Save</button>
+      <button type="submit" class="btn btn-lg btn-primary btn-block" type="submit" (click)="open(mymodal)">Save</button>
+      <!-- This part for successful popup -->
+      <ng-template #mymodal let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">Edit Profile</h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Successful
+        </div>
+      </ng-template>
 </form>
 </div>
