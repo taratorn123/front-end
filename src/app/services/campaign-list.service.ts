@@ -16,14 +16,14 @@ export class CampaignListService {
   private campaignUpdateByCampaignIdUrl: string;
   private campaignCommentByCampaignIdUrl: string;
   private campaignByCategoryUrl: string;
-
   private campaignInActivateUrl: string;
   private getInactiveCampaignUrl: string;
   private activateCampaignUrl: string;
+  private getCampaignCurrentDonate: string;
   
   constructor(private http:HttpClient) 
   { 
-    this.campaignListUrl = 'http://localhost:8080/campaigns-list'
+    this.campaignListUrl = 'http://localhost:8080/campaigns-list-test1'
     this.campaignIdUrl = 'http://localhost:8080/campaigns'
     this.campaignByUserIdUrl = 'http://localhost:8080/userscampaigns'
     this.campaignUpdateByCampaignIdUrl = 'http://localhost:8080/getUpdateCampaigns'
@@ -32,6 +32,8 @@ export class CampaignListService {
     this.getInactiveCampaignUrl = 'http://localhost:8080/getInactiveCampaign'
     this.activateCampaignUrl = 'http://localhost:8080/activeCampaign'
     this.campaignByCategoryUrl = 'http://localhost:8080/getCampaignCategory'
+    this.getCampaignCurrentDonate = 'http://localhost:8080/getTotalDonate'
+
   }
   
   public findAll() 
@@ -74,5 +76,9 @@ export class CampaignListService {
   public activateCampaign(campaignId : String)
   {
     return this.http.post<boolean>(this.activateCampaignUrl,campaignId);
+  }
+  public getTotalDonate(campaignId : number)
+  {
+    return this.http.get<number>(this.getCampaignCurrentDonate+'/'+campaignId)
   }
 } 
