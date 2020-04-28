@@ -12,6 +12,7 @@ export class BsNavbarComponent implements OnInit
 {
   userBalance:string;
   user:User;
+  clicked: boolean = false;
   constructor(public loginService:AuthenticationService,
               private userService:UserService) 
   {
@@ -33,6 +34,9 @@ export class BsNavbarComponent implements OnInit
    * name
   
    */
+  Clicked() {
+    this.clicked = true;
+    }
   public getPrivilege() 
   {
     return sessionStorage.getItem('privilege');

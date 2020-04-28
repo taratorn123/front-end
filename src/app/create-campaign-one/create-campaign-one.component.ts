@@ -71,12 +71,12 @@ export class CreateCampaignOneComponent implements OnInit {
   }
 
   //Display campaign detail in output section (quilljs)
-  submitEditor() {
-    this.editorContent = this.formTemplate.get('editor').value;
-    console.log(this.formTemplate.get('editor').value)
-    this.campaignModel.campaignDetail = this.editorContent;
+  // submitEditor() {
+  //   this.editorContent = this.formTemplate.get('editor').value;
+  //   console.log(this.formTemplate.get('editor').value)
+  //   this.campaignModel.campaignDetail = this.editorContent;
 
-  }
+  // }
 
   ngOnInit() {
     this.formTemplate = new FormGroup({

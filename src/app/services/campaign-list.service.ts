@@ -23,7 +23,7 @@ export class CampaignListService {
   
   constructor(private http:HttpClient) 
   { 
-    this.campaignListUrl = 'http://localhost:8080/campaigns-list-test1'
+    this.campaignListUrl = 'http://localhost:8080/campaigns-list'
     this.campaignIdUrl = 'http://localhost:8080/campaigns'
     this.campaignByUserIdUrl = 'http://localhost:8080/userscampaigns'
     this.campaignUpdateByCampaignIdUrl = 'http://localhost:8080/getUpdateCampaigns'
