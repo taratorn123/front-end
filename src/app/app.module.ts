@@ -33,7 +33,6 @@ import { UserTransactionHistoryComponent } from './user-transaction-history/user
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { VerificationComponent } from './verification/verification.component';
 import { ManageCampaignComponent } from './manage-campaign/manage-campaign.component';
-import { AdminHomePageComponent } from './admin-home-page/admin-home-page.component';
 import { EditCampaignComponent } from './edit-campaign/edit-campaign.component';
 import { ManageCampaignIdComponent } from './manage-campaign-id/manage-campaign-id.component'
 
@@ -75,7 +74,6 @@ import { ReadMoreComponent } from './readmore/readmore.component';
     NgbdModalContentDonate,
     NgbdModalContentSignup,
     NgbdModalContentReport,
-    AdminHomePageComponent,
     ReportComponent,
     ReportDetailComponent,
     NgbdModalContentReportAdmin,

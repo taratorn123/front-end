@@ -19,7 +19,6 @@ import { CampaignTransactionHistoryComponent } from './campaign-transaction-hist
 import { UserTransactionHistoryComponent } from './user-transaction-history/user-transaction-history.component';
 import { VerificationComponent } from './verification/verification.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
-import { AdminHomePageComponent } from './admin-home-page/admin-home-page.component';
 import { ReportComponent } from './report/report.component';
 import { ReportDetailComponent } from './report-detail/report-detail.component';
 import { IdentityVerificationComponent } from './identity-verification/identity-verification.component'
@@ -48,7 +47,6 @@ const routes: Routes = [
   { path: 'edit-profile', component: EditProfileComponent},
   { path: 'verification', component: VerificationComponent},
   { path: 'manage-campaign', component: ManageCampaignComponent},
-  { path: 'admin', component: AdminHomePageComponent},
   { path: 'report', component: ReportComponent},
   { path: 'reportDetail/:id', component: ReportDetailComponent},
   { path: 'identity-verification', component: IdentityVerificationComponent},

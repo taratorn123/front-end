@@ -182,7 +182,17 @@ export class DonateComponent implements OnInit
     </div>
   </div>
 
-  `
+  `,
+  styles: [`
+  .modal-header
+    {
+      border: none !important;
+    }
+    .modal-footer
+    {
+      border: none !important;
+    }
+  `],
 })
 export class NgbdModalContentDonate {
   @Input() choice;

@@ -52,7 +52,7 @@ export class SignInComponent implements OnInit {
                       console.log("From sign-in component : "+sessionStorage.getItem('privilege'))
                       if(privilege == 3)
                       {
-                        this.router.navigate(['/admin'])
+                        this.router.navigate(['/home'])
                       }
                       else
                       {
