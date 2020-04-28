@@ -44,6 +44,9 @@
         <hr />
       </div>
       <button type="submit" class="btn btn-lg btn-primary btn-block" type="submit" (click)="open(mymodal)">Save</button>
+      <div *ngIf="userData.privilegeLevel == 1">
+        <button class = "btn btn-lg btn-success btn-block" (click)="activate()" >Activate</button>
+      </div>
       <!-- This part for successful popup -->
       <ng-template #mymodal let-modal>
         <div class="modal-header">

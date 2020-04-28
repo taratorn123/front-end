@@ -36,3 +36,9 @@
   {
     margin-top: 40px;
   }
+  .btn-activate
+  {
+    margin-top: 40px;
+    background-color: green;
+    border-color: green;
+  }
