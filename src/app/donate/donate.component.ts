@@ -26,7 +26,8 @@ export class DonateComponent implements OnInit
   username : String;
   campaignID : String;
   usd : string;
-  currentRate : string;
+  baht : string;
+
 
   constructor(private fb: FormBuilder,
               public http: HttpClient, 
@@ -39,7 +40,10 @@ export class DonateComponent implements OnInit
     this.donation = new AccountDonation();
     this.username = sessionStorage.getItem('username');
   }
-  
+  onInputChanged(event) 
+  {
+    this.baht = (parseFloat(this.donation.amount) *parseFloat(this.donation.exchangeRate)).toString()
+  };
   /* This method use to send donate form to spring boot backend
   If transaction send successfully it will au*/
   donate()
@@ -53,7 +57,6 @@ export class DonateComponent implements OnInit
     }
     else
     {
-      this.donation.exchangeRate = this.currentRate;
       this.transaction.saveDonation(this.donation).subscribe(result => 
         {
           console.log(result);
@@ -83,7 +86,6 @@ export class DonateComponent implements OnInit
         });
     }
   };
-
   ngOnInit() 
   {
     this.campaignID = this.route.snapshot.params['id'];
@@ -96,7 +98,7 @@ export class DonateComponent implements OnInit
         this.usd = data['XLM']['USD']
         this.currencyService.getCurrencyUSDBase().subscribe(currencyData=>
           {
-            this.currentRate = (parseFloat(currencyData['rates']['THB']) * parseFloat(this.usd)).toString()
+            this.donation.exchangeRate = (parseFloat(currencyData['rates']['THB']) * parseFloat(this.usd)).toString()
           })
       })
     

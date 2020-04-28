@@ -5,13 +5,21 @@
             <!-- label for="amount" use with input id ="amount". Whenever use lick on the label the cursor will automatically selected the field -->
             <label for="amount">Your donation</label>
             <!-- In order to ngModel in form tag, user must provide name in order to keep tract of the ngModel value ;ex (amount : 200)-->
-            <input name="amount"
-            type="number"
-            [(ngModel)]="donation.amount"
-            id = "amount"
-            class="form-control"
-            required #name="ngModel"
-            >
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Lumen(XLM)</span>
+                </div>
+                <input
+                name="amount"
+                type="number"
+                [(ngModel)]="donation.amount"
+                id = "amount"
+                class="form-control"
+                required #name="ngModel"
+                (change)="onInputChanged($event)"
+                >
+                <span class="input-group-text"> ฿ {{baht}}</span>
+            </div>
         </div>
         <div class="form-group">
             <label for="comment">Comment</label>

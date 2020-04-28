@@ -64,7 +64,8 @@ export class CreateCampaignOneComponent implements OnInit {
  }
 
  //Fix length (10) for text editor
-  textChanged($event) {
+  textChanged($event) 
+  {
     if ($event.editor.getLength() > 10) {
       $event.editor.deleteText(10, $event.editor.getLength());
     }
