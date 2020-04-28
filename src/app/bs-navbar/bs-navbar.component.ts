@@ -37,9 +37,10 @@ export class BsNavbarComponent implements OnInit
   Clicked() {
     this.clicked = true;
     }
+
   public getPrivilege() 
   {
-    return sessionStorage.getItem('privilege');
+    return parseInt(sessionStorage.getItem('privilege'));
   }
 
   

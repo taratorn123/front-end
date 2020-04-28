@@ -34,9 +34,9 @@ export class IdentityVerificationDetailComponent implements OnInit {
       this.user = result;
     })
   }
-  approve(userId: String)
+  approve(userId: number)
   {
-    this.userService.approveUserIdentity(userId).subscribe(result=>
+    this.userService.approveUserIdentity(userId.toString()).subscribe(result=>
       {
         if(result)
         {
@@ -44,9 +44,9 @@ export class IdentityVerificationDetailComponent implements OnInit {
         }
       })
   }
-  decline(userId: String)
+  decline(userId: number)
   {
-    this.userService.declineUserIdentity(userId).subscribe(result=>
+    this.userService.declineUserIdentity(userId.toString()).subscribe(result=>
       {
         if(result)
         {

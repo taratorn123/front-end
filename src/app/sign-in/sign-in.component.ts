@@ -13,7 +13,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class SignInComponent implements OnInit {
   username :string
   password :string
-  invalidLogin :boolean
+  invalidLogin :boolean = false;
   user: User = new User()
 
   constructor(private router: Router,

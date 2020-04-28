@@ -25,9 +25,9 @@
 
         <!-- Post Content -->
         <div style="text-align: center;">
-          <button type="button" class="btn btn-secondary  btn-block" (click) ="navigateToEditCampaign('manage-campaigns', campaignData.id,'edit-campaign')" >Edit</button>
-          <button type="button" class="btn btn-secondary  btn-block" (click) ="navigateToUpdateCampaign('manage-campaigns', campaignData.id,'update-campaign')" >Update</button>
-          <button type="button" class="btn btn-secondary  btn-block" (click) ="navigateToPreviewCampaign(campaignData.id)">View Preview</button>
+          <button type="button" class="btn btn-secondary  btn-block" (click) ="navigateToEditCampaign('manage-campaigns', campaignData.campaignId,'edit-campaign')" >Edit</button>
+          <button type="button" class="btn btn-secondary  btn-block" (click) ="navigateToUpdateCampaign('manage-campaigns', campaignData.campaignId,'update-campaign')" >Update</button>
+          <button type="button" class="btn btn-secondary  btn-block" (click) ="navigateToPreviewCampaign(campaignData.campaignId)">View Preview</button>
           <button type="button" class="btn btn-outline-info  btn-block" (click)="showThis = false">View Comments</button>
           <button type="button" class="btn btn-outline-info  btn-block" (click)="showThis = true" >View Updates</button>
         </div>

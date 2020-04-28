@@ -24,6 +24,7 @@ export class ViewCampaignComponent implements OnInit {
   today= new Date();
   jstoday = '';
   totalDonate : number;
+  showThis: boolean;
   constructor(private campaignListService: CampaignListService,
     private router: Router,
     private actRoute: ActivatedRoute,
@@ -151,10 +152,9 @@ export class NgbdModalContentReport
   report : Report;
   result : string;
   
-  constructor(private activeModal: NgbActiveModal, 
+  constructor(public activeModal: NgbActiveModal, 
     private router: Router,
-    private reportService: ReportService,
-    private actRoute: ActivatedRoute,)
+    private reportService: ReportService)
   {
     this.report = new Report();
   }
