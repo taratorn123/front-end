@@ -15,6 +15,9 @@ export class ManageCampaignIdComponent implements OnInit {
   campaignDataTemp : any;
   userData : User;
   campaignID: number;
+  totalDonate: number;
+  campaignDataTemp1: CampaignModel;
+  width: number;
   constructor(private campaignListService: CampaignListService,private router: Router,private actRoute: ActivatedRoute) {
     this.campaignData = new CampaignModel;
     this.userData = new User;
@@ -26,6 +29,17 @@ export class ManageCampaignIdComponent implements OnInit {
     this.campaignID = this.actRoute.snapshot.params['id'];
     console.log("campaignID: "+ this.campaignID);
     this.loadCampaignDetails(this.campaignID);
+    this.campaignListService.getTotalDonate(this.campaignID).subscribe(donate=>
+      {
+        this.totalDonate = donate;
+        this.campaignListService.getCampaignDetails(this.campaignID).subscribe(campaignModel => {
+          this.campaignDataTemp1 = campaignModel;
+          this.width =  (this.totalDonate*100)/this.campaignDataTemp1.targetDonation;
+          if(this.width >= 100){
+            this.width = 100;
+          }
+        })
+      })
   }
   /*Get campaignDetail by using campaignId */
   loadCampaignDetails(campaignID)

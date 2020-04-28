@@ -16,6 +16,7 @@ import { formatDate } from '@angular/common';
 export class ViewCampaignComponent implements OnInit {
   campaignData : CampaignModel;
   campaignDataTemp : any;
+  campaignDataTemp1: CampaignModel;
   userData : User;
   campaignID: number;
   width:any;
@@ -29,12 +30,13 @@ export class ViewCampaignComponent implements OnInit {
     private modalService: NgbModal) 
     {
       this.campaignData = new CampaignModel;
+      this.campaignDataTemp1 = new CampaignModel;
       this.userData = new User;
     }
 
   ngOnInit() 
   {
-    this.width = 45;
+    
     this.campaignID = this.actRoute.snapshot.params['id'];
     console.log("campaignID: "+ this.campaignID);
     this.loadCampaignDetails(this.campaignID);
@@ -42,6 +44,13 @@ export class ViewCampaignComponent implements OnInit {
     this.campaignListService.getTotalDonate(this.campaignID).subscribe(donate=>
       {
         this.totalDonate = donate;
+        this.campaignListService.getCampaignDetails(this.campaignID).subscribe(campaignModel => {
+          this.campaignDataTemp1 = campaignModel;
+          this.width =  (this.totalDonate*100)/this.campaignDataTemp1.targetDonation;
+          if(this.width >= 100){
+            this.width = 100;
+          }
+        })
       })
     console.log(this.today)
   }
