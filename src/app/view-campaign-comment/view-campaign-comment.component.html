@@ -4,7 +4,9 @@
       <ng-container *ngFor="let campaignComment of filteredComments">
         <div class="media text-muted pt-3">
           <div class="crop">
-            <img [src]="campaignComment.user.routeUserImage" alt="">
+            <img *ngIf="campaignComment.anonymousFlag == 0" [src]="campaignComment.user.routeUserImage" alt="">
+            <img *ngIf="campaignComment.anonymousFlag == 1" src="../../assets/img/Registration/DefaultUser.png" alt="">
+
           </div>
             <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray" >
               

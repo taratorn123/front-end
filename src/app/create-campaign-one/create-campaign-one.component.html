@@ -95,17 +95,13 @@
       <!-- Campaign's quilljs editor Section -->
       <div class="mb-3 form-group">
         <div class="row pt-5">
-          <div class="col-md-8 bg-light">
+          <div class="col-md-12 bg-light">
             <label for="editor"><h3>Story</h3></label>
             <quill-editor id="discipline-qe" 
             [style]="editorStyle" 
             [modules]="config" 
             formControlName="editor">
             </quill-editor>
-          </div>
-          <div class="col-md-4 bg-light p-4">
-            <h3>Output</h3>
-            <p class="my-5" [innerHTML]="editorContent"></p>
           </div>
         </div>
         <div class="alert alert-danger" *ngIf="isSubmitted && formControls.editor.errors?.required" style="width: 100%;">

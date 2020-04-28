@@ -15,17 +15,17 @@
   <div class="auto-adjust" *ngIf="getPrivilege() == 3;else normalConsole">
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
       <ul class="navbar-nav ">
-          <li class="nav-item active">
-            <a class="nav-link" routerLink="/">Home <span class="sr-only">(current)</span></a>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/report">Fruad Report</a>
+            <a class="nav-link" routerLink="/report" [ngClass]="{'active-link':clicked}" routerLinkActive="active-link" (click)="Clicked()">Fruad Report</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/inactivate-campaign">Activate campaign</a>
+            <a class="nav-link" routerLink="/inactivate-campaign" [ngClass]="{'active-link':clicked}" routerLinkActive="active-link" (click)="Clicked()">Activate campaign</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/identity-verification">Identity verification</a>
+            <a class="nav-link" routerLink="/identity-verification" [ngClass]="{'active-link':clicked}" routerLinkActive="active-link" (click)="Clicked()">Identity verification</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/sign-out">Sign out</a>
@@ -36,17 +36,17 @@
   <ng-template #normalConsole>
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
       <ul class="navbar-nav auto-adjust">
-        <li class="nav-item active">
-          <a class="nav-link" routerLink="/">Home <span class="sr-only">(current)</span></a>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/" [ngClass]="{'active-link':clicked}" routerLinkActive="active-link" (click)="Clicked()">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/campaigns" (onClick)="filteredSearch.clear()">Campaign</a>
+          <a class="nav-link" routerLink="/campaigns" (onClick)="filteredSearch.clear()" [ngClass]="{'active-link':clicked}" routerLinkActive="active-link" (click)="Clicked()">Campaign</a>
         </li>
         <li class="nav-item">
-          <a *ngIf="getPrivilege() == 2" class="nav-link" routerLink="/create-campaign-one">Create Campaign</a>
+          <a *ngIf="getPrivilege() == 2" class="nav-link" routerLink="/create-campaign-one" [ngClass]="{'active-link':clicked}" routerLinkActive="active-link" (click)="Clicked()">Create Campaign</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/about-us">About us</a>
+          <a class="nav-link" routerLink="/about-us" [ngClass]="{'active-link':clicked}" routerLinkActive="active-link" (click)="Clicked()">About us</a>
         </li>
         <li class="nav-item">
         <a *ngIf="!loginService.isUserLoggedIn()" class="nav-link click" routerLink="/sign-in">Sign in</a>
@@ -54,6 +54,8 @@
       <li ngbDropdown class="nav-item dropdown">
         <a *ngIf="loginService.isUserLoggedIn()" ngbDropdownToggle class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
         <div ngbDropdownMenu class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown01">
+          <a class="dropdown-item inactiveLink" style="font-weight:bold;">{{user.username}}</a>
+          <a class="dropdown-item inactiveLink" style="font-weight:bold;">Balance: {{userBalance}} XLM</a>
           <a *ngIf="loginService.isUserLoggedIn()" class="dropdown-item" href="/edit-profile">Edit Profile</a>
           <a *ngIf="getPrivilege() == 2" class="dropdown-item" href="/manage-campaigns">Manage Campaigns</a>
           <a *ngIf="loginService.isUserLoggedIn()" class="dropdown-item" href="/user-transaction-history">Donation History</a>
