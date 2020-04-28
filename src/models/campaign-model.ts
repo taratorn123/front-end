@@ -12,6 +12,8 @@ export class CampaignModel
     startDate : Date = new Date();
     activeFlag : boolean = true;
     deleteFlag : boolean = false;
+    currentTotalDonate : number;
+    
     user: [{
         id : number;
         firstName: string;

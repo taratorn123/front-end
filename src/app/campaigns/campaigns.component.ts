@@ -26,6 +26,7 @@ export class CampaignsComponent implements OnInit {
   ngOnInit() {
     this.campaignListService.findAll().subscribe(data => 
     {
+      
       this.campaignModels = data;
       console.log(this.campaignModels);
     });

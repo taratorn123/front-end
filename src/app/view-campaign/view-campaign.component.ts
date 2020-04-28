@@ -22,6 +22,7 @@ export class ViewCampaignComponent implements OnInit {
   //Date
   today= new Date();
   jstoday = '';
+  totalDonate : number;
   constructor(private campaignListService: CampaignListService,
     private router: Router,
     private actRoute: ActivatedRoute,
@@ -38,6 +39,10 @@ export class ViewCampaignComponent implements OnInit {
     console.log("campaignID: "+ this.campaignID);
     this.loadCampaignDetails(this.campaignID);
     //FormatDate
+    this.campaignListService.getTotalDonate(this.campaignID).subscribe(donate=>
+      {
+        this.totalDonate = donate;
+      })
     console.log(this.today)
   }
   /*Get campaignDetail by using campaignId */
