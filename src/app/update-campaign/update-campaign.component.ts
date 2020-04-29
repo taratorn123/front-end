@@ -71,12 +71,12 @@ export class UpdateCampaignComponent implements OnInit {
     //this.jstoday = formatDate(this.today, 'dd-MM-yyyy hh:mm:ss a', 'en-US', '+7');
     //console.log(this.today)
   }
-//Display campaign detail in output section (quilljs)
-// submitEditor(quill) {
-//   this.editorInstance = quill
-//   let toolbar = quill.getModule('toolbar');
-//   toolbar.addHandler('image', this.imageEditor.bind(this));
-// }
+// Display campaign detail in output section (quilljs)
+submitEditor(quill) {
+  this.editorInstance = quill
+  let toolbar = quill.getModule('toolbar');
+  toolbar.addHandler('image', this.imageEditor.bind(this));
+}
 
 imageEditor(){
   let data:any = this.editorInstance

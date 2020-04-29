@@ -47,6 +47,7 @@ export class ManageCampaignIdComponent implements OnInit {
   {
     this.campaignListService.getCampaignDetails(campaignID).subscribe(data => {
     this.campaignData = data;
+    this.campaignData.campaignId = campaignID;
     this.campaignDataTemp = data.user;
     this.userData = this.campaignDataTemp;
     console.log(this.campaignData);
