@@ -67,7 +67,12 @@ export class UpdateCampaignComponent implements OnInit {
       editor: new FormControl('',Validators.required)
     })
   }
-
+// Display campaign detail in output section (quilljs)
+submitEditor(quill) {
+  this.editorInstance = quill
+  let toolbar = quill.getModule('toolbar');
+  toolbar.addHandler('image', this.imageEditor.bind(this));
+}
 
 imageEditor(){
   let data:any = this.editorInstance
