@@ -57,7 +57,7 @@ export class UserTransactionHistoryComponent implements OnInit {
   {
     this.transactionService.requestTransactionReport(transactionId).subscribe(result=>
       {
-        window.open('http://localhost:8080/getTrasnactionReport/'+result);
+        window.open('http://34.87.165.176:8080/getTrasnactionReport/'+result);
       }
     )
   }
