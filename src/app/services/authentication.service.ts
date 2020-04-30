@@ -17,43 +17,23 @@ export class AuthenticationService  {
               private http: HttpClient,
               private editProfileDataService: EditProfileDataService) 
   {
-    this.findByUsernameUrl = 'http://localhost:8080/findByUsername';
-    this.getUserId = 'http://localhost:8080/getUserId';
+    this.findByUsernameUrl = 'http://34.87.165.176:8080/findByUsername';
+    this.getUserId = 'http://34.87.165.176:8080/getUserId';
   }
 
   authenticate(user:User, username:string, password:string) 
   {
-    console.log(2);
     this.http.post<boolean>(this.findByUsernameUrl, user).subscribe(result => 
     {
-      console.log('Autheintication service : '+result);
       if(result == true)
       {
         this.result = true;
         sessionStorage.setItem('username',  user.username);
 
-        console.log(sessionStorage.getItem('username'));
       }
     });
     return this.http.post<boolean>(this.findByUsernameUrl, user);
-  
-  //  .subscribe(response => {
-  //   if (username === response["username"]   && password === response["password"]) {
-     
-  //     sessionStorage.setItem('username', username)
-  //     this.isAuthenticated = true;
-  //     console.log(this.isAuthenticated+"isAuthenticateddude")
-  //   } else {
-  //     console.log(response["username"]);
-  //     console.log(response["password"]);
-      
-  //     this.isAuthenticated = false;
-  //     console.log(this.isAuthenticated+"isAuthenticateddude")
 
-  //   }
-  // }
-  //  );
-    
   }
 
   isUserLoggedIn() 

@@ -21,7 +21,6 @@ export class ReportDetailComponent implements OnInit {
 
   ngOnInit() 
   {
-    console.log(sessionStorage.getItem('privilege') )
     if(sessionStorage.getItem('privilege') != '3')
     {
       this.router.navigate(["/"]);
@@ -32,7 +31,6 @@ export class ReportDetailComponent implements OnInit {
         this.reportDetail = result;
         this.campaignId = this.reportDetail[0].campaignId;
         this.campaignName = this.reportDetail[0].campaignName;
-        console.log(this.campaignName )
       })
   }
 

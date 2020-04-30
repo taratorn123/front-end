@@ -73,18 +73,14 @@ export class EditCampaignComponent implements OnInit {
       })
       //Get campaignId from route snapshot
       this.campaignID = this.actRoute.snapshot.params['id'];
-      console.log("campaignID: "+ this.campaignID);
       this.campaignModel.campaignId = this.campaignID
-      console.log("this.campaignModel.campaignId ngOnInIt : = "+this.campaignModel.campaignId)
 
       this.campaignListService.getCampaignDetails(this.campaignID).subscribe(campaignModelData => {
         this.campaignData = campaignModelData
-        console.log("campaignData: " + this.campaignData)
         //To show current cover image 
         this.imageUrl = this.campaignData.coverImagePath
         //To set current image path
         this.campaignModel.coverImagePath = this.imageUrl
-        console.log("coverImagePath(onFileChanged): "+this.imageUrl)
       //Declare form group
       this.formTemplate.controls['targetDonation'].setValue(this.campaignData.targetDonation)
       this.formTemplate.controls['campaignName'].setValue(this.campaignData.campaignName)
@@ -97,7 +93,6 @@ export class EditCampaignComponent implements OnInit {
  
   //Used to display the selected image
   onFileChanged(event) {
-      console.log(event);
       this.selectedImage = event.target.files[0];
       let reader = new FileReader();
       reader.readAsDataURL(event.target.files[0]);
@@ -109,13 +104,6 @@ export class EditCampaignComponent implements OnInit {
       $event.editor.deleteText(10, $event.editor.getLength());
     }
   }
-
-  //Display campaign detail in output section (quilljs)
-  // submitEditor() {
-  //   this.editorContent = this.formTemplate.get('editor').value;
-  //   console.log(this.formTemplate.get('editor').value)
-  //   this.campaignModel.campaignDetail = this.editorContent;
-  // }
 
  
   
@@ -133,16 +121,13 @@ export class EditCampaignComponent implements OnInit {
       //Send assigned value to SpringBoot, return campaignId
       this.campaignFormService.editCampaign(this.campaignModel).subscribe(campaignId => {
         if(this.selectedImage != null){
-          console.log("campaignId = "+campaignId)
           var userIdLong = +sessionStorage.getItem('userId');
           this.campaignModel.campaignId = campaignId
-          console.log("this.campaignModel.campaignId Submit : = "+this.campaignModel.campaignId)
           this.campaignModel.userId = userIdLong
           this.campaignModel.coverImageName = "cover.jpg";
           //Uploading Image to Firebase storage
           var filePath = `${this.campaignModel.userId}/campaign/${this.campaignModel.campaignId}/coverImage/${this.campaignModel.coverImageName}`
           const fileRef = this.storage.ref(filePath);
-          console.log("filePath: "+filePath)
           this.storage.upload(filePath,this.selectedImage).snapshotChanges().pipe(
             finalize(()=>{
               fileRef.getDownloadURL().subscribe((url)=>{

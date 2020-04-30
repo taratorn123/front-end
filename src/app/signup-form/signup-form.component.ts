@@ -43,7 +43,6 @@ export class SignupFormComponent
       /* check user existence*/
       this.userService.checkUserExistence(this.user).subscribe(result =>
         {
-          console.log("this is result from check user "+result)
           /* User already exist*/
           if(result == 0)
           {
@@ -76,8 +75,8 @@ export class SignupFormComponent
                   var signatureFilePath = `${this.user.id}/verification/signature.jpg`
                   const verificationFileRef = this.storage.ref(verificationFilePath);
                   const signatureFileRef = this.storage.ref(signatureFilePath);
-                  console.log("filePath: "+verificationFilePath)
-                  console.log("filePath: "+signatureFilePath)
+                  const modalRef = this.modalService.open(NgbdModalContentSignup,{centered: true} );
+                  modalRef.componentInstance.choice = '9';
                   this.storage.upload(verificationFilePath,this.identityFile).snapshotChanges().pipe
                   (
                     finalize(()=>
@@ -85,7 +84,6 @@ export class SignupFormComponent
                       verificationFileRef.getDownloadURL().subscribe((verificationUrl)=>
                       {
                         this.user.routeImageVerification = verificationUrl;
-                        console.log("Verfication "+this.user.routeImageVerification)
                         //Send new assigned value (campaignId with userId, coverImagePath) to Springboot
                         this.userService.saveVerification(this.user).subscribe(verificationResult=>
                         {
@@ -98,14 +96,12 @@ export class SignupFormComponent
                                 signatureFileRef.getDownloadURL().subscribe((signatureUrl)=>
                                 {
                                   this.user.routeSignatureImage = signatureUrl;
-                                  console.log("Signature "+this.user.routeSignatureImage)
                                   //Send new assigned value (campaignId with userId, coverImagePath) to Springboot
                                   this.userService.saveSignature(this.user).subscribe(signatureResult=>
                                   {
                                     if(signatureResult)
                                     {
-                                      console.log(createUserResult.toString);
-                                      console.log('User information : '+this.user)
+                                      
                                       this.user.routeUserImage = '../../assets/img/Registration/DefaultUser.png'
                                       this.userService.setUserCoverImage(this.user).subscribe(coverResult=>
                                         {
@@ -115,15 +111,7 @@ export class SignupFormComponent
                                               {
                                                 if(verificationResult)
                                                 {
-                                                  console.log("Sending Email success");
-                                                  console.log("userService emailVerify");
-                                                  const modalRef = this.modalService.open(NgbdModalContentSignup,{centered: true} );
                                                   modalRef.componentInstance.choice = '8';
-                                                }
-                                                else
-                                                {
-                                                  const modalRef = this.modalService.open(NgbdModalContentSignup,{centered: true} );
-                                                  modalRef.componentInstance.choice = '7';
                                                 }
                                               });
                                           }
@@ -147,26 +135,16 @@ export class SignupFormComponent
               this.userService.save(this.user).subscribe(createUserResult => 
               {
                 this.user.id = createUserResult
-                console.log(createUserResult.toString);
                 this.user.routeUserImage = '../../assets/img/Registration/DefaultUser.png'
+                const modalRef = this.modalService.open(NgbdModalContentSignup,{centered: true} );
+                modalRef.componentInstance.choice = '9';
                 this.userService.setUserCoverImage(this.user).subscribe(coverResult=>
                   {
                     if(coverResult)
                     {
                       this.userService.emailVerify(createUserResult.toString()).subscribe(verificationResult =>
                         {
-                          if(verificationResult)
-                          {
-                            console.log("Sending Email success");
-                            console.log("userService emailVerify");
-                            const modalRef = this.modalService.open(NgbdModalContentSignup,{centered: true} );
-                            modalRef.componentInstance.choice = '8';
-                          }
-                          else
-                          {
-                            const modalRef = this.modalService.open(NgbdModalContentSignup,{centered: true} );
-                            modalRef.componentInstance.choice = '7';
-                          }
+                          modalRef.componentInstance.choice = '8';
                         });
                     }
                   })
@@ -180,7 +158,6 @@ export class SignupFormComponent
   {
     if(choice == 1)
     {
-      console.log(event);
       this.identityFile = event.target.files[0];
       let reader = new FileReader();
       reader.readAsDataURL(event.target.files[0]);
@@ -192,7 +169,6 @@ export class SignupFormComponent
     }
     else
     {
-      console.log(event);
       this.signatureFile = event.target.files[0];
       let reader = new FileReader();
       reader.readAsDataURL(event.target.files[0]);
@@ -337,6 +313,18 @@ export class SignupFormComponent
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-primary" (click)="navigateLogin()">Close</button>
+    </div>
+  </div>
+
+  <div *ngIf="choice == 9">
+    <div class="modal-header">
+      <h3>On progress</h3>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    <div class="modal-body">
+      <h4>Please for a moment</h4>
     </div>
   </div>
 

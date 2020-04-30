@@ -50,7 +50,6 @@ export class EditProfileComponent implements OnInit
     this.editProfileDataService.get().subscribe(data => 
       {
       this.userData = data;
-      console.log(this.userData);
       //To show current cover image 
       if(this.userData.routeUserImage == null)
       this.imageUrl = '../../assets/img/DefaultUserProfile/defaultUser.jpg'
@@ -60,7 +59,6 @@ export class EditProfileComponent implements OnInit
       this.formTemplate.controls['firstName'].setValue(this.userData.firstName)
       this.formTemplate.controls['lastName'].setValue(this.userData.lastName)
       this.formTemplate.controls['email'].setValue(this.userData.email)
-      console.log(this.userData);
       });
   }
   
@@ -78,7 +76,6 @@ export class EditProfileComponent implements OnInit
           //Uploading Image to Firebase storage
           var filePath = `${sessionStorage.getItem('userId')}/coverPhoto/coverPhoto.jpg`
           const fileRef = this.storage.ref(filePath);
-          console.log("filePath: "+filePath)
           this.storage.upload(filePath,this.selectedImage).snapshotChanges().pipe(
             finalize(()=>{
               fileRef.getDownloadURL().subscribe((url)=>{
@@ -105,7 +102,6 @@ export class EditProfileComponent implements OnInit
   
   //Used to display the selected image
   onFileChanged(event) {
-    console.log(event);
     if(event.target.files && event.target.files[0]){
       const reader = new FileReader();
       reader.onload = (event:any) => this.imageUrl = event.target.result;

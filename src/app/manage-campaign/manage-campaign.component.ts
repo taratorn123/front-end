@@ -26,7 +26,6 @@ export class ManageCampaignComponent implements OnInit {
   
   getNavigation(link, id)
   {
-    console.log('Campaign ID'+id);
     if(id === ''){
         this.router.navigate([link]);
     } else {

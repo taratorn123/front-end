@@ -20,11 +20,11 @@ export class CampaignFormService {
   private updateCampaignIdUrl: string;
 
   constructor(private http : HttpClient) {
-    this.campaignUrl = 'http://localhost:8080/campaigns';
-    this.campaignUserUrl = 'http://localhost:8080/campaignUser';
-    this.editCampaignUrl = 'http://localhost:8080/editCampaigns';
-    this.updateCampaignUrl = 'http://localhost:8080/updateCampaigns';
-    this.updateCampaignIdUrl = 'http://localhost:8080/updateCampaignsId';
+    this.campaignUrl = 'http://34.87.165.176:8080/campaigns';
+    this.campaignUserUrl = 'http://34.87.165.176:8080/campaignUser';
+    this.editCampaignUrl = 'http://34.87.165.176:8080/editCampaigns';
+    this.updateCampaignUrl = 'http://34.87.165.176:8080/updateCampaigns';
+    this.updateCampaignIdUrl = 'http://34.87.165.176:8080/updateCampaignsId';
    }
   
    // Return the entire Form Data

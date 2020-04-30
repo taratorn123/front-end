@@ -45,7 +45,6 @@ export class UserIdentityVerificationComponent implements OnInit {
   {
     if(choice == 1)
     {
-      console.log(event);
       this.identityFile = event.target.files[0];
       let reader = new FileReader();
       reader.readAsDataURL(event.target.files[0]);
@@ -57,7 +56,6 @@ export class UserIdentityVerificationComponent implements OnInit {
     }
     else
     {
-      console.log(event);
       this.signatureFile = event.target.files[0];
       let reader = new FileReader();
       reader.readAsDataURL(event.target.files[0]);
@@ -74,8 +72,6 @@ export class UserIdentityVerificationComponent implements OnInit {
     var signatureFilePath = `${this.user.id}/verification/signature.jpg`
     const verificationFileRef = this.storage.ref(verificationFilePath);
     const signatureFileRef = this.storage.ref(signatureFilePath);
-    console.log("filePath: "+verificationFilePath)
-    console.log("filePath: "+signatureFilePath)
     this.storage.upload(verificationFilePath,this.identityFile).snapshotChanges().pipe
     (
       finalize(()=>
@@ -83,7 +79,6 @@ export class UserIdentityVerificationComponent implements OnInit {
         verificationFileRef.getDownloadURL().subscribe((verificationUrl)=>
         {
           this.user.routeImageVerification = verificationUrl;
-          console.log("Verfication "+this.user.routeImageVerification)
           //Send new assigned value (campaignId with userId, coverImagePath) to Springboot
           this.userService.saveVerification(this.user).subscribe(verificationResult=>
           {
@@ -96,7 +91,6 @@ export class UserIdentityVerificationComponent implements OnInit {
                   signatureFileRef.getDownloadURL().subscribe((signatureUrl)=>
                   {
                     this.user.routeSignatureImage = signatureUrl;
-                    console.log("Signature "+this.user.routeSignatureImage)
                     //Send new assigned value (campaignId with userId, coverImagePath) to Springboot
                     this.userService.saveSignature(this.user).subscribe(signatureResult=>
                     {

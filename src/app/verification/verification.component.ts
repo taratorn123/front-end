@@ -25,13 +25,11 @@ export class VerificationComponent implements OnInit {
   }
   resendVerification()
   {
-    console.log("Sending");
     this.userId = sessionStorage.getItem('userId')
     this.userService.emailVerify(this.userId).subscribe(result=>
       {
         if(result)
         {
-          console.log("Sending Email success");
         }
       });
   }

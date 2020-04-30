@@ -14,6 +14,5 @@ export class AppComponent {
 
   ngOnInit() {
       this.formData = this.campaignFormService.getFormData();
-      console.log(this.title + ' loaded!');
   }
 }

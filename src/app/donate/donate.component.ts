@@ -48,8 +48,6 @@ export class DonateComponent implements OnInit
   If transaction send successfully it will au*/
   donate()
   {
-    console.log("Hello Im here "+this.donation.anonymousFlag);
-    console.log('opening');
     if(sessionStorage.getItem('userId') == null)
     {
       const modalRef = this.modalService.open(NgbdModalContentDonate,{centered: true} );
@@ -59,7 +57,6 @@ export class DonateComponent implements OnInit
     {
       this.transaction.saveDonation(this.donation).subscribe(result => 
         {
-          console.log(result);
           /* Not enough money */
           if(result == 0)
           {
@@ -89,8 +86,6 @@ export class DonateComponent implements OnInit
   ngOnInit() 
   {
     this.campaignID = this.route.snapshot.params['id'];
-    console.log('This is campaign ID '+this.campaignID);
-    console.log('This is username '+this.username);
     this.donation.userId = this.username;
     this.donation.campaignId = this.campaignID;
     this.currencyService.getCryptoCurrency().subscribe(data=>
@@ -205,12 +200,10 @@ export class NgbdModalContentDonate {
   {
     this.activeModal.close('Close click')
     this.router.navigate(['/campaigns']);
-    console.log("Success");
   }
   navigateToSignin()
   {
     this.activeModal.close('Close click')
     this.router.navigate(['/sign-in']);
-    console.log("Success");
   }
 }

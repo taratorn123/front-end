@@ -28,7 +28,6 @@ export class CampaignsComponent implements OnInit {
     {
       
       this.campaignModels = data;
-      console.log(this.campaignModels);
     });
   }
   getCampaignByCategory(category:string){
@@ -39,7 +38,6 @@ export class CampaignsComponent implements OnInit {
   }
   getNavigation(link, id)
   {
-    console.log('Campaign ID'+id);
     if(id === ''){
         this.router.navigate([link]);
     } else {

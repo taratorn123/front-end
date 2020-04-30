@@ -21,16 +21,13 @@ export class IdentityVerificationDetailComponent implements OnInit {
 
   ngOnInit() 
   {
-    console.log(sessionStorage.getItem('privilege') )
     if(sessionStorage.getItem('privilege') != '3')
     {
       this.router.navigate(["/"]);
     }
-    console.log(sessionStorage.getItem('privilege') )
     this.userId = this.actRoute.snapshot.params['id'];
     this.userService.getUserById(this.userId).subscribe(result=>
     {
-      console.log(result)
       this.user = result;
     })
   }

@@ -28,7 +28,6 @@ export class ManageCampaignIdComponent implements OnInit {
   {
     
     this.campaignID = this.actRoute.snapshot.params['id'];
-    console.log("campaignID: "+ this.campaignID);
     this.loadCampaignDetails(this.campaignID);
     this.campaignListService.getTotalDonate(this.campaignID).subscribe(donate=>
       {
@@ -49,17 +48,15 @@ export class ManageCampaignIdComponent implements OnInit {
     this.campaignData = data;
     this.campaignDataTemp = data.user;
     this.userData = this.campaignDataTemp;
-    console.log(this.campaignData);
     });
-    console.log("the dude: "+this.campaignData);
     
   }
  
   navigation(link){
     this.router.navigate([link]);
   }
-  navigateToEditCampaign(link1, id, link2) {
-    console.log('Campaign ID'+id);
+  navigateToEditCampaign(link1, id, link2) 
+  {
     if(id === ''){
         this.router.navigate([link1]);
     } else {
@@ -67,7 +64,6 @@ export class ManageCampaignIdComponent implements OnInit {
     }
   }
   navigateToUpdateCampaign(link1, id, link2) {
-    console.log('Campaign ID'+id);
     if(id === ''){
         this.router.navigate([link1]);
     } else {
@@ -75,7 +71,6 @@ export class ManageCampaignIdComponent implements OnInit {
     }
   }
   navigateToViewUpdateCampaign(link1, id, link2) {
-    console.log('Campaign ID'+id);
     if(id === ''){
         this.router.navigate([link1]);
     } else {

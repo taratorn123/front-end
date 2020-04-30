@@ -39,7 +39,6 @@ export class ViewCampaignComponent implements OnInit {
   {
     
     this.campaignID = this.actRoute.snapshot.params['id'];
-    console.log("campaignID: "+ this.campaignID);
     this.loadCampaignDetails(this.campaignID);
     //FormatDate
     this.campaignListService.getTotalDonate(this.campaignID).subscribe(donate=>
@@ -53,7 +52,6 @@ export class ViewCampaignComponent implements OnInit {
           }
         })
       })
-    console.log(this.today)
   }
   /*Get campaignDetail by using campaignId */
   loadCampaignDetails(campaignID)
@@ -62,7 +60,6 @@ export class ViewCampaignComponent implements OnInit {
     this.campaignData = data;
     this.campaignDataTemp = data.user;
     this.userData = this.campaignDataTemp;
-    console.log(this.campaignData);
     });
   }
   navigateDonate()
@@ -72,7 +69,6 @@ export class ViewCampaignComponent implements OnInit {
     and handle what appears on the view based on these states, rather than only on the URL parameters. 
     Many people consider this an essential Angular Module, and far more functional 
     than the default $routeProvider. */
-    console.log('From view-campaign'+this.campaignID);
     this.router.navigate(['donate'+'/'+this.campaignID]);
   }
   navigateHistoryTransaction()
@@ -164,7 +160,6 @@ export class NgbdModalContentReport
   }
   sendReport()
   {
-    console.log("Sending report");
     this.report.userId = sessionStorage.getItem('userId');
     this.report.campaignId = this.campaignId;
     if(this.report.userId == null)

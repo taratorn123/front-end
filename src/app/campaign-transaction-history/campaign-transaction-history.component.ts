@@ -22,9 +22,7 @@ export class CampaignTransactionHistoryComponent implements OnInit
 
   constructor(
     private transactionService : TransactionService,
-    private route: ActivatedRoute,
-    private router: Router,
-    private campaignService : CampaignListService
+    private route: ActivatedRoute
   ) 
   {
   }
@@ -35,11 +33,10 @@ export class CampaignTransactionHistoryComponent implements OnInit
     this.transactionService.getHistoryDonationCampaign(this.campaignId).subscribe(data=>
       {
         this.transactions = data;
-        console.log(this.transactions)
+        console.log(data)
         this.campaignPublicKey = this.transactions[0].campaignPublicKey;
-        console.log(this.campaignPublicKey);
+        console.log(this.campaignPublicKey)
         this.campaignName = this.transactions[0].campaignName;
-        console.log(this.transactions);
       })
   }
 

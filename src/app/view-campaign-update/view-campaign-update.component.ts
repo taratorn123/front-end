@@ -22,7 +22,6 @@ export class ViewCampaignUpdateComponent implements OnInit {
 
   ngOnInit() {
     this.campaignID = this.actRoute.snapshot.params['id'];
-    console.log("campaignID: "+ this.campaignID);
     this.subscription = this.campaignListService.findUpdateCampaignByCurrentCampaign(this.campaignID).subscribe(campaigns => this.filteredUpdates = campaigns); 
 
   }

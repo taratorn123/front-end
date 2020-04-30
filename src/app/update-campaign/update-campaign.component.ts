@@ -66,17 +66,8 @@ export class UpdateCampaignComponent implements OnInit {
     this.formTemplate = new FormGroup({
       editor: new FormControl('',Validators.required)
     })
-    
-    //Use to format date to user friendly
-    //this.jstoday = formatDate(this.today, 'dd-MM-yyyy hh:mm:ss a', 'en-US', '+7');
-    //console.log(this.today)
   }
-//Display campaign detail in output section (quilljs)
-// submitEditor(quill) {
-//   this.editorInstance = quill
-//   let toolbar = quill.getModule('toolbar');
-//   toolbar.addHandler('image', this.imageEditor.bind(this));
-// }
+
 
 imageEditor(){
   let data:any = this.editorInstance
@@ -99,10 +90,8 @@ imageEditor(){
               else
               this.campaignUpdateId = 1;
             
-            console.log("campaignUpdateId: "+this.campaignUpdateId)
               var filePath = `${sessionStorage.getItem('userId')}/campaign/${this.actRoute.snapshot.params['id']}/updateImage/${this.campaignUpdateId}.jpg`
               const fileRef = this.storage.ref(filePath);
-              console.log("filePath: "+filePath)
               this.storage.upload(filePath,file).snapshotChanges().pipe(
                 finalize(()=>{
                   fileRef.getDownloadURL().subscribe((url)=>{
@@ -126,8 +115,6 @@ imageEditor(){
       this.campaignUpdate.campaignId = this.campaignID
 
       this.campaignUpdate.campaignUpdateDetail = formValue['editor'];
-      console.log("editor: "+ this.campaignUpdate.campaignUpdateDetail)
-
       this.today= new Date();
 
       this.campaignUpdate.updateTimestamp = this.today;

@@ -25,17 +25,13 @@ export class SignInComponent implements OnInit {
 
   checkLogin() 
   {
-    console.log(1);
-    console.log('Check login'+this.username);
     this.loginservice.authenticate(this.user, this.username, this.password).subscribe(result => 
     {
-      console.log(result);
       if(result == true)
       {
         this.userService.getUserId(this.user.username).subscribe(userId=>
           {
             sessionStorage.setItem('userId', userId);
-            console.log('this is user ID '+sessionStorage.getItem('userId'));
             this.userService.checkUserVerification(userId).subscribe(verification=>
               {
                 if(verification == 0)
@@ -49,10 +45,9 @@ export class SignInComponent implements OnInit {
                   this.userService.getUserPrivilege(userId).subscribe(privilege=>
                     {
                       sessionStorage.setItem('privilege',privilege.toString())
-                      console.log("From sign-in component : "+sessionStorage.getItem('privilege'))
                       if(privilege == 3)
                       {
-                        this.router.navigate(['/home'])
+                        this.router.navigate(['/'])
                       }
                       else
                       {
@@ -69,15 +64,6 @@ export class SignInComponent implements OnInit {
         this.invalidLogin = true
       }
     });
-    // if (this.loginservice.authenticate(this.user, this.username, this.password)) {
-    //   console.log(this.loginservice.authenticate(this.user, this.username, this.password)+"iasmdmad")
-    //   this.router.navigate([''])
-    //   this.invalidLogin = false
-    // } else {
-    //   this.invalidLogin = true
-      
-    // }
-
   }
 
   gotoHome() 

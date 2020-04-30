@@ -52,7 +52,6 @@ export class CreateCampaignOneComponent implements OnInit {
   
   //Used to display the selected image
   onFileChanged(event) {
-    console.log(event);
     this.selectedImage = event.target.files[0];
     var blob = new Blob([event.target.result], { type: "image/jpeg" });
     let reader = new FileReader();
@@ -70,14 +69,6 @@ export class CreateCampaignOneComponent implements OnInit {
       $event.editor.deleteText(10, $event.editor.getLength());
     }
   }
-
-  //Display campaign detail in output section (quilljs)
-  // submitEditor() {
-  //   this.editorContent = this.formTemplate.get('editor').value;
-  //   console.log(this.formTemplate.get('editor').value)
-  //   this.campaignModel.campaignDetail = this.editorContent;
-
-  // }
 
   ngOnInit() {
     this.formTemplate = new FormGroup({
@@ -104,7 +95,6 @@ export class CreateCampaignOneComponent implements OnInit {
       this.campaignModel.startDate = new Date();
       //Send assigned value to SpringBoot
       this.campaignFormService.saveCampaign(this.campaignModel).subscribe(campaignId => {
-        console.log("campaignId = "+campaignId)
         var userIdLong = +sessionStorage.getItem('userId'); // userIdLong: number
         this.campaignModel.campaignId = campaignId
         this.campaignModel.userId = userIdLong
@@ -112,7 +102,6 @@ export class CreateCampaignOneComponent implements OnInit {
         //Uploading Image to Firebase storage
         var filePath = `${this.campaignModel.userId}/campaign/${this.campaignModel.campaignId}/coverImage/${this.campaignModel.coverImageName}`
         const fileRef = this.storage.ref(filePath);
-        console.log("filePath: "+filePath)
         this.storage.upload(filePath,this.selectedImage).snapshotChanges().pipe(
           finalize(()=>{
             fileRef.getDownloadURL().subscribe((url)=>{

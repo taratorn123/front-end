@@ -6,7 +6,7 @@ import { User } from 'src/models/User';
   providedIn: 'root'
 })
 export class EditProfileDataService {
-  public API = '//localhost:8080';
+  public API = '//34.87.165.176:8080';
   public CURRENTUSER_API = this.API + '/current-user';
   public CURRENTUSER_API_EDIT = this.API+ '/current-user/edit'
   public userName: string;

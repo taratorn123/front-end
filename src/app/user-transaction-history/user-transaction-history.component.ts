@@ -39,22 +39,16 @@ export class UserTransactionHistoryComponent implements OnInit {
     {
       this.transactionService.getHistoryDonationUser(this.userId).subscribe(data=>
       {
-        console.log('Testing '+data[0].transactionHash)
         if(data[0].transactionHash != null)
         {
           this.transactions = data;
           this.userPublicKey = data[0].campaignPublicKey;
-          console.log(this.userPublicKey);
           this.userName = data[0].userName;
-          console.log(this.userName);
-          console.log(this.transactions);
         }
         else
         {
           this.userPublicKey = data[0].campaignPublicKey;
-          console.log(this.userPublicKey);
           this.userName = data[0].campaignName;
-          console.log(this.transactions);
         }
       })
     }
@@ -63,7 +57,6 @@ export class UserTransactionHistoryComponent implements OnInit {
   {
     this.transactionService.requestTransactionReport(transactionId).subscribe(result=>
       {
-        console.log(result);
         window.open('http://localhost:8080/getTrasnactionReport/'+result);
       }
     )

@@ -19,14 +19,12 @@ export class IdentityVerificationComponent implements OnInit {
 
   ngOnInit() 
   {
-    console.log(sessionStorage.getItem('privilege') )
     if(sessionStorage.getItem('privilege') != '3')
     {
       this.router.navigate(["/"]);
     }
     this.userService.getVerificationRequestUser().subscribe(result=>
     {
-      console.log(result)
       this.users = result;
     })
   }

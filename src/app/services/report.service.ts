@@ -14,9 +14,9 @@ export class ReportService {
   getReportDetailUrl: string;
   constructor(private http:HttpClient) 
   { 
-    this.reportUrl = 'http://localhost:8080/reportCampaign'
-    this.getReporNumbertUrl = 'http://localhost:8080/getReportNumber'
-    this.getReportDetailUrl = 'http://localhost:8080/getReportDetail'
+    this.reportUrl = 'http://34.87.165.176:8080/reportCampaign'
+    this.getReporNumbertUrl = 'http://34.87.165.176:8080/getReportNumber'
+    this.getReportDetailUrl = 'http://34.87.165.176:8080/getReportDetail'
   }
   public reportCampaign(report : Report)
   {

@@ -23,16 +23,16 @@ export class CampaignListService {
   
   constructor(private http:HttpClient) 
   { 
-    this.campaignListUrl = 'http://localhost:8080/campaigns-list'
-    this.campaignIdUrl = 'http://localhost:8080/campaigns'
-    this.campaignByUserIdUrl = 'http://localhost:8080/userscampaigns'
-    this.campaignUpdateByCampaignIdUrl = 'http://localhost:8080/getUpdateCampaigns'
-    this.campaignCommentByCampaignIdUrl = 'http://localhost:8080/getCommentCampaigns'
-    this.campaignInActivateUrl = 'http://localhost:8080/inactivateCampaign'
-    this.getInactiveCampaignUrl = 'http://localhost:8080/getInactiveCampaign'
-    this.activateCampaignUrl = 'http://localhost:8080/activeCampaign'
-    this.campaignByCategoryUrl = 'http://localhost:8080/getCampaignCategory'
-    this.getCampaignCurrentDonate = 'http://localhost:8080/getTotalDonate'
+    this.campaignListUrl = 'http://34.87.165.176:8080/campaigns-list'
+    this.campaignIdUrl = 'http://34.87.165.176:8080/campaigns'
+    this.campaignByUserIdUrl = 'http://34.87.165.176:8080/userscampaigns'
+    this.campaignUpdateByCampaignIdUrl = 'http://34.87.165.176:8080/getUpdateCampaigns'
+    this.campaignCommentByCampaignIdUrl = 'http://34.87.165.176:8080/getCommentCampaigns'
+    this.campaignInActivateUrl = 'http://34.87.165.176:8080/inactivateCampaign'
+    this.getInactiveCampaignUrl = 'http://34.87.165.176:8080/getInactiveCampaign'
+    this.activateCampaignUrl = 'http://34.87.165.176:8080/activeCampaign'
+    this.campaignByCategoryUrl = 'http://34.87.165.176:8080/getCampaignCategory'
+    this.getCampaignCurrentDonate = 'http://34.87.165.176:8080/getTotalDonate'
 
   }
   
@@ -66,7 +66,6 @@ export class CampaignListService {
   }
   public inActivateCampaign(campaignId:String)
   {
-    console.log("Inactivate")
     return this.http.post<boolean>(this.campaignInActivateUrl,campaignId);
   }
   public getInactiveCampaign()

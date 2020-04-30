@@ -25,20 +25,20 @@ export class UserService
   private userId: number;
   constructor(private http: HttpClient) 
   {
-    this.emailUrl= 'http://localhost:8080/sendmail';
-    this.usersUrl = 'http://localhost:8080/users';
-    this.checkVerification = 'http://localhost:8080/checkVerification';
-    this.getUserIdUrl = 'http://localhost:8080/getUserId';
-    this.checkUserUrl = 'http://localhost:8080/checkUser';
-    this.verficationUserUrl = "http://localhost:8080/userImageVerification";
-    this.signatureUserUrl = 'http://localhost:8080/userImageSignature';
-    this.privilegeUrl = 'http://localhost:8080/checkPrivilege';
-    this.verificationRequestUserUrl = 'http://localhost:8080/getverificationrequest'
-    this.getUserByIdUrl = 'http://localhost:8080/getUser';
-    this.approveUserIdentityUrl = 'http://localhost:8080/approveuseridentity'
-    this.declineUserIdentityUrl = 'http://localhost:8080/declineuseridentity'
-    this.setUserCoverImageUrl = 'http://localhost:8080/setUserCoverImage'
-    this.getUserBalanceUrl = 'http://localhost:8080/getUserBalance'
+    this.emailUrl= 'http://34.87.165.176:8080/sendmail';
+    this.usersUrl = 'http://34.87.165.176:8080/users';
+    this.checkVerification = 'http://34.87.165.176:8080/checkVerification';
+    this.getUserIdUrl = 'http://34.87.165.176:8080/getUserId';
+    this.checkUserUrl = 'http://34.87.165.176:8080/checkUser';
+    this.verficationUserUrl = "http://34.87.165.176:8080/userImageVerification";
+    this.signatureUserUrl = 'http://34.87.165.176:8080/userImageSignature';
+    this.privilegeUrl = 'http://34.87.165.176:8080/checkPrivilege';
+    this.verificationRequestUserUrl = 'http://34.87.165.176:8080/getverificationrequest'
+    this.getUserByIdUrl = 'http://34.87.165.176:8080/getUser';
+    this.approveUserIdentityUrl = 'http://34.87.165.176:8080/approveuseridentity'
+    this.declineUserIdentityUrl = 'http://34.87.165.176:8080/declineuseridentity'
+    this.setUserCoverImageUrl = 'http://34.87.165.176:8080/setUserCoverImage'
+    this.getUserBalanceUrl = 'http://34.87.165.176:8080/getUserBalance'
   }
 
 
@@ -59,7 +59,6 @@ export class UserService
 
   public emailVerify(id: string)
   {
-    console.log("Sending email to backend");
     return this.http.post<boolean>(this.emailUrl,id);
   }
   public checkUserVerification(id: string)
