@@ -26,17 +26,20 @@
         
       <hr>
       <div style="text-align: center;">
-        <button type="button" class="btn btn-outline-info btnMenu" (click)="showThis = false">View Comments</button>
-        <button type="button" class="btn btn-outline-info btnMenu" (click)="showThis = true" >View Updates</button>
-        <button type="button" class="btn btn-outline-info btnMenu" (click) ="navigateHistoryTransaction();">View Donation</button>
+        <button type="button" class="btn btn-outline-info btnMenu" (click)="showThis = 1">View Comments</button>
+        <button type="button" class="btn btn-outline-info btnMenu" (click)="showThis = 2" >View Updates</button>
+        <button type="button" class="btn btn-outline-info btnMenu" (click) ="showThis = 3;">View Donation</button>
         <button type="button" class="btn btn-outline-danger btnMenu" (click) ="reportCampaign();">Report</button>
       </div>
       <hr>
-      <div  [hidden]="showThis">
+      <div  *ngIf="showThis == 1">
         <app-view-campaign-comment></app-view-campaign-comment>
       </div>
-      <div  [hidden]="!showThis">
+      <div  *ngIf="showThis == 2">
         <app-view-campaign-update></app-view-campaign-update>
+      </div>
+      <div *ngIf="showThis == 3">
+        <app-campaign-transaction-history></app-campaign-transaction-history>
       </div>
     </div>
     

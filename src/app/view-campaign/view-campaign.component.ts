@@ -24,7 +24,8 @@ export class ViewCampaignComponent implements OnInit {
   today= new Date();
   jstoday = '';
   totalDonate : number;
-  showThis: boolean;
+  showThis: number = 1;
+
   constructor(private campaignListService: CampaignListService,
     private router: Router,
     private actRoute: ActivatedRoute,
@@ -37,7 +38,6 @@ export class ViewCampaignComponent implements OnInit {
 
   ngOnInit() 
   {
-    
     this.campaignID = this.actRoute.snapshot.params['id'];
     this.loadCampaignDetails(this.campaignID);
     //FormatDate

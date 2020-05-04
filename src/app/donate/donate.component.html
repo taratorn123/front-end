@@ -1,51 +1,60 @@
-<!-- #dondateForm is use to reference this form -->
-<form (ngSumbit)="donate()" #donateForm="ngForm">
-    <div class="container">
-        <div class="form-group amount">
-            <!-- label for="amount" use with input id ="amount". Whenever use lick on the label the cursor will automatically selected the field -->
-            <label for="amount">Your donation</label>
-            <!-- In order to ngModel in form tag, user must provide name in order to keep tract of the ngModel value ;ex (amount : 200)-->
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">Lumen(XLM)</span>
+<div class="card container">
+    <h4 class="card-header">{{campaign.campaignName}}</h4>
+    <div class="card-body">
+        <img class="img-fluid rounded" [src]="campaign.coverImagePath" alt="">
+        <p class="lead" style="margin-top: 16px;">
+            by {{firstName}} {{lastName}}
+        </p>
+        <hr>
+        <form (ngSumbit)="donate()" #donateForm="ngForm">  
+            <div class="form-group amount">
+                <!-- label for="amount" use with input id ="amount". Whenever use lick on the label the cursor will automatically selected the field -->
+                <label for="amount">Your donation</label>
+                <!-- In order to ngModel in form tag, user must provide name in order to keep tract of the ngModel value ;ex (amount : 200)-->
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Lumen(XLM)</span>
+                    </div>
+                    <input
+                    name="amount"
+                    type="number"
+                    [(ngModel)]="donation.amount"
+                    id = "amount"
+                    class="form-control"
+                    required #name="ngModel"
+                    (change)="onInputChanged($event)"
+                    >
+                    <span class="input-group-text"> ฿ {{baht}}</span>
                 </div>
-                <input
-                name="amount"
-                type="number"
-                [(ngModel)]="donation.amount"
-                id = "amount"
-                class="form-control"
-                required #name="ngModel"
-                (change)="onInputChanged($event)"
-                >
-                <span class="input-group-text"> ฿ {{baht}}</span>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="comment">Comment</label>
-            <input [(ngModel)]="donation.comment"
-            id = "comment"
-            name="comment"
-            class="form-control" 
-            type="text" 
-            >
-        </div>
+            <div class="form-group">
+                <label for="comment">Comment</label>
+                <input [(ngModel)]="donation.comment"
+                id = "comment"
+                name="comment"
+                class="form-control" 
+                type="text" 
+                >
+            </div>
 
-        <div class="form-group">
-            <label for="privatekey">Stellar private key</label>
-            <input [(ngModel)]="donation.privateKey"
-            id = "privatekey"
-            name="privatekey"
-            class="form-control"
-            type="text" 
-            required #name="ngModel"
-            >
-        </div>
-        
-        <div class="form-check">
-            <input [(ngModel)]="donation.anonymousFlag" type="checkbox" name="flag" class="form-check-input" id="flag">
-            <label class="form-check-label" for="flag">Donate as anonymouse</label>
-        </div>
-        <button class = "btn btn-primary" [disabled]="!donateForm.form.valid" (click)="donate()" >Donate</button>
+            <div class="form-group">
+                <label for="privatekey">Stellar private key</label>
+                <input [(ngModel)]="donation.privateKey"
+                id = "privatekey"
+                name="privatekey"
+                class="form-control"
+                type="text" 
+                required #name="ngModel"
+                >
+            </div>
+            <div class="form-check">
+                <input [(ngModel)]="donation.anonymousFlag" type="checkbox" name="flag" class="form-check-input" id="flag">
+                <label class="form-check-label" for="flag">Donate as Anonymous</label>
+            </div>
+            <button class = "btn btn-lg btn-success btn-block"[disabled]="!donateForm.form.valid || !userLogin" (click)="donate()" >Donate</button>
+            <div style ="margin-top: 1px;"class = 'alert alert-danger' *ngIf="!userLogin">
+                <strong>ERROR</strong>: Please login
+            </div>
+        </form>
     </div>
-</form>
+</div>

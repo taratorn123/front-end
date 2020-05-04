@@ -318,13 +318,13 @@ export class SignupFormComponent
 
   <div *ngIf="choice == 9">
     <div class="modal-header">
-      <h3>On progress</h3>
+      <h3>In progress</h3>
     <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
     </div>
     <div class="modal-body">
-      <h4>Please for a moment</h4>
+      <h4>Please wait a moment</h4>
     </div>
   </div>
 

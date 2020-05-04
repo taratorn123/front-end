@@ -8,6 +8,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Session } from 'protractor';
 import { CurrencyService } from '../services/currency.service';
+import { CampaignListService } from '../services/campaign-list.service';
+import { CampaignModel } from '../../models/campaign-model';
+import { User } from 'src/models/User';
 
 @Component({
   /* selector is basically a custome html tag that can
@@ -27,6 +30,10 @@ export class DonateComponent implements OnInit
   campaignID : String;
   usd : string;
   baht : string;
+  userLogin : boolean = false;
+  campaign : CampaignModel;
+  firstName : string;
+  lastName : string;
 
 
   constructor(private fb: FormBuilder,
@@ -35,22 +42,25 @@ export class DonateComponent implements OnInit
               private modalService: NgbModal,
               private route: ActivatedRoute, 
               private router: Router,
-              private currencyService : CurrencyService)
+              private currencyService : CurrencyService,
+              private campaignListService : CampaignListService)
   { 
     this.donation = new AccountDonation();
     this.username = sessionStorage.getItem('username');
+    this.campaign = new CampaignModel();
   }
   onInputChanged(event) 
   {
-    this.baht = (parseFloat(this.donation.amount) *parseFloat(this.donation.exchangeRate)).toString()
+    this.baht = (parseFloat(this.donation.amount) *parseFloat(this.donation.exchangeRate)).toFixed(2).toString()
   };
   /* This method use to send donate form to spring boot backend
   If transaction send successfully it will au*/
   donate()
   {
+    const modalRef = this.modalService.open(NgbdModalContentDonate,{centered: true} );
+    modalRef.componentInstance.choice = '6';
     if(sessionStorage.getItem('userId') == null)
     {
-      const modalRef = this.modalService.open(NgbdModalContentDonate,{centered: true} );
       modalRef.componentInstance.choice = '1';
     }
     else
@@ -60,24 +70,20 @@ export class DonateComponent implements OnInit
           /* Not enough money */
           if(result == 0)
           {
-            const modalRef = this.modalService.open(NgbdModalContentDonate,{centered: true} );
             modalRef.componentInstance.choice = '2';
           }
           /* Incorrect private key */
           else if(result == 1)
           {
-            const modalRef = this.modalService.open(NgbdModalContentDonate,{centered: true} );
             modalRef.componentInstance.choice = '3';
           }
           /* Cannot send transaction*/
           else if(result == 2)
           {
-            const modalRef = this.modalService.open(NgbdModalContentDonate,{centered: true} );
             modalRef.componentInstance.choice = '4';
           }
           else if(result == 3)
           {
-            const modalRef = this.modalService.open(NgbdModalContentDonate,{centered: true} );
             modalRef.componentInstance.choice = '5';
           }
         });
@@ -86,14 +92,25 @@ export class DonateComponent implements OnInit
   ngOnInit() 
   {
     this.campaignID = this.route.snapshot.params['id'];
+    if(sessionStorage.getItem('userId') != null)
+    {
+      this.userLogin = true;
+    }
     this.donation.userId = this.username;
     this.donation.campaignId = this.campaignID;
+    this.campaignListService.getCampaignDetails(this.campaignID).subscribe(campaignModel => 
+    {
+      this.campaign = campaignModel
+      this.firstName = campaignModel.user['firstName']
+      this.lastName = campaignModel.user['lastName']
+    })
     this.currencyService.getCryptoCurrency().subscribe(data=>
       {
         this.usd = data['XLM']['USD']
         this.currencyService.getCurrencyUSDBase().subscribe(currencyData=>
           {
             this.donation.exchangeRate = (parseFloat(currencyData['rates']['THB']) * parseFloat(this.usd)).toString()
+
           })
       })
     
@@ -174,6 +191,17 @@ export class DonateComponent implements OnInit
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-outline-dark" (click)="navigateToCampaign()">Close</button>
+    </div>
+  </div>
+  <div *ngIf="choice == 6">
+    <div class="modal-header">
+      <h3>In progress</h3>
+      <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <h4>Please wait a moment</h4>
     </div>
   </div>
 

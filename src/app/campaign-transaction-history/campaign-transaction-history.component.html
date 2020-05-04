@@ -1,35 +1,19 @@
-<div class="card my-5">
-    <div class="card-body">
-        <table class="table table-bordered table-striped Header">
-            <thead class="thead-dark">
-                <tr>
-                    <th scope="row" style="width:25%">Campaign Name</th>
-                    <td>{{ campaignName}}</td>
-                </tr>
-                <tr>
-                    <th scope="row" style="width:25%">Campaign Public key</th>
-                    <td>{{ campaignPublicKey}}</td>
-                </tr>
-            </thead>
-        </table>
-        <hr>
-        <table class="table Detail" >
-            <thead class="thead-dark">
-                <tr>
-                    <th scope="col">Date and Time</th>
-                    <th scope="col">Send from</th>
-                    <th scope="col">Amount(Lumen)</th>
-                    <th scope="col">Transaction ID</th>
-                 </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let transaction of transactions">
-                    <td>{{ transaction.publishTime | date:'medium'}}</td>
-                    <td>{{ transaction.userName }}</td>
-                    <td>{{ transaction.amount }}</td>
-                    <td><a href="https://horizon-testnet.stellar.org/transactions/{{ transaction.transactionHash }}"  target="_blank">{{ transaction.transactionHash }}</a></td>
-                </tr>
-            </tbody>
-        </table>
+<main role="main" class="container">
+    <div class="my-3 p-3 bg-white rounded box-shadow">
+        <h6 class="border-bottom border-gray pb-2 mb-0">Recent Donate</h6>
+        <ng-container *ngFor="let transaction of transactions">
+            <div class="media text-muted pt-3">
+                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    {{ transaction.userName }}
+                    <br>
+                    <strong class="d-block text-gray-dark font-weight-bold">฿{{ transaction.amount }} 
+                        •  <p class="d-inline font-weight-light">{{ transaction.publishTime | dateAgo}}</p>
+
+                    </strong>
+                    Transaction ID : <a href="https://horizon-testnet.stellar.org/transactions/{{ transaction.transactionHash }}"  target="_blank">{{ transaction.transactionHash }}</a>
+                </p>
+                <hr>
+            </div>
+        </ng-container>
     </div>
-</div>
+</main>
