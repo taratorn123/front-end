@@ -39,13 +39,16 @@
 
             <div class="form-group">
                 <label for="privatekey">Stellar private key</label>
-                <input [(ngModel)]="donation.privateKey"
-                id = "privatekey"
-                name="privatekey"
-                class="form-control"
-                type="text" 
-                required #name="ngModel"
-                >
+                <div class="input-group">
+                    <input [(ngModel)]="donation.privateKey"
+                    id = "privatekey"
+                    name="privatekey"
+                    class="form-control"
+                    type="text" 
+                    required #name="ngModel"
+                    >
+                    <span class="input-group-text" placement="right" ngbTooltip="Private key can be obtained from your verification email"> ? </span>
+                </div>
             </div>
             <div class="form-check">
                 <input [(ngModel)]="donation.anonymousFlag" type="checkbox" name="flag" class="form-check-input" id="flag">

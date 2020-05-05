@@ -28,7 +28,6 @@ export class ReportService {
   }
   public getReportDetail(campaignId : String)
   {
-    console.log("Sending report detail request")
     return this.http.post<Report[]>(this.getReportDetailUrl,campaignId)
   }
 }
