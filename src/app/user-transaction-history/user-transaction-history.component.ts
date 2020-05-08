@@ -3,6 +3,7 @@ import { TransactionService } from 'src/app/services/transaction.service'
 import { ActivatedRoute, Router } from '@angular/router';
 import { Transaction } from 'src/models/transaction.model';
 import { AuthenticationService } from './../services/authentication.service';
+import { GlobalConstantsService } from '../global-constants.service'
 
 @Component({
   selector: 'app-user-transaction-history',
@@ -57,7 +58,7 @@ export class UserTransactionHistoryComponent implements OnInit {
   {
     this.transactionService.requestTransactionReport(transactionId).subscribe(result=>
       {
-        window.open('http://34.87.165.176:8080/getTransactionReport/'+result);
+        window.open(GlobalConstantsService.apiURL+'getTransactionReport/'+result);
       }
     )
   }

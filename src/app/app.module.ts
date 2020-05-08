@@ -54,6 +54,8 @@ import { SafeHtmlPipe } from './pipes/safe-html.pipe';
 import { ViewCampaignCardComponent } from './view-campaign-card/view-campaign-card.component';
 import { ReadMoreComponent } from './readmore/readmore.component';
 import { UserIdentityVerificationComponent } from './user-identity-verification/user-identity-verification.component';
+import { GlobalConstantsService } from './global-constants.service'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -92,7 +94,7 @@ import { UserIdentityVerificationComponent } from './user-identity-verification/
     ViewCampaignCardComponent,
     ReadMoreComponent,
     UserIdentityVerificationComponent,
-    NgbdModalContentEdit
+    NgbdModalContentEdit,
   ],
   entryComponents: 
   [
@@ -116,9 +118,12 @@ import { UserIdentityVerificationComponent } from './user-identity-verification/
     QuillModule.forRoot()
 
   ],
-  providers: [UserService,
+  providers: [
+    UserService,
     AuthenticationService,
-    AuthGaurdService],
+    AuthGaurdService,
+    GlobalConstantsService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from 'src/models/User';
 import { Observable } from 'rxjs/Observable';
 import { tick } from '@angular/core/testing';
- 
+import { GlobalConstantsService } from '../global-constants.service'
 @Injectable()
 export class UserService 
 {
@@ -25,20 +25,20 @@ export class UserService
   private userId: number;
   constructor(private http: HttpClient) 
   {
-    this.emailUrl= 'http://34.87.165.176:8080/sendmail';
-    this.usersUrl = 'http://34.87.165.176:8080/users';
-    this.checkVerification = 'http://34.87.165.176:8080/checkVerification';
-    this.getUserIdUrl = 'http://34.87.165.176:8080/getUserId';
-    this.checkUserUrl = 'http://34.87.165.176:8080/checkUser';
-    this.verficationUserUrl = "http://34.87.165.176:8080/userImageVerification";
-    this.signatureUserUrl = 'http://34.87.165.176:8080/userImageSignature';
-    this.privilegeUrl = 'http://34.87.165.176:8080/checkPrivilege';
-    this.verificationRequestUserUrl = 'http://34.87.165.176:8080/getverificationrequest'
-    this.getUserByIdUrl = 'http://34.87.165.176:8080/getUser';
-    this.approveUserIdentityUrl = 'http://34.87.165.176:8080/approveuseridentity'
-    this.declineUserIdentityUrl = 'http://34.87.165.176:8080/declineuseridentity'
-    this.setUserCoverImageUrl = 'http://34.87.165.176:8080/setUserCoverImage'
-    this.getUserBalanceUrl = 'http://34.87.165.176:8080/getUserBalance'
+    this.emailUrl= GlobalConstantsService.apiURL+'sendmail';
+    this.usersUrl = GlobalConstantsService.apiURL+'users';
+    this.checkVerification = GlobalConstantsService.apiURL+'checkVerification';
+    this.getUserIdUrl = GlobalConstantsService.apiURL+'getUserId';
+    this.checkUserUrl = GlobalConstantsService.apiURL+'checkUser';
+    this.verficationUserUrl = GlobalConstantsService.apiURL+'userImageVerification';
+    this.signatureUserUrl = GlobalConstantsService.apiURL+'userImageSignature';
+    this.privilegeUrl = GlobalConstantsService.apiURL+'checkPrivilege';
+    this.verificationRequestUserUrl = GlobalConstantsService.apiURL+'getverificationrequest'
+    this.getUserByIdUrl = GlobalConstantsService.apiURL+'getUser';
+    this.approveUserIdentityUrl = GlobalConstantsService.apiURL+'approveuseridentity'
+    this.declineUserIdentityUrl = GlobalConstantsService.apiURL+'declineuseridentity'
+    this.setUserCoverImageUrl = GlobalConstantsService.apiURL+'setUserCoverImage'
+    this.getUserBalanceUrl = GlobalConstantsService.apiURL+'getUserBalance'
   }
 
 

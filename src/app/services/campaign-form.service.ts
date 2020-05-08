@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CampaignModel} from './../../models/campaign-model';
 import { Observable } from 'rxjs/Observable';
-
+import { GlobalConstantsService } from '../global-constants.service'
 @Injectable({
   providedIn: 'root'
 })
@@ -19,12 +19,13 @@ export class CampaignFormService {
   private updateCampaignUrl: string;
   private updateCampaignIdUrl: string;
 
-  constructor(private http : HttpClient) {
-    this.campaignUrl = 'http://34.87.165.176:8080/campaigns';
-    this.campaignUserUrl = 'http://34.87.165.176:8080/campaignUser';
-    this.editCampaignUrl = 'http://34.87.165.176:8080/editCampaigns';
-    this.updateCampaignUrl = 'http://34.87.165.176:8080/updateCampaigns';
-    this.updateCampaignIdUrl = 'http://34.87.165.176:8080/updateCampaignsId';
+  constructor(private http : HttpClient) 
+  {
+    this.campaignUrl = GlobalConstantsService.apiURL+'campaigns';
+    this.campaignUserUrl = GlobalConstantsService.apiURL+'campaignUser';
+    this.editCampaignUrl = GlobalConstantsService.apiURL+'editCampaigns';
+    this.updateCampaignUrl = GlobalConstantsService.apiURL+'updateCampaigns';
+    this.updateCampaignIdUrl = GlobalConstantsService.apiURL+'updateCampaignsId';
    }
   
    // Return the entire Form Data

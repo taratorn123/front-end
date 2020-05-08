@@ -6,10 +6,12 @@ import { Component, Input } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent 
+{
   title = 'donationblock';
   @Input() formData;
-  constructor(private campaignFormService: CampaignFormService) {
+  constructor(private campaignFormService: CampaignFormService) 
+  {
   }
 
   ngOnInit() {

@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Report } from 'src/models/report.model';
-
+import { GlobalConstantsService } from '../global-constants.service'
 @Injectable({
   providedIn: 'root'
 })
@@ -23,16 +23,16 @@ export class CampaignListService {
   
   constructor(private http:HttpClient) 
   { 
-    this.campaignListUrl = 'http://34.87.165.176:8080/campaigns-list'
-    this.campaignIdUrl = 'http://34.87.165.176:8080/campaigns'
-    this.campaignByUserIdUrl = 'http://34.87.165.176:8080/userscampaigns'
-    this.campaignUpdateByCampaignIdUrl = 'http://34.87.165.176:8080/getUpdateCampaigns'
-    this.campaignCommentByCampaignIdUrl = 'http://34.87.165.176:8080/getCommentCampaigns'
-    this.campaignInActivateUrl = 'http://34.87.165.176:8080/inactivateCampaign'
-    this.getInactiveCampaignUrl = 'http://34.87.165.176:8080/getInactiveCampaign'
-    this.activateCampaignUrl = 'http://34.87.165.176:8080/activeCampaign'
-    this.campaignByCategoryUrl = 'http://34.87.165.176:8080/getCampaignCategory'
-    this.getCampaignCurrentDonate = 'http://34.87.165.176:8080/getTotalDonate'
+    this.campaignListUrl = GlobalConstantsService.apiURL+'campaigns-list'
+    this.campaignIdUrl = GlobalConstantsService.apiURL+'campaigns'
+    this.campaignByUserIdUrl = GlobalConstantsService.apiURL+'userscampaigns'
+    this.campaignUpdateByCampaignIdUrl = GlobalConstantsService.apiURL+'getUpdateCampaigns'
+    this.campaignCommentByCampaignIdUrl = GlobalConstantsService.apiURL+'getCommentCampaigns'
+    this.campaignInActivateUrl = GlobalConstantsService.apiURL+'inactivateCampaign'
+    this.getInactiveCampaignUrl = GlobalConstantsService.apiURL+'getInactiveCampaign'
+    this.activateCampaignUrl = GlobalConstantsService.apiURL+'activeCampaign'
+    this.campaignByCategoryUrl = GlobalConstantsService.apiURL+'getCampaignCategory'
+    this.getCampaignCurrentDonate = GlobalConstantsService.apiURL+'getTotalDonate'
 
   }
   

@@ -3,6 +3,7 @@ import { AccountDonation } from 'src/models/account-donation.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Transaction } from 'src/models/transaction.model'
 import { Location } from '@angular/common';
+import { GlobalConstantsService } from '../global-constants.service'
 
 @Injectable({
   providedIn: 'root'
@@ -16,10 +17,10 @@ export class TransactionService {
 
   constructor(private http:HttpClient, private location:Location) 
   { 
-    this.usersUrl = 'http://34.87.165.176:8080/sendDonation'
-    this.historyTransactionCampaignUrl = 'http://34.87.165.176:8080/getHistoryTransactionCampaign'
-    this.historyTransactionUserUrl = 'http://34.87.165.176:8080/getHistoryTransactionUser'
-    this.requestTransactionReportUrl = 'http://34.87.165.176:8080/RequestForTransactionReport'
+    this.usersUrl = GlobalConstantsService.apiURL+'sendDonation'
+    this.historyTransactionCampaignUrl = GlobalConstantsService.apiURL+'getHistoryTransactionCampaign'
+    this.historyTransactionUserUrl = GlobalConstantsService.apiURL+'getHistoryTransactionUser'
+    this.requestTransactionReportUrl = GlobalConstantsService.apiURL+'RequestForTransactionReport'
   }
   public saveDonation(accountDonation: AccountDonation) 
   {

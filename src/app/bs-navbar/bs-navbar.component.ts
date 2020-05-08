@@ -21,7 +21,8 @@ export class BsNavbarComponent implements OnInit
 
   ngOnInit() 
   {
-    if(sessionStorage.getItem('userId') != null){
+    if(sessionStorage.getItem('userId') != null)
+    {
       this.userService.getUserById(sessionStorage.getItem('userId')).subscribe(userModel =>{
         this.user = userModel
       })
