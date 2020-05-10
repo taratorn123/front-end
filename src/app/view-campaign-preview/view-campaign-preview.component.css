@@ -1,0 +1,19 @@
+.first{
+    height: 10px;
+    width: 100%;
+    background-color: #dddddd;
+}
+
+.second{
+    height: 10px;
+    background-color: deepskyblue;
+}
+
+.donateBtn{
+    margin-top: 15px;
+    text-align: center;
+}
+
+.btnMenu{
+    margin: 0 15px;
+}

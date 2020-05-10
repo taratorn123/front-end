@@ -9,11 +9,11 @@ import { User } from 'src/models/User';
 import { formatDate } from '@angular/common';
 
 @Component({
-  selector: 'app-view-campaign',
-  templateUrl: './view-campaign.component.html',
-  styleUrls: ['./view-campaign.component.css']
+  selector: 'app-view-campaign-preview',
+  templateUrl: './view-campaign-preview.component.html',
+  styleUrls: ['./view-campaign-preview.component.css']
 })
-export class ViewCampaignComponent implements OnInit {
+export class ViewCampaignPreviewComponent implements OnInit {
   campaignData : CampaignModel;
   campaignDataTemp : any;
   campaignDataTemp1: CampaignModel;
@@ -48,7 +48,6 @@ export class ViewCampaignComponent implements OnInit {
           this.campaignDataTemp1 = campaignModel;
           this.width =  (this.totalDonate*100)/this.campaignDataTemp1.targetDonation;
           if(this.width >= 100){
-            this.campaignListService.finishedCampaign(this.actRoute.snapshot.params['id']).subscribe()
             this.width = 100;
           }
         })
@@ -79,6 +78,10 @@ export class ViewCampaignComponent implements OnInit {
   navigation(link)
   {
     this.router.navigate([link]);
+  }
+  navigateToManage()
+  {
+    this.router.navigate(['manage-campaigns'+'/'+this.campaignID])
   }
   reportCampaign()
   {

@@ -45,19 +45,24 @@
       </div>
       <button type="submit" class="btn btn-lg btn-primary btn-block" type="submit" (click)="open(mymodal)">Save</button>
       <div *ngIf="userData.privilegeLevel == 1">
+        
         <button class = "btn btn-lg btn-success btn-block" (click)="activate()" >Activate</button>
+        <p>*To act as a beneficiary (access create campaign feature), click "Activate" button</p>
       </div>
-      <!-- This part for successful popup -->
-      <ng-template #mymodal let-modal>
-        <div class="modal-header">
-          <h4 class="modal-title" id="modal-basic-title">Edit Profile</h4>
-          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          Successful
-        </div>
-      </ng-template>
+      <!-- For successful popup -->
+    <ng-template #mymodal let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Edit Profile</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Successful
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" style="margin-top: 0px;" (click)="modal.close('Save click')">Ok</button>
+      </div>
+    </ng-template>
 </form>
 </div>

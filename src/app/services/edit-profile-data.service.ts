@@ -8,8 +8,8 @@ import { GlobalConstantsService } from '../global-constants.service'
 })
 export class EditProfileDataService 
 {
-  public CURRENTUSER_API = GlobalConstantsService.apiURL+ '/current-user';
-  public CURRENTUSER_API_EDIT = GlobalConstantsService.apiURL+'/current-user/edit'
+  public CURRENTUSER_API = GlobalConstantsService.apiURL+ 'current-user';
+  public CURRENTUSER_API_EDIT = GlobalConstantsService.apiURL+'current-user/edit'
   public userName: string;
   constructor(private http: HttpClient) {
    }

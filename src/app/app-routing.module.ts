@@ -1,3 +1,4 @@
+import { ViewCampaignPreviewComponent } from './view-campaign-preview/view-campaign-preview.component';
 
 import { UpdateCampaignComponent } from './update-campaign/update-campaign.component';
 import { ManageCampaignIdComponent } from './manage-campaign-id/manage-campaign-id.component';
@@ -60,7 +61,9 @@ const routes: Routes = [
   { path: 'manage-campaigns/:id/view-comment-campaign', component: ViewCampaignCommentComponent},
   { path: 'manage-campaigns/:id/view-card-campaign', component: ViewCampaignCardComponent},
   { path: 'manage-campaigns/:id/readmore', component: ReadMoreComponent},
-  { path: 'user-verification', component: UserIdentityVerificationComponent}
+  { path: 'user-verification', component: UserIdentityVerificationComponent},
+  { path: 'manage-campaigns/:id/view-preview-campaign', component: ViewCampaignPreviewComponent}
+
 ];
 
 @NgModule({

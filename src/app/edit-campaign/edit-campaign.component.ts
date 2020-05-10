@@ -140,6 +140,7 @@ export class EditCampaignComponent implements OnInit {
           ).subscribe();
         }
       });
+      this.router.navigate(['manage-campaigns' + '/' + this.campaignID]);
     }
   }
 
@@ -178,5 +179,9 @@ export class EditCampaignComponent implements OnInit {
     } else {
       return  `with: ${reason}`;
     }
+  }
+  navigateToManage()
+  {
+    this.router.navigate(['manage-campaigns'+'/'+this.actRoute.snapshot.params['id']])
   }
 }

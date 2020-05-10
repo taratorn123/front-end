@@ -84,7 +84,17 @@ export class DonateComponent implements OnInit
           }
           else if(result == 3)
           {
+            this.campaignListService.getDonateTimes(this.route.snapshot.params['id']).subscribe( donateTimes => {
+              if(donateTimes == null)
+                donateTimes == 0
+              this.campaign.donateTimes = donateTimes+1;
+              this.campaign.campaignId = this.route.snapshot.params['id'];
+              console.log(" this.campaign.donateTimes: " + this.campaign.donateTimes)
+
+              this.campaignListService.addDonateTimes(this.campaign).subscribe()
+            })
             modalRef.componentInstance.choice = '5';
+            this.router.navigate(["campaigns/"+ this.route.snapshot.params['id']]);
           }
         });
     }
@@ -227,7 +237,6 @@ export class NgbdModalContentDonate {
   navigateToCampaign()
   {
     this.activeModal.close('Close click')
-    this.router.navigate(['/campaigns']);
   }
   navigateToSignin()
   {

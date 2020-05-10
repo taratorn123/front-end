@@ -20,7 +20,13 @@ export class CampaignListService {
   private getInactiveCampaignUrl: string;
   private activateCampaignUrl: string;
   private getCampaignCurrentDonate: string;
-  
+  private deleteCampaignUrl: string;
+  private finishedCampaignUrl: string;
+  private getFinishedCampaignUrl: string;
+  private getMostActiveUrl: string;
+  private getDonateTimesUrl: string;
+  private addDonateTimesUrl: string;
+
   constructor(private http:HttpClient) 
   { 
     this.campaignListUrl = GlobalConstantsService.apiURL+'campaigns-list'
@@ -29,10 +35,16 @@ export class CampaignListService {
     this.campaignUpdateByCampaignIdUrl = GlobalConstantsService.apiURL+'getUpdateCampaigns'
     this.campaignCommentByCampaignIdUrl = GlobalConstantsService.apiURL+'getCommentCampaigns'
     this.campaignInActivateUrl = GlobalConstantsService.apiURL+'inactivateCampaign'
+    this.deleteCampaignUrl = GlobalConstantsService.apiURL+'deleteCampaign'
     this.getInactiveCampaignUrl = GlobalConstantsService.apiURL+'getInactiveCampaign'
     this.activateCampaignUrl = GlobalConstantsService.apiURL+'activeCampaign'
     this.campaignByCategoryUrl = GlobalConstantsService.apiURL+'getCampaignCategory'
     this.getCampaignCurrentDonate = GlobalConstantsService.apiURL+'getTotalDonate'
+    this.finishedCampaignUrl = GlobalConstantsService.apiURL+'finishedCampaign'
+    this.getFinishedCampaignUrl = GlobalConstantsService.apiURL+'getFinishedCampaign'
+    this.getMostActiveUrl = GlobalConstantsService.apiURL+'getMostActive'
+    this.getDonateTimesUrl = GlobalConstantsService.apiURL+'getDonateTimes'
+    this.addDonateTimesUrl = GlobalConstantsService.apiURL+'addDonateTimes'
 
   }
   
@@ -68,6 +80,10 @@ export class CampaignListService {
   {
     return this.http.post<boolean>(this.campaignInActivateUrl,campaignId);
   }
+  public deleteCampaign(campaignId:string)
+  {
+    return this.http.post<string>(this.deleteCampaignUrl,campaignId);
+  }
   public getInactiveCampaign()
   {
     return this.http.get<CampaignModel[]>(this.getInactiveCampaignUrl)
@@ -79,5 +95,23 @@ export class CampaignListService {
   public getTotalDonate(campaignId : number)
   {
     return this.http.get<number>(this.getCampaignCurrentDonate+'/'+campaignId)
+  }
+  public finishedCampaign(campaignId:number){
+    return this.http.post(this.finishedCampaignUrl,campaignId);
+  }
+  public getFinishedCampaign(finished : boolean)
+  {
+    return this.http.get<CampaignModel[]>(this.getFinishedCampaignUrl+'/'+finished)
+  }
+  public getMostActive()
+  {
+    return this.http.get<CampaignModel[]>(this.getMostActiveUrl)
+  }
+  public getDonateTimes(campaignId:number)
+  {
+    return this.http.get<number>(this.getDonateTimesUrl+'/'+campaignId)
+  }
+  public addDonateTimes(campaign: CampaignModel){
+    return this.http.post(this.addDonateTimesUrl,campaign)
   }
 } 

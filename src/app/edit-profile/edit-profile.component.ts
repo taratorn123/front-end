@@ -88,6 +88,8 @@ export class EditProfileComponent implements OnInit
           ).subscribe();
         }
       });
+      this.router.navigate(['/']);
+
     }
   }
 
@@ -131,5 +133,6 @@ export class EditProfileComponent implements OnInit
     } else {
       return  `with: ${reason}`;
     }
+
   }
 }
