@@ -39,6 +39,8 @@ export class ReportComponent implements OnInit {
   }
   inactivateCampaign(campaignId : string)
   {
+    this.reportService.sendUserReportEmail(campaignId).subscribe()
+    this.reportService.sendBeneficiaryReport(campaignId).subscribe()
     this.campaignService.inActivateCampaign(campaignId).subscribe(result=>
       {
         if(result)

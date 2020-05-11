@@ -51,7 +51,15 @@ export class DonateComponent implements OnInit
   }
   onInputChanged(event) 
   {
-    this.baht = (parseFloat(this.donation.amount) *parseFloat(this.donation.exchangeRate)).toFixed(2).toString()
+    if(this.donation.amount == null)
+    {
+      this.baht = '';
+    }
+    else
+    {
+      this.baht = (parseFloat(this.donation.amount) *parseFloat(this.donation.exchangeRate)).toFixed(2).toString()
+
+    }
   };
   /* This method use to send donate form to spring boot backend
   If transaction send successfully it will au*/
@@ -145,7 +153,7 @@ export class DonateComponent implements OnInit
     </button>
     </div>
     <div class="modal-body">
-      <h4>Not enough balance</h4>
+      <h4>Not enough balance. Please try again</h4>
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
@@ -159,7 +167,7 @@ export class DonateComponent implements OnInit
     </button>
     </div>
     <div class="modal-body">
-      <h4>Incorrect private key</h4>
+      <h4>Invalid private key. Please try again</h4>
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
@@ -173,7 +181,7 @@ export class DonateComponent implements OnInit
     </button>
     </div>
     <div class="modal-body">
-      <h4>Please try again</h4>
+      <h4>Transaction error. Please try again</h4>
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
@@ -202,6 +210,9 @@ export class DonateComponent implements OnInit
     </div>
     <div class="modal-body">
       <h4>Please wait a moment</h4>
+    </div>
+    <div class="modal-footer">
+     
     </div>
   </div>
 

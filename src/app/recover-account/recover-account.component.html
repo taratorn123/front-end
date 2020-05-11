@@ -1,0 +1,39 @@
+<form (ngSubmit)="onSubmit()" #recoverForm="ngForm" class="form-signin text-center">
+    <div class="container">
+        <div class = "row">
+            <div class="col align-self-center">
+                <img class="mb-4" src="../../assets/img/Logo.png" alt="" width="72" height="72">
+                <!-- <img class="mb-4" src="../../assets/img/Logo.png" alt="" width="72" height="72"> -->
+            </div>
+        </div>
+        <div class = "row">
+            <div class="col align-self-center">
+                <h3>Lost Username or Password?</h3>
+            </div>
+        </div>
+        <hr>
+        <div class = "row">
+            <div class = "col-12 align-self-center">
+                <label for="username">Please enter your email which you first registered with.</label>
+                <input style="margin-top: 15px;margin-bottom: 15px;"type="text" [(ngModel)]="userEmail" 
+                class="form-control"
+                id="userEmail"
+                name="userEmail"
+                placeholder="Email"
+                required autofocus #name="ngModel">
+            </div>
+        </div>
+        <div class="errorCode" *ngIf="nullresult">
+            <strong>*No search results</strong>
+            <p>Your search did not return any results. Please try again with other information.</p>
+        </div>
+        <div class="greenCode" *ngIf="accountFound">
+            <p>We have sent you an email with your username and a link in order to reset your password.</p>
+        </div>
+        <!-- <div [hidden]="!email.pristine" class="alert alert-danger">Email is required</div> -->
+        <!-- <label for="inputPassword" class="sr-only">Password</label> -->
+        <!-- <input type="password" id="inputPassword" class="form-control" placeholder="Password" required> -->
+        <button type="submit" [disabled]="!recoverForm.form.valid" class="btn btn-lg btn-primary btn-block">Send Email</button>
+        <h4 class="login"> Already have an account? <a href ="/sign-in">Sign in here</a></h4>
+    </div>
+</form>

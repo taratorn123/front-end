@@ -54,7 +54,9 @@ import { SafeHtmlPipe } from './pipes/safe-html.pipe';
 import { ViewCampaignCardComponent } from './view-campaign-card/view-campaign-card.component';
 import { ReadMoreComponent } from './readmore/readmore.component';
 import { UserIdentityVerificationComponent } from './user-identity-verification/user-identity-verification.component';
-import { GlobalConstantsService } from './global-constants.service'
+import { GlobalConstantsService } from './global-constants.service';
+import { RecoverAccountComponent } from './recover-account/recover-account.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component'
 
 @NgModule({
   declarations: [
@@ -95,6 +97,8 @@ import { GlobalConstantsService } from './global-constants.service'
     ReadMoreComponent,
     UserIdentityVerificationComponent,
     NgbdModalContentEdit,
+    RecoverAccountComponent,
+    ResetPasswordComponent,
   ],
   entryComponents: 
   [

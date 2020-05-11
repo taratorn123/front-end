@@ -4,6 +4,8 @@ import { AuthenticationService } from './../services/authentication.service';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
   selector: 'app-sign-in',
@@ -14,11 +16,17 @@ export class SignInComponent implements OnInit {
   username :string
   password :string
   invalidLogin :boolean = false;
-  user: User = new User()
+  user: User = new User();
+  closeResult: string;
+  recoverEmail: string;
 
   constructor(private router: Router,
     private loginservice: AuthenticationService,
-    private userService: UserService) { }
+    private userService: UserService,
+    private modalService: NgbModal) 
+    { 
+
+    }
 
   ngOnInit() {
   }
@@ -74,8 +82,26 @@ export class SignInComponent implements OnInit {
     });
   }
 
-  gotoSignUp() {
+  gotoSignUp() 
+  {
     this.router.navigate(['sign-up'])
+  }
+  open(content) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+  private getDismissReason(reason: any): string 
+  {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return  `with: ${reason}`;
+    }
   }
   
 }

@@ -30,6 +30,8 @@ import { ViewCampaignCommentComponent } from './view-campaign-comment/view-campa
 import { ViewCampaignCardComponent } from './view-campaign-card/view-campaign-card.component';
 import { ReadMoreComponent } from './readmore/readmore.component';
 import { UserIdentityVerificationComponent } from './user-identity-verification/user-identity-verification.component'
+import { RecoverAccountComponent } from './recover-account/recover-account.component'
+import { ResetPasswordComponent } from './reset-password/reset-password.component'
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
@@ -60,7 +62,10 @@ const routes: Routes = [
   { path: 'manage-campaigns/:id/view-comment-campaign', component: ViewCampaignCommentComponent},
   { path: 'manage-campaigns/:id/view-card-campaign', component: ViewCampaignCardComponent},
   { path: 'manage-campaigns/:id/readmore', component: ReadMoreComponent},
-  { path: 'user-verification', component: UserIdentityVerificationComponent}
+  { path: 'user-verification', component: UserIdentityVerificationComponent},
+  { path: 'recover-account', component: RecoverAccountComponent},
+  { path: 'reset-password', component: ResetPasswordComponent},
+  
 ];
 
 @NgModule({
