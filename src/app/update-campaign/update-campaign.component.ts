@@ -48,7 +48,8 @@ export class UpdateCampaignComponent implements OnInit {
   campaignUpdateId: number;
   editorInstance: any;
   isSubmitted: boolean;
-  
+  closeResult: string;
+
   constructor(private router: Router,
     private actRoute: ActivatedRoute,
     private campaignFormService: CampaignFormService,
@@ -110,6 +111,8 @@ imageEditor(){
       })
       input.click();
     }
+    
+
   }
 }
   ngOnSubmit(formValue){
@@ -125,6 +128,7 @@ imageEditor(){
       this.campaignUpdate.updateTimestamp = this.today;
       this.campaignFormService.saveCampaignUpdate(this.campaignUpdate).subscribe();
       this.resetForm()
+      this.router.navigate(['manage-campaigns' + '/' + this.campaignID]);
     }
   }
 
@@ -140,4 +144,26 @@ imageEditor(){
     });
     this.isSubmitted = false;
   }
+  navigateToManage()
+  {
+    this.router.navigate(['manage-campaigns'+'/'+this.actRoute.snapshot.params['id']])
+  }
+  open(content) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+  
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return  `with: ${reason}`;
+    }
+  }
+ 
 }

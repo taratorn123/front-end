@@ -56,7 +56,8 @@ import { ReadMoreComponent } from './readmore/readmore.component';
 import { UserIdentityVerificationComponent } from './user-identity-verification/user-identity-verification.component';
 import { GlobalConstantsService } from './global-constants.service';
 import { RecoverAccountComponent } from './recover-account/recover-account.component';
-import { ResetPasswordComponent } from './reset-password/reset-password.component'
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { ViewCampaignPreviewComponent } from './view-campaign-preview/view-campaign-preview.component';
 
 @NgModule({
   declarations: [
@@ -99,6 +100,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     NgbdModalContentEdit,
     RecoverAccountComponent,
     ResetPasswordComponent,
+    ViewCampaignPreviewComponent,
   ],
   entryComponents: 
   [

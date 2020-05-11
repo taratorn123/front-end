@@ -10,8 +10,10 @@ export class CampaignModel
     coverImageName : string = '';
     campaignDetail : string = '';
     startDate : Date = new Date();
-    activeFlag : boolean = true;
-    deleteFlag : boolean = false;
+    active : boolean = true;
+    deleted : boolean = false;
+    finished : boolean;
+    donateTimes: number;
     currentTotalDonate : number;
     
     user: [{

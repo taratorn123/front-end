@@ -1,0 +1,67 @@
+<!-- Page Content -->
+<div class="container">
+    <button type="button" class="btn btn-secondary" style="margin-top: 24px" (click)="navigateToManage()">&laquo; Go back to Manage Campaign</button>
+
+    <div class="row">
+      <!-- Title -->
+      <h1 class="mt-4" style="margin-bottom: 40px; padding-left: 15px;">{{campaignData.campaignName}}</h1>
+    </div>
+    <div class="row">
+      <!-- Post Content Column -->
+      <div class="col-lg-8">
+        
+        <!-- Preview Image -->
+        <img class="img-fluid rounded" [src]="campaignData.coverImagePath" alt="">
+        <!-- Author -->
+        <p class="lead" style="margin-top: 16px;">
+          by {{userData.firstName}} {{userData.lastName}}
+        </p>
+        <hr>
+        <!-- Date/Time -->
+        <p>Created: {{campaignData.startDate | date}}  |  Category: {{campaignData.category}}</p>
+        <hr>
+  
+        <read-more>
+          <!-- Post Content -->
+          <p [innerHTML]="campaignData.campaignDetail"></p>
+        </read-more>
+          
+        <hr>
+        <div style="text-align: center;">
+          <button type="button" class="btn btn-outline-info btnMenu" (click)="showThis = 1">View Comments</button>
+          <button type="button" class="btn btn-outline-info btnMenu" (click)="showThis = 2" >View Updates</button>
+          <button type="button" class="btn btn-outline-info btnMenu" (click) ="showThis = 3;">View Donation</button>
+          <button type="button" class="btn btn-outline-danger btnMenu" (click) ="reportCampaign();">Report</button>
+        </div>
+        <hr>
+        <div  *ngIf="showThis == 1">
+          <app-view-campaign-comment></app-view-campaign-comment>
+        </div>
+        <div  *ngIf="showThis == 2">
+          <app-view-campaign-update></app-view-campaign-update>
+        </div>
+        <div *ngIf="showThis == 3">
+          <app-campaign-transaction-history></app-campaign-transaction-history>
+        </div>
+      </div>
+      
+      
+      
+      <!-- Paste below code to manage campaign id -->
+      <!-- Sidebar Widgets Column -->
+      <div class="col-lg-4">
+        <!-- Side Widget -->
+        <div class="card lg-4">
+          <h5 class="card-header">฿{{totalDonate}} raised of ฿{{campaignData.targetDonation}} goal</h5>
+          <div class="card-body">
+              <div class="first">
+                <div [ngStyle]="{'width.%':width}" class="second"></div>
+              </div>
+              <div class="donateBtn">
+                <button type="button" class="btn btn-success" (click) ="navigateDonate();">Donate</button>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

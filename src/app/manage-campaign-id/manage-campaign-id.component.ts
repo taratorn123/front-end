@@ -17,6 +17,7 @@ export class ManageCampaignIdComponent implements OnInit {
   campaignID: number;
   totalDonate: number;
   campaignDataTemp1: CampaignModel;
+  campaignIdString: string;
   width: number;
   showThis : boolean;
   constructor(private campaignListService: CampaignListService,private router: Router,private actRoute: ActivatedRoute) {
@@ -28,6 +29,7 @@ export class ManageCampaignIdComponent implements OnInit {
   {
     
     this.campaignID = this.actRoute.snapshot.params['id'];
+    this.campaignIdString = this.actRoute.snapshot.params['id'];
     this.loadCampaignDetails(this.campaignID);
     this.campaignListService.getTotalDonate(this.campaignID).subscribe(donate=>
       {
@@ -78,7 +80,20 @@ export class ManageCampaignIdComponent implements OnInit {
         this.router.navigate([link1 + '/' + id+ '/' +link2]);
     }
   }
-  navigateToPreviewCampaign(id){
-    this.router.navigate(['campaigns' + '/' + id]);
+  navigateToPreviewCampaign(link1, id, link2){
+    if(id === ''){
+      this.router.navigate([link1]);
+    } else {
+      this.router.navigate([link1 + '/' + id+ '/' +link2]);
+    }  
+  }
+  navigateToManage(link){
+    if(confirm("Are you sure to delete this campaign")) {
+      this.campaignListService.deleteCampaign(this.campaignIdString).subscribe()
+      this.router.navigate([link])
+      .then(() => {
+        window.location.reload();
+      });
+    }
   }
 }

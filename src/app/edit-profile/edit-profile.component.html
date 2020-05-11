@@ -50,6 +50,7 @@
         <button type="submit" class="btn btn-lg btn-primary btn-block" type="submit">Save</button>
         <div *ngIf="userData.privilegeLevel == 1">
           <button class = "btn btn-lg btn-success btn-block" (click)="activate()" >Activate</button>
+          <p>*To act as a beneficiary (access create campaign feature), click "Activate" button</p>
         </div>
 
         <!-- ng-template for change password -->

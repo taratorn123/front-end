@@ -1,4 +1,6 @@
 <div class="col-md-12 order-md-1 container">
+  <button type="button" class="btn btn-secondary" style="margin-bottom: 24px" (click)="navigateToManage()">&laquo; Go back to Manage Campaign</button>
+
     <h4 class="mb-3">Update Campaign</h4>
     <form [formGroup]="formTemplate" (ngSubmit)="ngOnSubmit(formTemplate.value)" class="editForm">
       <hr>
@@ -29,8 +31,23 @@
       </div>
       <!-- Submit button -->
       <div class="form-group text-center" >
-        <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
+        <button type="submit" class="btn btn-primary btn-lg btn-block" (click)="open(mymodal)" >Submit</button>
       </div>
+      <!-- For successful popup -->
+    <ng-template #mymodal let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Update Campaign</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Successful
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Ok</button>
+      </div>
+    </ng-template>
     </form>
     
   </div>

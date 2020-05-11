@@ -1,3 +1,4 @@
+import { ViewCampaignPreviewComponent } from './view-campaign-preview/view-campaign-preview.component';
 
 import { UpdateCampaignComponent } from './update-campaign/update-campaign.component';
 import { ManageCampaignIdComponent } from './manage-campaign-id/manage-campaign-id.component';
@@ -65,7 +66,8 @@ const routes: Routes = [
   { path: 'user-verification', component: UserIdentityVerificationComponent},
   { path: 'recover-account', component: RecoverAccountComponent},
   { path: 'reset-password', component: ResetPasswordComponent},
-  
+  { path: 'manage-campaigns/:id/view-preview-campaign', component: ViewCampaignPreviewComponent}
+
 ];
 
 @NgModule({

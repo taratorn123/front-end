@@ -9,11 +9,11 @@ import { User } from 'src/models/User';
 import { formatDate } from '@angular/common';
 
 @Component({
-  selector: 'app-view-campaign',
-  templateUrl: './view-campaign.component.html',
-  styleUrls: ['./view-campaign.component.css']
+  selector: 'app-view-campaign-preview',
+  templateUrl: './view-campaign-preview.component.html',
+  styleUrls: ['./view-campaign-preview.component.css']
 })
-export class ViewCampaignComponent implements OnInit {
+export class ViewCampaignPreviewComponent implements OnInit {
   campaignData : CampaignModel;
   campaignDataTemp : any;
   campaignDataTemp1: CampaignModel;
@@ -48,7 +48,6 @@ export class ViewCampaignComponent implements OnInit {
           this.campaignDataTemp1 = campaignModel;
           this.width =  (this.totalDonate*100)/this.campaignDataTemp1.targetDonation;
           if(this.width >= 100){
-            this.campaignListService.finishedCampaign(this.actRoute.snapshot.params['id']).subscribe()
             this.width = 100;
           }
         })
@@ -80,6 +79,10 @@ export class ViewCampaignComponent implements OnInit {
   {
     this.router.navigate([link]);
   }
+  navigateToManage()
+  {
+    this.router.navigate(['manage-campaigns'+'/'+this.campaignID])
+  }
   reportCampaign()
   {
     const modalRef = this.modalService.open(NgbdModalContentReport,{centered: true} );
@@ -98,42 +101,32 @@ export class ViewCampaignComponent implements OnInit {
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
-    <div *ngIf ="!status;else sentReport">
-      <div class="modal-body">
-        <form (ngSumbit)="sendReport()" #reportForm="ngForm">
-          <div class="form-group reportDetail">
-            <input name="detail"
-            type="text"
-            [(ngModel)]="report.detail"
-            id = "detail"
-            class="form-control"
-            placeholder="Report detail"
-            required #name="ngModel"
-            >
-          </div>
-          <div class="errorCode" *ngIf="this.report.userId == null">
-            *Please login
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <div *ngIf="this.report.userId == null;else normalButton">
-          <button type="button" style="margin:5px;" class="btn btn-primary" (click)="sendReport()">Login</button>
-          <button type="button" style="margin:5px;" class="btn btn-primary" [disabled]="this.report.userId == null" (click)="sendReport()">Send</button>
+    <div class="modal-body">
+      <form (ngSumbit)="sendReport()" #reportForm="ngForm">
+        <div class="form-group reportDetail">
+          <input name="detail"
+          type="text"
+          [(ngModel)]="report.detail"
+          id = "detail"
+          class="form-control"
+          placeholder="Report detail"
+          required #name="ngModel"
+          >
         </div>
-        <ng-template #normalButton>
-          <button type="button" class="btn btn-primary" [disabled]="!reportForm.form.valid" (click)="sendReport()">Send</button>
-        </ng-template>
-      </div>
+        <div class="errorCode" *ngIf="this.report.userId == null">
+          *Please login
+        </div>
+      </form>
     </div>
-    <ng-template #sentReport>
-      <div class="modal-body">
-        <h4> Report sent. Thank you</h4>
+    <div class="modal-footer">
+      <div *ngIf="this.report.userId == null;else normalButton">
+        <button type="button" style="margin:5px;" class="btn btn-primary" (click)="sendReport()">Login</button>
+        <button type="button" style="margin:5px;" class="btn btn-primary" [disabled]="this.report.userId == null" (click)="sendReport()">Send</button>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" [disabled]="!reportForm.form.valid" (click)="activeModal.close('Close click')">Close</button>
-      </div>
-    </ng-template>
+      <ng-template #normalButton>
+        <button type="button" class="btn btn-primary" [disabled]="!reportForm.form.valid" (click)="sendReport()">Send</button>
+      </ng-template>
+    </div>
     `,
     styles: [`
     .modal-header
@@ -156,7 +149,6 @@ export class NgbdModalContentReport
 {
   @Input() campaignId;
 
-  status : boolean;
   report : Report;
   result : string;
   
@@ -183,7 +175,7 @@ export class NgbdModalContentReport
     {
       if(result)
       {
-        this.status=true;
+        this.activeModal.close('Close click');
       }
     })
   }

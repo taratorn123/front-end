@@ -1,5 +1,7 @@
 
 <div class="col-md-12 order-md-1 container">
+  <button type="button" class="btn btn-secondary" style="margin-bottom: 24px" (click)="navigateToManage()">&laquo; Go back to Manage Campaign</button>
+
   <h4 class="mb-3">Edit Campaign</h4>
   <hr>
   <form [formGroup]="formTemplate" (ngSubmit)="ngOnSubmit(formTemplate.value)" class="editForm">

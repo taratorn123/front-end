@@ -110,6 +110,8 @@ export class EditProfileComponent implements OnInit
             this.emailExist = true;
           }
       });
+      this.router.navigate(['/']);
+
     }
   }
 
@@ -154,6 +156,7 @@ export class EditProfileComponent implements OnInit
     } else {
       return  `with: ${reason}`;
     }
+
   }
   editPassword()
   {
