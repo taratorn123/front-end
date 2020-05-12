@@ -337,6 +337,9 @@ export class SignupFormComponent
     <div class="modal-body">
       Successful
     </div>
+    <div class="modal-footer">
+      <button style="margin-top:0px;" type="button" class="btn btn-outline-dark" (click)="activeModal.dismiss('Cross click')">Ok</button>
+    </div>
   </div>
 
   `,

@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ReportNumber } from 'src/models/report-number.model'
 import { CampaignListService } from '../services/campaign-list.service'
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ConstantPool } from '@angular/compiler';
 
 
 @Component({
@@ -37,18 +38,32 @@ export class ReportComponent implements OnInit {
   {
     this.router.navigate(['/campaigns/'+campaignId]);
   }
-  inactivateCampaign(campaignId : string)
+  inactivateCampaign(campaignIdRemove : string)
   {
-    this.reportService.sendUserReportEmail(campaignId).subscribe()
-    this.reportService.sendBeneficiaryReport(campaignId).subscribe()
-    this.campaignService.inActivateCampaign(campaignId).subscribe(result=>
+    var campaignId = campaignIdRemove;
+    const modalRef = this.modalService.open(NgbdModalContentReportAdmin,{centered: true} );
+    for (let i = 0; i < this.reports.length; i++) 
+    {
+      if(this.reports[i].campaignId == campaignId)
+      {
+        this.reports.splice(i,1);
+      }
+    }
+    this.reportService.sendUserReportEmail(campaignId).subscribe(result=>
       {
         if(result)
         {
-          const modalRef = this.modalService.open(NgbdModalContentReportAdmin,{centered: true} );
+          this.campaignService.inActivateCampaign(campaignId).subscribe(resutl1=>
+            {
+              if(resutl1)
+              {
+              }
+            })
         }
       })
+      this.reportService.sendBeneficiaryReport(campaignId).subscribe()
   }
+
   displayReportDetail(campaignId : string)
   {
     this.router.navigate(['/reportDetail/'+campaignId]);
@@ -90,6 +105,5 @@ export class NgbdModalContentReportAdmin
   inactivateDone()
   {
     this.activeModal.close('Close click')
-    location.reload();
   }
 }
