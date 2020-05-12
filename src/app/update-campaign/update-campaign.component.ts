@@ -128,7 +128,10 @@ imageEditor(){
       this.campaignUpdate.updateTimestamp = this.today;
       this.campaignFormService.saveCampaignUpdate(this.campaignUpdate).subscribe();
       this.resetForm()
-      this.router.navigate(['manage-campaigns' + '/' + this.campaignID]);
+      this.router.navigate(['manage-campaigns' + '/' + this.campaignID])
+      .then(() => {
+        window.location.reload();
+      });
     }
   }
 
