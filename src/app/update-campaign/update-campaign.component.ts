@@ -147,6 +147,9 @@ imageEditor(){
   navigateToManage()
   {
     this.router.navigate(['manage-campaigns'+'/'+this.actRoute.snapshot.params['id']])
+    .then(() => {
+      window.location.reload();
+    });
   }
   open(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
