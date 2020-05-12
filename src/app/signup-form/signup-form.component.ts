@@ -300,7 +300,6 @@ export class SignupFormComponent
   </div>
 
 
-
   <div *ngIf="choice == 8">
     <div class="modal-header">
       <h3>Success</h3>
@@ -325,6 +324,18 @@ export class SignupFormComponent
     </div>
     <div class="modal-body">
       <h4>Please wait a moment</h4>
+    </div>
+  </div>
+
+  <div *ngIf="choice == 10">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Edit Profile</h4>
+      <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      Successful
     </div>
   </div>
 

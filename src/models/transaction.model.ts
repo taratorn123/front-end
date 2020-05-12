@@ -7,4 +7,6 @@ export class Transaction
 	userName:String = "";
 	amount:String = "";
 	transactionHash:String = "";
+	exchangeRate: string;
+	baht: string;
 }

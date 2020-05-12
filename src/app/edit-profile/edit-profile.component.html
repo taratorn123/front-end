@@ -1,68 +1,118 @@
-
 <div class="col-md-12 order-md-1 container">
 
-<form [formGroup]="formTemplate" (ngSubmit)="ngOnSubmit(formTemplate.value)" #userForm="ngForm" class="editForm">
-
-    <h4 class="mb-3">Edit Profile</h4>
-    <hr>
-      <div class="mb-3 form-group">
-        <label class="control-label" for="firstName">First Name</label>  
-            <input
-            class="form-control"
-            formControlName="firstName"
-            id="firstName"
-            name="firstName"
-            autofocus>
-      </div>
-      <div class="mb-3 form-group">
-        <label class="control-label" for="lastName">Last Name</label>  
-        <input 
-        class="form-control"
-        formControlName="lastName"
-        id="lastName"
-        name="lastName"
-        autofocus>
-      </div>
-      <div class="mb-3 form-group">
-        <label class="control-label" for="email">Email</label>  
-        <input  
-        class="form-control"
-        formControlName="email"
-        id="email"
-        name="email"
-        autofocus>
-      </div>
-      <!-- Campaign's upload cover image Section -->
-      <div class="mb-3 form-group">
-        <h3>Cover Image Uploading</h3>
-        <div>
-            <input type="file"
-            formControlName="imageUrl"
-            (change)="onFileChanged($event)">
-            <img [src]="imageUrl" height="200" *ngIf="imageUrl">
+  <form [formGroup]="formTemplate" (ngSubmit)="ngOnSubmit(formTemplate.value)" #userForm="ngForm" class="editForm">
+  
+      <h4 class="mb-3">Edit Profile</h4>
+      <hr>
+        <div class="mb-3 form-group">
+          <label class="control-label" for="firstName">First Name</label>  
+              <input
+              class="form-control"
+              formControlName="firstName"
+              id="firstName"
+              name="firstName"
+              autofocus>
         </div>
-        <hr />
-      </div>
-      <button type="submit" class="btn btn-lg btn-primary btn-block" type="submit" (click)="open(mymodal)">Save</button>
-      <div *ngIf="userData.privilegeLevel == 1">
-        
-        <button class = "btn btn-lg btn-success btn-block" (click)="activate()" >Activate</button>
-        <p>*To act as a beneficiary (access create campaign feature), click "Activate" button</p>
-      </div>
-      <!-- For successful popup -->
-    <ng-template #mymodal let-modal>
-      <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Edit Profile</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-          <span aria-hidden="true">×</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        Successful
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark" style="margin-top: 0px;" (click)="modal.close('Save click')">Ok</button>
-      </div>
-    </ng-template>
-</form>
-</div>
+        <div class="mb-3 form-group">
+          <label class="control-label" for="lastName">Last Name</label>  
+          <input 
+          class="form-control"
+          formControlName="lastName"
+          id="lastName"
+          name="lastName"
+          autofocus>
+        </div>
+        <div class="mb-3 form-group">
+          <label class="control-label" for="email">Email</label>  
+          <input  
+          class="form-control"
+          formControlName="email"
+          id="email"
+          name="email"
+          autofocus>
+        </div>
+        <div class="errorCode" *ngIf="emailExist">
+          *Email already exist
+        </div>
+        <a [routerLink]=""(click)="open(mymodal); passwordChanged=false">Change password</a>
+        <hr style = "margin-top: 20px;"> 
+        <!-- Campaign's upload cover image Section -->
+        <div class="mb-3 form-group">
+          <h3>Cover Image Uploading</h3>
+          <div style="margin-top: 50px;margin-bottom: 50px;">
+              <input type="file"
+              formControlName="imageUrl"
+              (change)="onFileChanged($event)">
+              <img [src]="imageUrl" height="200" *ngIf="imageUrl">
+          </div>
+          <hr/>
+        </div>
+        <button type="submit" class="btn btn-lg btn-primary btn-block" type="submit">Save</button>
+        <div *ngIf="userData.privilegeLevel == 1">
+          <button class = "btn btn-lg btn-success btn-block" (click)="activate()" >Activate</button>
+          <p>*To act as a beneficiary (access create campaign feature), click "Activate" button</p>
+        </div>
+
+        <!-- ng-template for change password -->
+        <ng-template #mymodal let-modal>
+          <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Change password</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div *ngIf="!passwordChanged; else done">
+            <form (ngSumbit)="editPassword()" #passwordForm="ngForm">  
+              <div class="form-group">
+                <label for="currentPassword">Current Password</label>
+                <input [(ngModel)]="userPassword.currentPassword"
+                id = "currentPassword"
+                name="currentPassword"
+                class="form-control" 
+                type="password" 
+                required autofocus #name="ngModel"
+                >
+              </div>
+              <div class="errorCode" *ngIf="incorrectPassword">
+                *Your password was incorrect.
+              </div>
+              <div class="form-group">
+                <label for="newPassword">New Password</label>
+                <input [(ngModel)]="userPassword.newPassword"
+                id = "newPassword"
+                name="newPassword"
+                class="form-control" 
+                type="password" 
+                required autofocus #name="ngModel"
+                >
+              </div>
+              <div class="errorCode" *ngIf="userPassword.newPassword.length < 5 && userPassword.newPassword != ''">
+                *Password must have more than 4 letters
+              </div>
+              <div class="form-group">
+                <label for="confirmationPassword">Re-type new Password</label>
+                <input [(ngModel)]="userPassword.confirmationPassword"
+                id = "confirmationPassword"
+                name="confirmationPassword"
+                class="form-control" 
+                type="password" 
+                required autofocus #name="ngModel"
+                >
+              </div>
+              <div class="errorCode" *ngIf="userPassword.newPassword != userPassword.confirmationPassword">
+                *Password does not matched
+              </div>
+              <button type="submit" (click)="editPassword()" class = "btn btn-lg btn-primary btn-block"[disabled]="!passwordForm.form.valid || 
+              userPassword.newPassword != userPassword.confirmationPassword || userPassword.newPassword.length < 5 || 
+              userPassword.confirmationPassword < 5">Submit</button>
+            </form>
+            </div>
+            <ng-template #done>
+              <p style="margin-top: 3%;">Your password was changed.</p>
+              <button type="submit" (click)="modal.dismiss('Cross click')" class = "btn btn-lg btn-primary btn-block">Close</button>
+            </ng-template>
+          </div>
+        </ng-template>
+  </form>
+  </div>

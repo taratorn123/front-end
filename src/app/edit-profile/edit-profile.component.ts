@@ -1,13 +1,15 @@
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
 import { User } from 'src/models/User';
 import { Component, OnInit } from '@angular/core';
+import { PasswordUpdate } from 'src/models/password-update.model'
 
 import { EditProfileDataService } from './../services/edit-profile-data.service';
 import { finalize } from "rxjs/operators"
 import { AngularFireStorage } from '@angular/fire/storage';
 import { UserService } from '../services/user-service.service'
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgbdModalContentSignup } from '../signup-form/signup-form.component'
 
 @Component({
   selector: 'app-edit-profile',
@@ -26,6 +28,11 @@ export class EditProfileComponent implements OnInit
   imageUrl: string;
   isSubmitted: boolean;
   closeResult: string;
+  emailExist : boolean = false;
+  userPassword : PasswordUpdate;
+  incorrectPassword : boolean = false;
+  passwordChanged : boolean = false;
+  passwordFormTemplate : FormGroup;
 
 
   constructor(private editProfileDataService: EditProfileDataService,
@@ -35,11 +42,13 @@ export class EditProfileComponent implements OnInit
     private route: ActivatedRoute, 
     private router: Router) 
     { 
-    this.userData = new User
-    this.temp = new User
+    this.userData = new User()
+    this.temp = new User()
+    this.userPassword = new PasswordUpdate()
   }
 
-  ngOnInit() {
+  ngOnInit()
+  {
     //Declare form group
     this.formTemplate = new FormGroup({
       firstName: new FormControl('',Validators.required),
@@ -65,28 +74,41 @@ export class EditProfileComponent implements OnInit
   //This is for uploading campaign
   ngOnSubmit(formValue) {
     this.isSubmitted = true;
-    if(this.formTemplate.valid){
+    if(this.formTemplate.valid)
+    {
       //Assign formValue to model
       this.userData.firstName = formValue['firstName'];
       this.userData.lastName = formValue['lastName'];
       this.userData.email = formValue['email'];
       //Send assigned value to SpringBoot, return campaignId
-      this.editProfileDataService.editUserDetail(this.userData).subscribe(user => {
-        if(this.selectedImage != null){
-          //Uploading Image to Firebase storage
-          var filePath = `${sessionStorage.getItem('userId')}/coverPhoto/coverPhoto.jpg`
-          const fileRef = this.storage.ref(filePath);
-          this.storage.upload(filePath,this.selectedImage).snapshotChanges().pipe(
-            finalize(()=>{
-              fileRef.getDownloadURL().subscribe((url)=>{
-                formValue['imageUrl'] = url;
-                this.userData.routeUserImage = formValue['imageUrl']
-                //Send new assigned value (campaignId with userId, coverImagePath) to Springboot
-                this.editProfileDataService.editUserDetail(this.userData).subscribe()
-              })
-            })
-          ).subscribe();
-        }
+      this.editProfileDataService.editUserDetail(this.userData).subscribe(user => 
+        {
+          if(user == 1)
+          {
+            const modalRef = this.modalService.open(NgbdModalContentSignup);
+            modalRef.componentInstance.choice = '10';
+            this.emailExist = false;
+            if(this.selectedImage != null)
+            {
+              //Uploading Image to Firebase storage
+              var filePath = `${sessionStorage.getItem('userId')}/coverPhoto/coverPhoto.jpg`
+              const fileRef = this.storage.ref(filePath);
+              this.storage.upload(filePath,this.selectedImage).snapshotChanges().pipe(
+                finalize(()=>{
+                  fileRef.getDownloadURL().subscribe((url)=>{
+                    formValue['imageUrl'] = url;
+                    this.userData.routeUserImage = formValue['imageUrl']
+                    //Send new assigned value (campaignId with userId, coverImagePath) to Springboot
+                    this.editProfileDataService.editUserDetail(this.userData).subscribe()
+                  })
+                })
+              ).subscribe();
+            }
+          }
+          else
+          {
+            this.emailExist = true;
+          }
       });
       this.router.navigate(['/']);
 
@@ -125,7 +147,8 @@ export class EditProfileComponent implements OnInit
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
   }
-  private getDismissReason(reason: any): string {
+  private getDismissReason(reason: any): string 
+  {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
     } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
@@ -134,5 +157,22 @@ export class EditProfileComponent implements OnInit
       return  `with: ${reason}`;
     }
 
+  }
+  editPassword()
+  {
+    this.userPassword.userId = this.userData.id;
+    this.editProfileDataService.changePassword(this.userPassword).subscribe(result=>
+      {
+        if(!result)
+        {
+          this.incorrectPassword = true;
+        }
+        else
+        {
+          this.incorrectPassword = false;
+          this.passwordChanged = true;
+          this.userPassword = new PasswordUpdate()
+        }
+      })
   }
 }

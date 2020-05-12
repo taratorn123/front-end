@@ -98,32 +98,42 @@ export class ViewCampaignComponent implements OnInit {
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
-    <div class="modal-body">
-      <form (ngSumbit)="sendReport()" #reportForm="ngForm">
-        <div class="form-group reportDetail">
-          <input name="detail"
-          type="text"
-          [(ngModel)]="report.detail"
-          id = "detail"
-          class="form-control"
-          placeholder="Report detail"
-          required #name="ngModel"
-          >
-        </div>
-        <div class="errorCode" *ngIf="this.report.userId == null">
-          *Please login
-        </div>
-      </form>
-    </div>
-    <div class="modal-footer">
-      <div *ngIf="this.report.userId == null;else normalButton">
-        <button type="button" style="margin:5px;" class="btn btn-primary" (click)="sendReport()">Login</button>
-        <button type="button" style="margin:5px;" class="btn btn-primary" [disabled]="this.report.userId == null" (click)="sendReport()">Send</button>
+    <div *ngIf ="!status;else sentReport">
+      <div class="modal-body">
+        <form (ngSumbit)="sendReport()" #reportForm="ngForm">
+          <div class="form-group reportDetail">
+            <input name="detail"
+            type="text"
+            [(ngModel)]="report.detail"
+            id = "detail"
+            class="form-control"
+            placeholder="Report detail"
+            required #name="ngModel"
+            >
+          </div>
+          <div class="errorCode" *ngIf="this.report.userId == null">
+            *Please login
+          </div>
+        </form>
       </div>
-      <ng-template #normalButton>
-        <button type="button" class="btn btn-primary" [disabled]="!reportForm.form.valid" (click)="sendReport()">Send</button>
-      </ng-template>
+      <div class="modal-footer">
+        <div *ngIf="this.report.userId == null;else normalButton">
+          <button type="button" style="margin:5px;" class="btn btn-primary" (click)="sendReport()">Login</button>
+          <button type="button" style="margin:5px;" class="btn btn-primary" [disabled]="this.report.userId == null" (click)="sendReport()">Send</button>
+        </div>
+        <ng-template #normalButton>
+          <button type="button" class="btn btn-primary" [disabled]="!reportForm.form.valid" (click)="sendReport()">Send</button>
+        </ng-template>
+      </div>
     </div>
+    <ng-template #sentReport>
+      <div class="modal-body">
+        <h4> Report sent. Thank you</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" [disabled]="!reportForm.form.valid" (click)="activeModal.close('Close click')">Close</button>
+      </div>
+    </ng-template>
     `,
     styles: [`
     .modal-header
@@ -146,6 +156,7 @@ export class NgbdModalContentReport
 {
   @Input() campaignId;
 
+  status : boolean;
   report : Report;
   result : string;
   
@@ -172,7 +183,7 @@ export class NgbdModalContentReport
     {
       if(result)
       {
-        this.activeModal.close('Close click');
+        this.status=true;
       }
     })
   }

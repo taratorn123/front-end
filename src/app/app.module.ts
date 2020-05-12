@@ -55,7 +55,9 @@ import { ViewCampaignCardComponent } from './view-campaign-card/view-campaign-ca
 import { ReadMoreComponent } from './readmore/readmore.component';
 import { UserIdentityVerificationComponent } from './user-identity-verification/user-identity-verification.component';
 import { GlobalConstantsService } from './global-constants.service';
-import { ViewCampaignPreviewComponent } from './view-campaign-preview/view-campaign-preview.component'
+import { RecoverAccountComponent } from './recover-account/recover-account.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { ViewCampaignPreviewComponent } from './view-campaign-preview/view-campaign-preview.component';
 
 @NgModule({
   declarations: [
@@ -96,6 +98,8 @@ import { ViewCampaignPreviewComponent } from './view-campaign-preview/view-campa
     ReadMoreComponent,
     UserIdentityVerificationComponent,
     NgbdModalContentEdit,
+    RecoverAccountComponent,
+    ResetPasswordComponent,
     ViewCampaignPreviewComponent,
   ],
   entryComponents: 

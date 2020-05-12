@@ -23,6 +23,11 @@ export class UserService
   private setUserCoverImageUrl: string;
   private getUserBalanceUrl: string;
   private userId: number;
+  private recoverUserAccountUrl: string;
+  private resetUserPasswordUrl:string;
+  private checkUserTokenUrl:string;
+  private sendUserRecoverEmailUrl : string;
+
   constructor(private http: HttpClient) 
   {
     this.emailUrl= GlobalConstantsService.apiURL+'sendmail';
@@ -39,8 +44,28 @@ export class UserService
     this.declineUserIdentityUrl = GlobalConstantsService.apiURL+'declineuseridentity'
     this.setUserCoverImageUrl = GlobalConstantsService.apiURL+'setUserCoverImage'
     this.getUserBalanceUrl = GlobalConstantsService.apiURL+'getUserBalance'
+    this.recoverUserAccountUrl = GlobalConstantsService.apiURL+'findUserAccountByEmail'
+    this.resetUserPasswordUrl = GlobalConstantsService.apiURL+'resetUserPassword';
+    this.checkUserTokenUrl = GlobalConstantsService.apiURL+'checkToken';
+    this.sendUserRecoverEmailUrl = GlobalConstantsService.apiURL+'sendUserRecoverEmail';
   }
 
+  public sendUserRecoverEmail(email : string)
+  {
+    return this.http.post<boolean>(this.sendUserRecoverEmailUrl,email)
+  }
+  public checkUserToken(token:string)
+  {
+    return this.http.get<number>(this.checkUserTokenUrl+"/"+token)
+  }
+  public resetUserPassword(user:User)
+  {
+    return this.http.post<boolean>(this.resetUserPasswordUrl,user)
+  }
+  public recoverAccount(email : string)
+  {
+    return this.http.post<boolean>(this.recoverUserAccountUrl,email)
+  }
 
   public findAll(): Observable<User[]> 
   {
