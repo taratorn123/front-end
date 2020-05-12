@@ -1,6 +1,6 @@
   :host p.update-desc::ng-deep img,:host p.update-desc::ng-deep {
     width: 100%;
-    min-height:200px;
+    min-height:22.5px;
     height: auto;
     display: block;
     justify-content: left;

@@ -128,7 +128,10 @@ imageEditor(){
       this.campaignUpdate.updateTimestamp = this.today;
       this.campaignFormService.saveCampaignUpdate(this.campaignUpdate).subscribe();
       this.resetForm()
-      this.router.navigate(['manage-campaigns' + '/' + this.campaignID]);
+      this.router.navigate(['manage-campaigns' + '/' + this.campaignID])
+      .then(() => {
+        window.location.reload();
+      });
     }
   }
 
@@ -147,9 +150,6 @@ imageEditor(){
   navigateToManage()
   {
     this.router.navigate(['manage-campaigns'+'/'+this.actRoute.snapshot.params['id']])
-    .then(() => {
-      window.location.reload();
-    });
   }
   open(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
