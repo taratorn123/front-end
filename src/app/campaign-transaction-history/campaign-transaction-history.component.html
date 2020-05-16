@@ -1,18 +1,20 @@
 <main role="main" class="container">
     <div class="my-3 p-3 bg-white rounded box-shadow">
         <h6 class="border-bottom border-gray pb-2 mb-0">Recent Donations</h6>
-        <ng-container *ngFor="let transaction of transactions">
-            <div class="media text-muted pt-3">
-                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    {{ transaction.userName }}
-                    <br>
-                    <strong class="d-block text-gray-dark font-weight-bold">฿{{ transaction.amount }} 
-                        •  <p class="d-inline font-weight-light">{{ transaction.publishTime | dateAgo}}</p>
+        <div *ngIf="transactions != null">
+            <ng-container *ngFor="let transaction of transactions">
+                <div class="media text-muted pt-3">
+                    <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                        {{ transaction.userName }}
+                        <br>
+                        <strong class="d-block text-gray-dark font-weight-bold">฿{{ transaction.amount }} 
+                            •  <p class="d-inline font-weight-light">{{ transaction.publishTime | dateAgo}}</p>
 
-                    </strong>
-                </p>
-                <hr>
-            </div>
-        </ng-container>
+                        </strong>
+                    </p>
+                    <hr>
+                </div>
+            </ng-container>
+        </div>
     </div>
 </main>
