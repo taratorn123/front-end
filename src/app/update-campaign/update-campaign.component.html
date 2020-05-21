@@ -1,18 +1,19 @@
 <div class="col-md-12 order-md-1 container">
   <button type="button" class="btn btn-secondary" style="margin-bottom: 24px" (click)="navigateToManage()">&laquo; Go back to Manage Campaign</button>
 
-    <h4 class="mb-3">Update Campaign</h4>
+    <h4 class="mb-3">Posting Updates</h4>
     <form [formGroup]="formTemplate" (ngSubmit)="ngOnSubmit(formTemplate.value)" class="editForm">
       <hr>
       <!-- Campaign's quilljs editor Section -->
       <div class="mb-3 form-group">
-        <div class="row pt-5">
+        <div class="row">
           <div class="col-md-12 bg-light">
-            <label for="editor"><h3>Update</h3></label>
+            <label for="editor"></label>
             <quill-editor id="discipline-qe"
             [style]="editorStyle" 
             (onEditorCreated)="submitEditor($event)"
-            [modules]="config" 
+            [modules]="config"
+            placeholder = "Share your news..."
             trackChanges="all"
             formControlName="editor">
             </quill-editor>
