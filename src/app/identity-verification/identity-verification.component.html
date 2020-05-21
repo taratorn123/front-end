@@ -11,12 +11,12 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let user of users">
-            <td>{{user.id}}</td>
-            <td>{{user.username}}</td>
-            <td>{{user.firstName}} {{user.lastName}}</td>
-            <td><a [routerLink]="" (click)="displayVerificationDetail(user.id)">Verification picture</a></td>
-          </tr>
+            <tr *ngFor="let user of users">
+                <td *ngIf="user.privilegeLevel > 0">{{user.id}}</td>
+                <td *ngIf="user.privilegeLevel > 0">{{user.username}}</td>
+                <td *ngIf="user.privilegeLevel > 0">{{user.firstName}} {{user.lastName}}</td>
+              <td *ngIf="user.privilegeLevel > 0"><a [routerLink]="" (click)="displayVerificationDetail(user.id)">Verification picture</a></td>
+            </tr>
         </tbody>
       </table>
     </div>

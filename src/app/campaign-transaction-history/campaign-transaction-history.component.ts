@@ -32,9 +32,14 @@ export class CampaignTransactionHistoryComponent implements OnInit
     this.campaignId = this.route.snapshot.params['id'];
     this.transactionService.getHistoryDonationCampaign(this.campaignId).subscribe(data=>
       {
-        this.transactions = data;
-        this.campaignPublicKey = this.transactions[0].campaignPublicKey;
-        this.campaignName = this.transactions[0].campaignName;
+        if(data[0].amount == null)
+        {
+          this.transactions = null;
+        }
+        else
+        {
+          this.transactions = data;
+        }
       })
   }
 
