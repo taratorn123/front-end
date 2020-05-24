@@ -93,9 +93,13 @@ export class EditCampaignComponent implements OnInit {
  
   //Used to display the selected image
   onFileChanged(event) {
-      this.selectedImage = event.target.files[0];
-      let reader = new FileReader();
-      reader.readAsDataURL(event.target.files[0]);
+    this.selectedImage = event.target.files[0];
+    var blob = new Blob([event.target.result], { type: "image/jpeg" });
+    let reader = new FileReader();
+    reader.readAsDataURL(event.target.files[0]);
+    reader.onload = (event2) => {
+      this.imageUrl = reader.result;
+  };
  }
 
  //Fix length (10) for text editor
@@ -139,8 +143,13 @@ export class EditCampaignComponent implements OnInit {
             })
           ).subscribe();
         }
-      });
-      this.router.navigate(['manage-campaigns' + '/' + this.campaignID]);
+
+        this.router.navigate(['manage-campaigns' + '/' + this.campaignID])
+        .then(() => {
+          window.location.reload();
+        });
+      })
+      
     }
   }
 
