@@ -66,7 +66,7 @@ const routes: Routes = [
   { path: 'user-verification', component: UserIdentityVerificationComponent},
   { path: 'recover-account', component: RecoverAccountComponent},
   { path: 'reset-password', component: ResetPasswordComponent},
-  { path: 'manage-campaigns/:id/view-preview-campaign', component: ViewCampaignPreviewComponent}
+  { path: 'manage-campaigns/:id/view-preview-campaign', component: ViewCampaignPreviewComponent},
 
 ];
 

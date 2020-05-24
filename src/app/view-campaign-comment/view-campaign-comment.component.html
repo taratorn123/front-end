@@ -9,7 +9,6 @@
 
           </div>
             <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray" >
-              
             <strong class="d-block text-gray-dark font-weight-bold" *ngIf="campaignComment.anonymousFlag == 0" >{{campaignComment.user.firstName}} {{campaignComment.user.lastName}} <p class="d-inline font-weight-light">{{campaignComment.timestamp | dateAgo}}</p>
             </strong>
             <strong class="d-block text-gray-dark font-weight-bold" *ngIf="campaignComment.anonymousFlag == 1" >Anonymous <p class="d-inline font-weight-light">{{campaignComment.timestamp | dateAgo}}</p>
